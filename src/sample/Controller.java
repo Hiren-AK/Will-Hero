@@ -19,7 +19,7 @@ public class Controller {
         root = FXMLLoader.load(getClass().getResource("Resume1.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
-        //scene.getStylesheets().add(getClass().getResource("StyleSheet.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("StyleSheet.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }
