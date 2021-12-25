@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -13,13 +14,12 @@ public class Controller {
 
     private Stage stage;
     private Scene scene;
-    private Group root;
+    private Parent root;
 
     public void returnHomeFromResumeSavedGames(ActionEvent event) throws IOException{
         root = FXMLLoader.load(getClass().getResource("Start.fxml"));
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene.getStylesheets().add(getClass().getResource("StyleSheet.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }
