@@ -33,7 +33,7 @@
             <Font name="Hypeblox" size="37.0" />
          </font>
       </Button>
-      <Button alignment="CENTER" layoutX="163.0" layoutY="382.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="374.0" text="back to home" textAlignment="CENTER" textFill="WHITE">
+      <Button alignment="CENTER" layoutX="163.0" layoutY="382.0" mnemonicParsing="false" onAction="#returnHomeFromResumeSavedGames" prefHeight="55.0" prefWidth="374.0" text="back to home" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Hypeblox" size="37.0" />
          </font>

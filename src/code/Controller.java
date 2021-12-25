@@ -15,7 +15,7 @@ public class Controller {
     private Scene scene;
     private Group root;
 
-    public void returnHome(ActionEvent event) throws IOException{
+    public void returnHomeFromResumeSavedGames(ActionEvent event) throws IOException{
         root = FXMLLoader.load(getClass().getResource("Start.fxml"));
         scene = new Scene(root);
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -24,7 +24,7 @@ public class Controller {
         stage.show();
     }
 
-    public void resumeGame(ActionEvent event)throws IOException {
+    public void resumeSavedGame(ActionEvent event)throws IOException {
         root = FXMLLoader.load(getClass().getResource("Resume.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
