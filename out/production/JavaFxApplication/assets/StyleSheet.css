@@ -1,0 +1,60 @@
+#pauseButton{
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+}
+
+#start{
+    -fx-background-image:url('start.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 160px;
+}
+
+#resume{
+    -fx-background-image:url('resume.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 200px;
+}
+
+#load1{
+    -fx-background-image:url('load.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 80px;
+}
+#load2{
+    -fx-background-image:url('load.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 80px;
+}
+
+#load3{
+    -fx-background-image:url('load.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 80px;
+}
+
+#backHomeFromResume{
+    -fx-background-image:url('backHomeFromResume.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 250px;
+}
+
+.button{
+    -fx-background-color: #ffffff00;
+}
+
+#startPage{
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+}
+
+#pauseWindow{
+    -fx-background-color: #A4DE02;
+}
+
+#highScoreWindow{
+    -fx-background-color: #A4DE02;
+}
+
+#revivePane{
+    -fx-background-color: #A4DE02;
+}
