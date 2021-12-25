@@ -31,6 +31,22 @@ public class Game {
         gameObjects = new ArrayList<>();
         lastSavedGameIndex = 0;
         this.stage = stage;
+        try
+        {
+            // Reading the object from a file
+            fileIn = new FileInputStream("HighScoreSerial.ser");
+            in = new ObjectInputStream(fileIn);
+
+            // Method for deserialization of object
+            highScore = (HighScore)in.readObject();
+
+            in.close();
+            fileIn.close();
+            System.out.println("Object has been deserialized ");
+        }
+        catch (Exception e){
+            highScore = new HighScore();
+        }
     }
 
 
