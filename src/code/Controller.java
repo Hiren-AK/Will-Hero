@@ -17,9 +17,7 @@ public class Controller {
     private Stage stage;
     private Scene scene;
     private Parent root;
-
-    @FXML
-    private Button load1;
+    private FXMLLoader loader;
 
     public void returnHomeFromResumeSavedGames(ActionEvent event) throws IOException{
         root = FXMLLoader.load(getClass().getResource("Start.fxml"));
@@ -30,10 +28,11 @@ public class Controller {
     }
 
     public void resumeSavedGame(ActionEvent event)throws IOException {
-        root = FXMLLoader.load(getClass().getResource("Resume.fxml"));
+        loader = new FXMLLoader(getClass().getResource("Resume.fxml"));
+        root = loader.load();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("StyleSheet.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/assets/StyleSheet.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }
