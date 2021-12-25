@@ -3,13 +3,11 @@ package code;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.IOException;
 
 public class Controller {
@@ -20,7 +18,8 @@ public class Controller {
     private FXMLLoader loader;
 
     public void returnHomeFromResumeSavedGames(ActionEvent event) throws IOException{
-        root = FXMLLoader.load(getClass().getResource("Start.fxml"));
+        loader = new FXMLLoader(getClass().getResource("Start.fxml"));
+        root = loader.load();
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
