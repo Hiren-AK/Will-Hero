@@ -3,7 +3,9 @@ package code;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -24,6 +26,7 @@ public class Game {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    private AnchorPane pane;
     private FXMLLoader loader;
 
     public Game(Stage stage){
@@ -51,11 +54,14 @@ public class Game {
 
 
     public void startGame() throws IOException {
-        loader = new FXMLLoader(getClass().getResource("Start.fxml"));
-        root = loader.load();
+        pane = FXMLLoader.load(getClass().getResource("Start.fxml"));
+        Label startPageHighScore = new Label("High Score: " + highScore.getHighScore());
+        startPageHighScore.setTranslateX(320);
+        startPageHighScore.setTranslateY(25);
+        pane.getChildren().add(startPageHighScore);
         stage.setTitle("Will Hero");
         Image icon = new Image("/assets/logo.png");
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(pane);
         stage.setResizable(false);
         scene.getStylesheets().add(getClass().getResource("/assets/StyleSheet.css").toExternalForm());
         stage.getIcons().add(icon);
