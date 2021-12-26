@@ -1,15 +1,20 @@
 package code;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
 import java.io.*;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 public class Game {
     private Game game;
@@ -34,38 +39,36 @@ public class Game {
         gameObjects = new ArrayList<>();
         lastSavedGameIndex = 0;
         this.stage = stage;
-        try
-        {
-            // Reading the object from a file
-            fileIn = new FileInputStream("HighScoreSerial.ser");
-            in = new ObjectInputStream(fileIn);
-
-            // Method for deserialization of object
-            highScore = (HighScore)in.readObject();
-
-            in.close();
-            fileIn.close();
-            System.out.println("Object has been deserialized ");
-        }
-        catch (Exception e){
-            highScore = new HighScore();
-        }
     }
 
 
     public void startGame() throws IOException {
-        pane = FXMLLoader.load(getClass().getResource("Start.fxml"));
-        Label startPageHighScore = new Label("High Score: " + highScore.getHighScore());
-        startPageHighScore.setTranslateX(320);
-        startPageHighScore.setTranslateY(25);
-        pane.getChildren().add(startPageHighScore);
+        serializeHighScore(69);
         stage.setTitle("Will Hero");
         Image icon = new Image("/assets/logo.png");
-        Scene scene = new Scene(pane);
+        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("Start.fxml")));
         stage.setResizable(false);
         scene.getStylesheets().add(getClass().getResource("/assets/StyleSheet.css").toExternalForm());
         stage.getIcons().add(icon);
         stage.setScene(scene);
         stage.show();
     }
+
+    public void serializeHighScore(int currentScore){
+        HighScore score = new HighScore();
+        score.setHighScore(currentScore);
+        try {
+            FileOutputStream file = new FileOutputStream("serial/SerializedHighScore.txt");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(score);
+            out.close();
+            file.close();
+        }
+
+        catch (IOException ex) {
+            System.out.println("IOException is caught");
+        }
+    }
+
+
 }

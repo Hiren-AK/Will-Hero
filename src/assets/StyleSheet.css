@@ -15,6 +15,14 @@
     -fx-background-size: 200px;
 }
 
+#startPageHighScore{
+    -fx-font-size: 35;
+    -fx-font-family: "Segoe UI";
+    -fx-font-weight: bold;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 200px;
+}
+
 #load1{
     -fx-background-image:url('load.png');
     -fx-background-repeat: no-repeat;
