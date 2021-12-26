@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import java.io.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -23,12 +24,26 @@ public class StartController implements Initializable {
     private FXMLLoader loader;
 
     private HighScore score = new HighScore();
+    private Game game;
 
     @FXML
     private Label startPageHighScore;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        game = new Game();
+        try {
+            FileOutputStream file = new FileOutputStream("serial/SerializedCurrentGame.txt");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(game);
+            out.close();
+            file.close();
+        }
+        catch (IOException ex) {
+            System.out.println(ex);
+            System.out.println("current");
+        }
+
         try {
             FileInputStream file = new FileInputStream("serial/SerializedHighScore.txt");
             ObjectInputStream in = new ObjectInputStream(file);

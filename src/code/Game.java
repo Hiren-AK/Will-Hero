@@ -3,13 +3,12 @@ package code;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.io.*;
 import java.util.ArrayList;
 
-public class Game {
+public class Game implements Serializable{
     private Game game;
     private int score;
     private ArrayList<GameObject> gameObjects;
@@ -27,28 +26,11 @@ public class Game {
     private AnchorPane pane;
     private FXMLLoader loader;
 
-    public Game(Stage stage){
+    public Game(){
         game = this;
         gameObjects = new ArrayList<>();
         savedGames = new ArrayList<>();
         lastSavedGameIndex = 0;
-        this.stage = stage;
-        deserializeGames();
-        serializeCurrentGame();
-    }
-
-    public void startGame() throws IOException {
-        serializeHighScore(69);
-        stage.setTitle("Will Hero");
-        Image icon = new Image("/assets/logo.png");
-        loader = new FXMLLoader(getClass().getResource("Start.fxml"));
-        root = loader.load();
-        scene = new Scene(root);
-        stage.setResizable(false);
-        scene.getStylesheets().add(getClass().getResource("/assets/StyleSheet.css").toExternalForm());
-        stage.getIcons().add(icon);
-        stage.setScene(scene);
-        stage.show();
     }
 
     public void serializeHighScore(int currentScore){
@@ -61,78 +43,6 @@ public class Game {
             out.close();
             file.close();
         }
-
-        catch (IOException ex) {
-            System.out.println("IOException is caught");
-        }
-    }
-
-    public void deserializeGames(){
-        Game tempGame = null;
-        try {
-            fileIn = new FileInputStream("serial/SerializedGame1.txt");
-            in = new ObjectInputStream(fileIn);
-            tempGame = (Game) in.readObject();
-            savedGames.add(tempGame);
-            in.close();
-            fileIn.close();
-        }
-        catch (IOException ex) {
-            System.out.println("IOException is caught");
-        }
-        catch (ClassNotFoundException ex) {
-            System.out.println("ClassNotFoundException" + " is caught");
-        }
-        catch (Exception ex) {
-            System.out.println("Exception" + " is caught");
-        }
-
-        try {
-            fileIn = new FileInputStream("serial/SerializedGame2.txt");
-            in = new ObjectInputStream(fileIn);
-            tempGame = (Game) in.readObject();
-            savedGames.add(tempGame);
-            in.close();
-            fileIn.close();
-        }
-        catch (IOException ex) {
-            System.out.println("IOException is caught");
-        }
-        catch (ClassNotFoundException ex) {
-            System.out.println("ClassNotFoundException" + " is caught");
-        }
-        catch (Exception ex) {
-            System.out.println("Exception" + " is caught");
-        }
-
-        try {
-            fileIn = new FileInputStream("serial/SerializedGame2.txt");
-            in = new ObjectInputStream(fileIn);
-            tempGame = (Game) in.readObject();
-            savedGames.add(tempGame);
-            in.close();
-            fileIn.close();
-        }
-        catch (IOException ex) {
-            System.out.println("IOException is caught");
-        }
-        catch (ClassNotFoundException ex) {
-            System.out.println("ClassNotFoundException" + " is caught");
-        }
-        catch (Exception ex) {
-            System.out.println("Exception" + " is caught");
-        }
-    }
-
-    public void serializeCurrentGame(){
-        try {
-            fileOut = new FileOutputStream("serial/SerializedCurrentGame.txt");
-            out = new ObjectOutputStream(fileOut);
-            out.writeObject(this);
-            out.close();
-            fileOut.close();
-        }
-
         catch (IOException ex) {
             System.out.println("IOException is caught");
         }
