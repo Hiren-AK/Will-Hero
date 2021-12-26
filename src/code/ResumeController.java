@@ -41,7 +41,7 @@ public class ResumeController implements Initializable {
             game1 = (Game)in.readObject();
             in.close();
             file.close();
-            loadSlot1.setText("" + game1.getScore());
+            loadSlot1.setText("Score: " + game1.getScore());
         }
 
         catch (IOException ex) {
@@ -58,7 +58,7 @@ public class ResumeController implements Initializable {
             game2 = (Game)in.readObject();
             in.close();
             file.close();
-            loadSlot2.setText("" + game2.getScore());
+            loadSlot2.setText("Score: " + game2.getScore());
         }
 
         catch (IOException ex) {
@@ -75,7 +75,7 @@ public class ResumeController implements Initializable {
             game3 = (Game)in.readObject();
             in.close();
             file.close();
-            loadSlot3.setText("" + game3.getScore());
+            loadSlot3.setText("Score: " + game3.getScore());
         }
 
         catch (IOException ex) {
