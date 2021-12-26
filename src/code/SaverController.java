@@ -42,11 +42,9 @@ public class SaverController implements Initializable {
             file.close();
             saveSlot1.setText("Score: " + game1.getScore());
         }
-
         catch (IOException ex) {
             System.out.println("IOException is caught");
         }
-
         catch (ClassNotFoundException ex) {
             System.out.println("ClassNotFoundException is caught");
         }
@@ -54,16 +52,14 @@ public class SaverController implements Initializable {
         try {
             FileInputStream file = new FileInputStream("serial/SerializedGame2.txt");
             ObjectInputStream in = new ObjectInputStream(file);
-            game2 = (Game)in.readObject();
+            game2 = (Game) in.readObject();
             in.close();
             file.close();
             saveSlot2.setText("Score: " + game2.getScore());
         }
-
         catch (IOException ex) {
             System.out.println("IOException is caught");
         }
-
         catch (ClassNotFoundException ex) {
             System.out.println("ClassNotFoundException is caught");
         }
@@ -76,11 +72,9 @@ public class SaverController implements Initializable {
             file.close();
             saveSlot3.setText("Score: " + game3.getScore());
         }
-
         catch (IOException ex) {
             System.out.println("IOException is caught");
         }
-
         catch (ClassNotFoundException ex) {
             System.out.println("ClassNotFoundException is caught");
         }
