@@ -89,6 +89,54 @@
     -fx-background-size: 200px;
 }
 
+#loadSlot1{
+    -fx-font-size: 30;
+    -fx-font-family: "Segoe UI";
+    -fx-font-weight: bold;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 200px;
+}
+
+#loadSlot2{
+    -fx-font-size: 30;
+    -fx-font-family: "Segoe UI";
+    -fx-font-weight: bold;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 200px;
+}
+
+#loadSlot3{
+    -fx-font-size: 30;
+    -fx-font-family: "Segoe UI";
+    -fx-font-weight: bold;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 200px;
+}
+
+#saveSlot1{
+    -fx-font-size: 30;
+    -fx-font-family: "Segoe UI";
+    -fx-font-weight: bold;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 200px;
+}
+
+#saveSlot2{
+    -fx-font-size: 30;
+    -fx-font-family: "Segoe UI";
+    -fx-font-weight: bold;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 200px;
+}
+
+#saveSlot3{
+    -fx-font-size: 30;
+    -fx-font-family: "Segoe UI";
+    -fx-font-weight: bold;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 200px;
+}
+
 #load1{
     -fx-background-image:url('load.png');
     -fx-background-repeat: no-repeat;

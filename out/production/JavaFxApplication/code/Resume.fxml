@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -57,5 +58,8 @@
             <Image url="@../assets/3.png" />
          </image>
       </ImageView>
+      <Label fx:id="loadSlot1" layoutX="119.0" layoutY="180.0" stylesheets="@../assets/StyleSheet.css" text="No Game Saved" textFill="WHITE" />
+      <Label fx:id="loadSlot2" layoutX="119.0" layoutY="235.0" prefHeight="17.0" prefWidth="284.0" stylesheets="@../assets/StyleSheet.css" text="No Game Saved" textFill="WHITE" />
+      <Label fx:id="loadSlot3" layoutX="119.0" layoutY="287.0" prefHeight="17.0" prefWidth="269.0" stylesheets="@../assets/StyleSheet.css" text="No Game Saved" textFill="WHITE" />
    </children>
 </AnchorPane>

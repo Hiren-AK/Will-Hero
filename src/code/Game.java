@@ -28,6 +28,7 @@ public class Game implements Serializable{
 
     public Game(){
         game = this;
+        score = 0;
         gameObjects = new ArrayList<>();
         savedGames = new ArrayList<>();
         lastSavedGameIndex = 0;
@@ -50,5 +51,9 @@ public class Game implements Serializable{
 
     public int getScore(){
         return this.score;
+    }
+
+    public void setScore(int _score){
+        this.score = _score;
     }
 }

@@ -20,9 +20,8 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+
+import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -77,7 +76,6 @@ public class GameController implements Initializable {
         catch (IOException ex) {
             System.out.println("IOException is caught");
         }
-
         catch (ClassNotFoundException ex) {
             System.out.println("ClassNotFoundException" + " is caught");
         }
@@ -92,6 +90,16 @@ public class GameController implements Initializable {
     }
 
     public void settings(ActionEvent event) throws IOException{
+        try {
+            FileOutputStream file = new FileOutputStream("serial/SerializedCurrentGame.txt");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(currentGame);
+            out.close();
+            file.close();
+        }
+        catch (IOException ex) {
+            System.out.println(ex);
+        }
         loader = new FXMLLoader(getClass().getResource("Settings.fxml"));
         root = loader.load();
         stage = new Stage();

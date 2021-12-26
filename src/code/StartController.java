@@ -32,6 +32,7 @@ public class StartController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         game = new Game();
+        game.setScore(420);
         try {
             FileOutputStream file = new FileOutputStream("serial/SerializedCurrentGame.txt");
             ObjectOutputStream out = new ObjectOutputStream(file);
@@ -41,7 +42,6 @@ public class StartController implements Initializable {
         }
         catch (IOException ex) {
             System.out.println(ex);
-            System.out.println("current");
         }
 
         try {
