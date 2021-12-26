@@ -21,10 +21,22 @@
     -fx-background-size: 50px;
 }
 
+#resumeGameFromSettings{
+     -fx-background-image:url('resumeSettings.png');
+     -fx-background-repeat: no-repeat;
+     -fx-background-size: 90px;
+}
+
+#saveExit{
+     -fx-background-image:url('save.png');
+     -fx-background-repeat: no-repeat;
+     -fx-background-size: 145px;
+}
+
 #quitGame{
      -fx-background-image:url('quitGame.png');
      -fx-background-repeat: no-repeat;
-     -fx-background-size: 90px;
+     -fx-background-size: 60px;
 }
 
 #startPageHighScore{
