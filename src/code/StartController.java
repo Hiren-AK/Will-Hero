@@ -9,7 +9,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -44,7 +43,7 @@ public class StartController implements Initializable {
         }
 
         catch (ClassNotFoundException ex) {
-            System.out.println("ClassNotFoundException" + " is caught");
+            System.out.println("ClassNotFoundException is caught");
             score.setHighScore(-1);
         }
         startPageHighScore.setText(" " + score.getHighScore());

@@ -43,7 +43,7 @@ public class EndgameController implements Initializable {
         }
 
         catch (ClassNotFoundException ex) {
-            System.out.println("ClassNotFoundException" + " is caught");
+            System.out.println("ClassNotFoundException is caught");
             score.setHighScore(-1);
         }
         endgameHighScore.setText(" " + score.getHighScore());

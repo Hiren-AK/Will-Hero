@@ -9,34 +9,26 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class SettingsController {
+public class SaverController {
     private Stage stage;
     private Scene scene;
     private Parent root;
     private FXMLLoader loader;
 
-    public void resumeGameFromSettings(ActionEvent event){
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.close();
-        stage = (Stage)((Stage) ((Node)event.getSource()).getScene().getWindow()).getOwner();
-    }
-
-    public void saveAndQuit(ActionEvent event) throws IOException{
-        loader = new FXMLLoader(getClass().getResource("Save.fxml"));
+    public void returnHome(ActionEvent event) throws IOException {
+        loader = new FXMLLoader(getClass().getResource("Start.fxml"));
         root = loader.load();
-        stage = (Stage)((Stage) ((Node)event.getSource()).getScene().getWindow()).getOwner();
-        ((Node)event.getSource()).getScene().getWindow().hide();
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/assets/StyleSheet.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }
 
-    public void quitGame(ActionEvent event) throws IOException{
+    public void endgame(ActionEvent event) throws IOException {
         loader = new FXMLLoader(getClass().getResource("Endgame.fxml"));
         root = loader.load();
-        stage = (Stage)((Stage) ((Node)event.getSource()).getScene().getWindow()).getOwner();
-        ((Node)event.getSource()).getScene().getWindow().hide();
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/assets/StyleSheet.css").toExternalForm());
         stage.setScene(scene);

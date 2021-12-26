@@ -45,6 +45,18 @@
      -fx-background-size: 200px;
 }
 
+#backHomeFromSave{
+    -fx-background-image:url('done.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 100px;
+}
+
+#cancel{
+    -fx-background-image:url('cancel.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 140px;
+}
+
 #startPageHighScore{
     -fx-font-size: 35;
     -fx-font-family: "Segoe UI";
@@ -90,6 +102,23 @@
 
 #load3{
     -fx-background-image:url('load.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 80px;
+}
+
+#save1{
+    -fx-background-image:url('saveGame.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 80px;
+}
+#save2{
+    -fx-background-image:url('saveGame.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 80px;
+}
+
+#save3{
+    -fx-background-image:url('saveGame.png');
     -fx-background-repeat: no-repeat;
     -fx-background-size: 80px;
 }
