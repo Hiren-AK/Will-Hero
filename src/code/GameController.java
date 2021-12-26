@@ -8,8 +8,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
@@ -34,6 +36,9 @@ public class GameController implements Initializable {
 
     @FXML
     private ImageView background;
+
+    @FXML
+    private Button setting;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -67,10 +72,14 @@ public class GameController implements Initializable {
     public void settings(ActionEvent event) throws IOException{
         loader = new FXMLLoader(getClass().getResource("Settings.fxml"));
         root = loader.load();
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage = new Stage();
         scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/assets/StyleSheet.css").toExternalForm());
         stage.setScene(scene);
-        stage.show();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setResizable(false);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initOwner(setting.getScene().getWindow());
+        stage.showAndWait();
     }
 }

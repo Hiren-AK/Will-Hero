@@ -27,7 +27,8 @@ public class SettingsController {
     public void quitGame(ActionEvent event) throws IOException{
         loader = new FXMLLoader(getClass().getResource("Start.fxml"));
         root = loader.load();
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage)((Stage) ((Node)event.getSource()).getScene().getWindow()).getOwner();
+        ((Node)event.getSource()).getScene().getWindow().hide();
         scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/assets/StyleSheet.css").toExternalForm());
         stage.setScene(scene);

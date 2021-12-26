@@ -1,20 +1,13 @@
 package code;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.io.*;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 public class Game {
     private Game game;
@@ -46,7 +39,9 @@ public class Game {
         serializeHighScore(69);
         stage.setTitle("Will Hero");
         Image icon = new Image("/assets/logo.png");
-        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("Start.fxml")));
+        loader = new FXMLLoader(getClass().getResource("Start.fxml"));
+        root = loader.load();
+        scene = new Scene(root);
         stage.setResizable(false);
         scene.getStylesheets().add(getClass().getResource("/assets/StyleSheet.css").toExternalForm());
         stage.getIcons().add(icon);
