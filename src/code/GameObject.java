@@ -1,4 +1,6 @@
 package code;
 
-public class GameObject {
+import java.io.Serializable;
+
+public class GameObject implements Serializable {
 }

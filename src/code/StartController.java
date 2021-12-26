@@ -38,7 +38,8 @@ public class StartController implements Initializable {
             file.close();
         }
         catch (IOException ex) {
-            System.out.println("IOException is caught");
+            System.out.println(ex);
+            System.out.println("current");
         }
 
         try {

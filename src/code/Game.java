@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.util.ArrayList;
 
-public class Game {
+public class Game implements Serializable{
     private Game game;
     private int score;
     private ArrayList<GameObject> gameObjects;
