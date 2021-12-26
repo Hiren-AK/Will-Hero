@@ -7,7 +7,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import java.io.*;
 import java.io.FileInputStream;
@@ -81,6 +85,22 @@ public class StartController implements Initializable {
         scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/assets/StyleSheet.css").toExternalForm());
         stage.setScene(scene);
+        stage.setOnCloseRequest(e -> {
+            e.consume();
+            exitGame();
+        });
         stage.show();
+    }
+
+    public void exitGame(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Exit");
+        Stage st = (Stage)alert.getDialogPane().getScene().getWindow();
+        st.getIcons().add(new Image(this.getClass().getResource("/assets/logo.png").toString()));
+        alert.setHeaderText("You are about to exit");
+        alert.setContentText("Are you sure you want to exit?");
+        if(alert.showAndWait().get() == ButtonType.OK) {
+            stage.close();
+        }
     }
 }
