@@ -21,6 +21,12 @@
     -fx-background-size: 50px;
 }
 
+#quitGame{
+     -fx-background-image:url('quitGame.png');
+     -fx-background-repeat: no-repeat;
+     -fx-background-size: 90px;
+}
+
 #startPageHighScore{
     -fx-font-size: 35;
     -fx-font-family: "Segoe UI";

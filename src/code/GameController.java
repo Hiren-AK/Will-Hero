@@ -9,7 +9,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -62,8 +64,8 @@ public class GameController implements Initializable {
         backgroundAnimation.play();
     }
 
-    public void returnHomeFromPlayGame(ActionEvent event) throws IOException{
-        loader = new FXMLLoader(getClass().getResource("Start.fxml"));
+    public void settings(ActionEvent event) throws IOException{
+        loader = new FXMLLoader(getClass().getResource("Settings.fxml"));
         root = loader.load();
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
