@@ -39,6 +39,12 @@
      -fx-background-size: 60px;
 }
 
+#backStartFromEndgame{
+     -fx-background-image:url('backHomeFromResume.png');
+     -fx-background-repeat: no-repeat;
+     -fx-background-size: 200px;
+}
+
 #startPageHighScore{
     -fx-font-size: 35;
     -fx-font-family: "Segoe UI";
@@ -49,6 +55,22 @@
 
 #gameHighScore{
     -fx-font-size: 22;
+    -fx-font-family: "Segoe UI";
+    -fx-font-weight: bold;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 200px;
+}
+
+#endgameHighScore{
+    -fx-font-size: 35;
+    -fx-font-family: "Segoe UI";
+    -fx-font-weight: bold;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 200px;
+}
+
+#endgameScore{
+    -fx-font-size: 35;
     -fx-font-family: "Segoe UI";
     -fx-font-weight: bold;
     -fx-background-repeat: no-repeat;

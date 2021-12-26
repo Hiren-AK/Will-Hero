@@ -15,8 +15,14 @@ public class SettingsController {
     private Parent root;
     private FXMLLoader loader;
 
-    public void quitGame(ActionEvent event) throws IOException{
-        loader = new FXMLLoader(getClass().getResource("Start.fxml"));
+    public void resumeGameFromSettings(ActionEvent event){
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.close();
+        stage = (Stage)((Stage) ((Node)event.getSource()).getScene().getWindow()).getOwner();
+    }
+
+    public void saveAndQuit(ActionEvent event) throws IOException{
+        loader = new FXMLLoader(getClass().getResource("Endgame.fxml"));
         root = loader.load();
         stage = (Stage)((Stage) ((Node)event.getSource()).getScene().getWindow()).getOwner();
         ((Node)event.getSource()).getScene().getWindow().hide();
@@ -26,14 +32,8 @@ public class SettingsController {
         stage.show();
     }
 
-    public void resumeGameFromSettings(ActionEvent event){
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.close();
-        stage = (Stage)((Stage) ((Node)event.getSource()).getScene().getWindow()).getOwner();
-    }
-
-    public void saveAndQuit(ActionEvent event) throws IOException{
-        loader = new FXMLLoader(getClass().getResource("Start.fxml"));
+    public void quitGame(ActionEvent event) throws IOException{
+        loader = new FXMLLoader(getClass().getResource("Endgame.fxml"));
         root = loader.load();
         stage = (Stage)((Stage) ((Node)event.getSource()).getScene().getWindow()).getOwner();
         ((Node)event.getSource()).getScene().getWindow().hide();
