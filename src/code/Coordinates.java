@@ -9,11 +9,11 @@ public class Coordinates {
         y = _y;
     }
 
-    public void setX(int _x){
+    public void setX(double _x){
         x = _x;
     }
 
-    public void setY(int _y){
+    public void setY(double _y){
         y = _y;
     }
 
