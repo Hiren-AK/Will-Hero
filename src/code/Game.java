@@ -127,7 +127,7 @@ public class Game {
     public void serializeCurrentGame(){
         try {
             fileOut = new FileOutputStream("serial/SerializedCurrentGame.txt");
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out = new ObjectOutputStream(fileOut);
             out.writeObject(this);
             out.close();
             fileOut.close();
@@ -135,6 +135,7 @@ public class Game {
 
         catch (IOException ex) {
             System.out.println("IOException is caught");
+            System.out.println("shouldn't");
         }
     }
 }
