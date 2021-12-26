@@ -1,5 +1,8 @@
 package code;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,6 +33,9 @@ public class GameController implements Initializable {
     private FXMLLoader loader;
 
     private HighScore score = new HighScore();
+    private Game currentGame;
+    private TranslateTransition backgroundAnimation;
+    private Timeline timeline;
 
     @FXML
     private Label gameHighScore;
@@ -39,6 +45,9 @@ public class GameController implements Initializable {
 
     @FXML
     private Button setting;
+
+    @FXML
+    private Button HighScoreButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -59,9 +68,25 @@ public class GameController implements Initializable {
             System.out.println("ClassNotFoundException" + " is caught");
             score.setHighScore(-1);
         }
+
+        try {
+            FileInputStream file = new FileInputStream("serial/SerializedCurrentGame.txt");
+            ObjectInputStream in = new ObjectInputStream(file);
+            currentGame = (Game)in.readObject();
+            in.close();
+            file.close();
+        }
+
+        catch (IOException ex) {
+            System.out.println("IOException is caught");
+        }
+
+        catch (ClassNotFoundException ex) {
+            System.out.println("ClassNotFoundException" + " is caught");
+        }
         gameHighScore.setText(" " + score.getHighScore());
 
-        TranslateTransition backgroundAnimation = new TranslateTransition();
+        backgroundAnimation = new TranslateTransition();
         backgroundAnimation.setNode(background);
         backgroundAnimation.setCycleCount(TranslateTransition.INDEFINITE);
         backgroundAnimation.setDuration(Duration.millis(50000));
