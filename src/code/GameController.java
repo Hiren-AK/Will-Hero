@@ -79,7 +79,6 @@ public class GameController implements Initializable {
 
         catch (IOException ex) {
             System.out.println("IOException is caught");
-            System.out.println("couldn't");
         }
 
         catch (ClassNotFoundException ex) {

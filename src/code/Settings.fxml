@@ -12,8 +12,8 @@
             <Image url="@../assets/settingMenu.png" />
          </image>
       </ImageView>
-      <Button fx:id="quitGame" layoutX="88.0" layoutY="178.0" mnemonicParsing="false" onAction="#quitGame" prefHeight="43.0" prefWidth="95.0" stylesheets="@../assets/StyleSheet.css" />
-      <Button layoutX="110.0" layoutY="70.0" mnemonicParsing="false" onAction="#resumeGameFromSettings" text="Resume" />
-      <Button layoutX="94.0" layoutY="117.0" mnemonicParsing="false" text="Save and Quit" />
+      <Button fx:id="quitGame" layoutX="106.0" layoutY="179.0" mnemonicParsing="false" onAction="#quitGame" prefHeight="43.0" prefWidth="65.0" stylesheets="@../assets/StyleSheet.css" />
+      <Button fx:id="resumeGameFromSettings" layoutX="89.0" layoutY="71.0" mnemonicParsing="false" onAction="#resumeGameFromSettings" prefHeight="25.0" prefWidth="90.0" stylesheets="@../assets/StyleSheet.css" />
+      <Button fx:id="saveExit" layoutX="63.0" layoutY="123.0" mnemonicParsing="false" onAction="#saveAndQuit" prefHeight="25.0" prefWidth="152.0" stylesheets="@../assets/StyleSheet.css" />
    </children>
 </AnchorPane>

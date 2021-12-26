@@ -30,6 +30,6 @@
             <Image url="@../assets/highScore.png" />
          </image>
       </ImageView>
-      <Label fx:id="gameHighScore" layoutX="198.0" layoutY="24.0" stylesheets="@../assets/StyleSheet.css" text="0" textFill="WHITE" />
+      <Label fx:id="gameHighScore" layoutX="192.0" layoutY="24.0" stylesheets="@../assets/StyleSheet.css" text="0" textFill="WHITE" />
    </children>
 </AnchorPane>
