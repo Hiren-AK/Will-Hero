@@ -5,10 +5,16 @@ public class Orc extends GameObject{
     private  double sideHitDistance;
     private boolean armed;
 
-    public Orc(){
+    public Orc(double _x, double _y){
+        super("Orc", _x, _y);
         numHits = 1;
         sideHitDistance = 2;
         armed = true;
+    }
+
+    public boolean onCollide(GameObject collideObject){
+        //
+        return true;
     }
 
 //    @Override

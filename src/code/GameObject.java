@@ -2,5 +2,32 @@ package code;
 
 import java.io.Serializable;
 
-public class GameObject implements Serializable {
+public abstract class GameObject implements Serializable {
+    private Coordinates coordinates;
+    private String objectType;
+    private int opacity;
+
+    public GameObject(String type, double x, double y){
+        this.objectType = type;
+        coordinates = new Coordinates(x, y);
+    }
+
+    public abstract boolean onCollide(GameObject collideObject);
+
+    public Coordinates getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(double _x, double _y) {
+        this.coordinates.setX(_x);
+        this.coordinates.setY(_y);
+    }
+
+    public int getOpacity() {
+        return opacity;
+    }
+
+    public void setOpacity(int opacity) {
+        this.opacity = opacity;
+    }
 }
