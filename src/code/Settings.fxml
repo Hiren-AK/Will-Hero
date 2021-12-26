@@ -13,6 +13,7 @@
          </image>
       </ImageView>
       <Button fx:id="quitGame" layoutX="88.0" layoutY="178.0" mnemonicParsing="false" onAction="#quitGame" prefHeight="43.0" prefWidth="95.0" stylesheets="@../assets/StyleSheet.css" />
-      <Button layoutX="110.0" layoutY="73.0" mnemonicParsing="false" onAction="#resumeGameFromSettings" text="Resume" />
+      <Button layoutX="110.0" layoutY="70.0" mnemonicParsing="false" onAction="#resumeGameFromSettings" text="Resume" />
+      <Button layoutX="94.0" layoutY="117.0" mnemonicParsing="false" text="Save and Quit" />
    </children>
 </AnchorPane>
