@@ -87,9 +87,13 @@ public class SaverController implements Initializable {
     }
 
     public void returnHome(ActionEvent event) throws IOException {
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.close();
+        stage = (Stage)((Stage) ((Node)event.getSource()).getScene().getWindow()).getOwner();
+        stage.close();
+        stage = (Stage)stage.getOwner();
         loader = new FXMLLoader(getClass().getResource("Start.fxml"));
         root = loader.load();
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/assets/StyleSheet.css").toExternalForm());
         stage.setScene(scene);
@@ -97,12 +101,8 @@ public class SaverController implements Initializable {
     }
 
     public void endgame(ActionEvent event) throws IOException {
-        loader = new FXMLLoader(getClass().getResource("Endgame.fxml"));
-        root = loader.load();
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("/assets/StyleSheet.css").toExternalForm());
-        stage.setScene(scene);
-        stage.show();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.close();
+        stage = (Stage)((Stage) ((Node)event.getSource()).getScene().getWindow()).getOwner();
     }
 }
