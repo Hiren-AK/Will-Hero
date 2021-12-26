@@ -15,8 +15,22 @@
     -fx-background-size: 200px;
 }
 
+#setting{
+    -fx-background-image:url('Setting.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 50px;
+}
+
 #startPageHighScore{
     -fx-font-size: 35;
+    -fx-font-family: "Segoe UI";
+    -fx-font-weight: bold;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 200px;
+}
+
+#gameHighScore{
+    -fx-font-size: 22;
     -fx-font-family: "Segoe UI";
     -fx-font-weight: bold;
     -fx-background-repeat: no-repeat;
