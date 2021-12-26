@@ -47,4 +47,8 @@ public class Game implements Serializable{
             System.out.println("IOException is caught");
         }
     }
+
+    public int getScore(){
+        return this.score;
+    }
 }
