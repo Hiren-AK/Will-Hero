@@ -46,9 +46,6 @@ public class GameController implements Initializable {
     @FXML
     private Button setting;
 
-    @FXML
-    private Button HighScoreButton;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
