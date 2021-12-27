@@ -59,7 +59,7 @@ public class GameController implements Initializable {
             score.setHighScore(-1);
         }
         catch (ClassNotFoundException ex) {
-            System.out.println("ClassNotFoundException" + " is caught");
+            System.out.println("ClassNotFoundException is caught");
             score.setHighScore(-1);
         }
 
@@ -74,7 +74,7 @@ public class GameController implements Initializable {
             System.out.println("IOException is caught");
         }
         catch (ClassNotFoundException ex) {
-            System.out.println("ClassNotFoundException" + " is caught");
+            System.out.println("ClassNotFoundException is caught");
         }
         gameHighScore.setText(" " + score.getHighScore());
 

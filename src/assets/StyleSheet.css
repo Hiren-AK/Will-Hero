@@ -54,7 +54,7 @@
 #cancel{
     -fx-background-image:url('cancel.png');
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 140px;
+    -fx-background-size: 100px;
 }
 
 #startPageHighScore{
@@ -114,7 +114,7 @@
 }
 
 #saveSlot1{
-    -fx-font-size: 30;
+    -fx-font-size: 20;
     -fx-font-family: "Segoe UI";
     -fx-font-weight: bold;
     -fx-background-repeat: no-repeat;
@@ -122,7 +122,7 @@
 }
 
 #saveSlot2{
-    -fx-font-size: 30;
+    -fx-font-size: 20;
     -fx-font-family: "Segoe UI";
     -fx-font-weight: bold;
     -fx-background-repeat: no-repeat;
@@ -130,7 +130,7 @@
 }
 
 #saveSlot3{
-    -fx-font-size: 30;
+    -fx-font-size: 20;
     -fx-font-family: "Segoe UI";
     -fx-font-weight: bold;
     -fx-background-repeat: no-repeat;
@@ -157,18 +157,18 @@
 #save1{
     -fx-background-image:url('saveGame.png');
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 80px;
+    -fx-background-size: 50px;
 }
 #save2{
     -fx-background-image:url('saveGame.png');
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 80px;
+    -fx-background-size: 50px;
 }
 
 #save3{
     -fx-background-image:url('saveGame.png');
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 80px;
+    -fx-background-size: 50px;
 }
 
 #backHomeFromResume{

@@ -8,63 +8,58 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="startAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="457.0" prefWidth="626.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="code.SaverController">
+<AnchorPane fx:id="startAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="391.0" prefWidth="502.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="code.SaverController">
    <children>
-      <ImageView fitHeight="457.0" fitWidth="626.0" pickOnBounds="true" AnchorPane.topAnchor="0.0">
+      <ImageView fitHeight="391.0" fitWidth="502.0" pickOnBounds="true" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../assets/PlainBackground.png" />
+            <Image url="@../assets/saveBackground.png" />
          </image>
          <viewport>
             <Rectangle2D />
          </viewport>
       </ImageView>
-      <Button fx:id="save1" alignment="CENTER" contentDisplay="RIGHT" layoutX="509.0" layoutY="182.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="86.0" stylesheets="@../assets/StyleSheet.css" textAlignment="RIGHT" textFill="WHITE">
+      <Button fx:id="save1" alignment="CENTER" contentDisplay="RIGHT" layoutX="377.0" layoutY="142.0" mnemonicParsing="false" onAction="#returnHome" prefHeight="31.0" prefWidth="86.0" stylesheets="@../assets/StyleSheet.css" textAlignment="RIGHT" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="backHomeFromSave" alignment="CENTER" contentDisplay="RIGHT" layoutX="360.0" layoutY="391.0" mnemonicParsing="false" onAction="#returnHome" prefHeight="37.0" prefWidth="103.0" stylesheets="@../assets/StyleSheet.css" textAlignment="RIGHT" textFill="WHITE">
+      <Button fx:id="save2" alignment="CENTER" contentDisplay="RIGHT" layoutX="377.0" layoutY="186.0" mnemonicParsing="false" onAction="#returnHome" prefHeight="31.0" prefWidth="86.0" stylesheets="@../assets/StyleSheet.css" textAlignment="RIGHT" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="save2" alignment="CENTER" contentDisplay="RIGHT" layoutX="509.0" layoutY="237.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="86.0" stylesheets="@../assets/StyleSheet.css" textAlignment="RIGHT" textFill="WHITE">
+      <Button fx:id="save3" alignment="CENTER" contentDisplay="RIGHT" layoutX="377.0" layoutY="231.0" mnemonicParsing="false" onAction="#returnHome" prefHeight="31.0" prefWidth="86.0" stylesheets="@../assets/StyleSheet.css" textAlignment="RIGHT" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="save3" alignment="CENTER" contentDisplay="RIGHT" layoutX="509.0" layoutY="286.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="86.0" stylesheets="@../assets/StyleSheet.css" textAlignment="RIGHT" textFill="WHITE">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
-      <ImageView fitHeight="31.0" fitWidth="32.0" layoutX="43.0" layoutY="183.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="74.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/1.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="33.0" layoutX="40.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="24.0" fitWidth="23.0" layoutX="73.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/2.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="40.0" layoutX="38.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="24.0" fitWidth="31.0" layoutX="72.0" layoutY="229.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/3.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="129.0" fitWidth="395.0" layoutX="116.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="37.0" fitWidth="272.0" layoutX="116.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/slot.png" />
          </image>
       </ImageView>
-      <Button fx:id="cancel" alignment="CENTER" contentDisplay="RIGHT" layoutX="169.0" layoutY="391.0" mnemonicParsing="false" onAction="#endgame" prefHeight="37.0" prefWidth="145.0" stylesheets="@../assets/StyleSheet.css" textAlignment="RIGHT" textFill="WHITE">
+      <Button fx:id="cancel" alignment="CENTER" contentDisplay="RIGHT" layoutX="208.0" layoutY="309.0" mnemonicParsing="false" onAction="#endgame" prefHeight="37.0" prefWidth="108.0" stylesheets="@../assets/StyleSheet.css" textAlignment="RIGHT" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Label fx:id="saveSlot1" layoutX="76.0" layoutY="180.0" prefHeight="37.0" prefWidth="231.0" stylesheets="@../assets/StyleSheet.css" text="No Game Saved" textFill="WHITE" />
-      <Label fx:id="saveSlot2" layoutX="80.0" layoutY="234.0" stylesheets="@../assets/StyleSheet.css" text="No Game Saved" textFill="WHITE" />
-      <Label fx:id="saveSlot3" layoutX="80.0" layoutY="283.0" stylesheets="@../assets/StyleSheet.css" text="No Game Saved" textFill="WHITE" />
+      <Label fx:id="saveSlot1" layoutX="114.0" layoutY="134.0" prefHeight="37.0" prefWidth="231.0" stylesheets="@../assets/StyleSheet.css" text="No Game Saved" textFill="WHITE" />
+      <Label fx:id="saveSlot2" layoutX="112.0" layoutY="185.0" stylesheets="@../assets/StyleSheet.css" text="No Game Saved" textFill="WHITE" />
+      <Label fx:id="saveSlot3" layoutX="112.0" layoutY="228.0" stylesheets="@../assets/StyleSheet.css" text="No Game Saved" textFill="WHITE" />
    </children>
 </AnchorPane>
