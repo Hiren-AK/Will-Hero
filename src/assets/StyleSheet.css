@@ -51,10 +51,10 @@
     -fx-background-size: 100px;
 }
 
-#cancel{
+#cancelSave{
     -fx-background-image:url('cancel.png');
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 10  0px;
+    -fx-background-size: 100px;
 }
 
 #startPageHighScore{

@@ -33,6 +33,11 @@
             <Font size="15.0" />
          </font>
       </Button>
+      <Button fx:id="cancelSave" alignment="CENTER" contentDisplay="RIGHT" layoutX="208.0" layoutY="309.0" mnemonicParsing="false" onAction="#endgame" prefHeight="37.0" prefWidth="102.0" stylesheets="@../assets/StyleSheet.css" textAlignment="RIGHT" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
       <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="74.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/1.png" />
@@ -53,11 +58,6 @@
             <Image url="@../assets/slot.png" />
          </image>
       </ImageView>
-      <Button fx:id="cancel" alignment="CENTER" contentDisplay="RIGHT" layoutX="208.0" layoutY="309.0" mnemonicParsing="false" onAction="#endgame" prefHeight="37.0" prefWidth="108.0" stylesheets="@../assets/StyleSheet.css" textAlignment="RIGHT" textFill="WHITE">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
       <Label fx:id="saveSlot1" layoutX="114.0" layoutY="134.0" prefHeight="37.0" prefWidth="231.0" stylesheets="@../assets/StyleSheet.css" text="No Game Saved" textFill="WHITE" />
       <Label fx:id="saveSlot2" layoutX="112.0" layoutY="185.0" stylesheets="@../assets/StyleSheet.css" text="No Game Saved" textFill="WHITE" />
       <Label fx:id="saveSlot3" layoutX="112.0" layoutY="228.0" stylesheets="@../assets/StyleSheet.css" text="No Game Saved" textFill="WHITE" />
