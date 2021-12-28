@@ -4,15 +4,21 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
 import java.io.*;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -79,10 +85,27 @@ public class StartController implements Initializable {
     }
 
     public void playGame(ActionEvent event)throws IOException {
-        loader = new FXMLLoader(getClass().getResource("Game.fxml"));
-        root = loader.load();
+        Canvas canvas = new Canvas(720, 480);
+        GraphicsContext graphics_context = canvas.getGraphicsContext2D();
+        Image backgroundImage = new Image(this.getClass().getResource("/assets/BackgroundPerfect.png").toString());
+        graphics_context.drawImage(backgroundImage, 0, 0);
+        Button settingsButton = new Button();
+        settingsButton.setTranslateY(10);
+        settingsButton.setTranslateX(10);
+        settingsButton.setMinWidth(50);
+        settingsButton.setMinHeight(50);
+        settingsButton.setId("setting");
+        settingsButton.setOnAction(e -> {
+            try {
+                game.settings(new ActionEvent(), stage);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
+        Group group = new Group(canvas);
+        group.getChildren().add(settingsButton);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
+        scene = new Scene(group);
         scene.getStylesheets().add(getClass().getResource("/assets/StyleSheet.css").toExternalForm());
         stage.setScene(scene);
         stage.setOnCloseRequest(e -> {

@@ -1,10 +1,8 @@
 package code;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.PauseTransition;
-import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -121,7 +119,7 @@ public class GameController implements Initializable, Serializable{
         }
     }
 
-    public void settings(ActionEvent event) throws IOException{
+    public void settings(ActionEvent event, Stage oldStage) throws IOException{
         try {
             FileOutputStream file = new FileOutputStream("serial/SerializedCurrentGame.txt");
             ObjectOutputStream out = new ObjectOutputStream(file);
@@ -141,7 +139,7 @@ public class GameController implements Initializable, Serializable{
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setResizable(false);
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initOwner(setting.getScene().getWindow());
+        stage.initOwner(oldStage);
         stage.showAndWait();
     }
 
