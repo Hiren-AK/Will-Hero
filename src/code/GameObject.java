@@ -30,4 +30,8 @@ public abstract class GameObject implements Serializable {
     public void setOpacity(int opacity) {
         this.opacity = opacity;
     }
+
+    public String getObjectType(){
+        return this.getObjectType();
+    }
 }
