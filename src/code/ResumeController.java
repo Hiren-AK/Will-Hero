@@ -22,9 +22,9 @@ public class ResumeController implements Initializable {
     private Scene scene;
     private Parent root;
     private FXMLLoader loader;
-    private Game game1;
-    private Game game2;
-    private Game game3;
+    private GameController game1;
+    private GameController game2;
+    private GameController game3;
 
     @FXML
     private Label loadSlot1;
@@ -38,7 +38,7 @@ public class ResumeController implements Initializable {
         try {
             FileInputStream file = new FileInputStream("serial/SerializedGame1.txt");
             ObjectInputStream in = new ObjectInputStream(file);
-            game1 = (Game)in.readObject();
+            game1 = (GameController)in.readObject();
             in.close();
             file.close();
             loadSlot1.setText("Score: " + game1.getScore());
@@ -55,7 +55,7 @@ public class ResumeController implements Initializable {
         try {
             FileInputStream file = new FileInputStream("serial/SerializedGame2.txt");
             ObjectInputStream in = new ObjectInputStream(file);
-            game2 = (Game)in.readObject();
+            game2 = (GameController) in.readObject();
             in.close();
             file.close();
             loadSlot2.setText("Score: " + game2.getScore());
@@ -72,7 +72,7 @@ public class ResumeController implements Initializable {
         try {
             FileInputStream file = new FileInputStream("serial/SerializedGame3.txt");
             ObjectInputStream in = new ObjectInputStream(file);
-            game3 = (Game)in.readObject();
+            game3 = (GameController) in.readObject();
             in.close();
             file.close();
             loadSlot3.setText("Score: " + game3.getScore());

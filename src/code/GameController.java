@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -23,18 +24,29 @@ import javafx.scene.image.ImageView;
 
 import java.io.*;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class GameController implements Initializable {
+public class GameController implements Initializable, Serializable{
     private Stage stage;
     private Scene scene;
     private Parent root;
     private FXMLLoader loader;
 
     private HighScore score = new HighScore();
-    private Game currentGame;
+    private GameController currentGame;
     private TranslateTransition backgroundAnimation;
-    private Timeline timeline;
+
+    private GameController game;
+    private int currentScore;
+    private ArrayList<GameObject> gameObjects;
+    private HighScore highScore;                        //an object of type HighScore to help in serialization
+    private FileOutputStream fileOut;                   //the file writer to write to the file that we will serialise to
+    private ObjectOutputStream out;                     //the object writer that will write to the file using the file writer
+    private FileInputStream fileIn;                     //the file reader to read from the file that we will serialise to
+    private ObjectInputStream in;                       //the object reader that will read from the file using the file reader
+    private int lastSavedGameIndex;
+    private ArrayList<GameController> savedGames;
 
     @FXML
     private Label gameHighScore;
@@ -44,6 +56,14 @@ public class GameController implements Initializable {
 
     @FXML
     private Button setting;
+
+    public GameController(){
+        game = this;
+        currentScore = 0;
+        gameObjects = new ArrayList<>();
+        savedGames = new ArrayList<>();
+        lastSavedGameIndex = 0;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -66,7 +86,7 @@ public class GameController implements Initializable {
         try {
             FileInputStream file = new FileInputStream("serial/SerializedCurrentGame.txt");
             ObjectInputStream in = new ObjectInputStream(file);
-            currentGame = (Game)in.readObject();
+            currentGame = (GameController)in.readObject();
             in.close();
             file.close();
         }
@@ -84,6 +104,21 @@ public class GameController implements Initializable {
         backgroundAnimation.setDuration(Duration.millis(50000));
         backgroundAnimation.setByX(-200);
         backgroundAnimation.play();
+    }
+
+    public void serializeHighScore(int currentScore){
+        HighScore score = new HighScore();
+        score.setHighScore(currentScore);
+        try {
+            FileOutputStream file = new FileOutputStream("serial/SerializedHighScore.txt");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(score);
+            out.close();
+            file.close();
+        }
+        catch (IOException ex) {
+            System.out.println("IOException is caught");
+        }
     }
 
     public void settings(ActionEvent event) throws IOException{
@@ -108,5 +143,13 @@ public class GameController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(setting.getScene().getWindow());
         stage.showAndWait();
+    }
+
+    public int getScore(){
+        return this.currentScore;
+    }
+
+    public void setScore(int _score){
+        this.currentScore = _score;
     }
 }

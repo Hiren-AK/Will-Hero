@@ -1,4 +1,4 @@
-package code;
+/*package code;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -56,4 +56,4 @@ public class Game implements Serializable{
     public void setScore(int _score){
         this.score = _score;
     }
-}
+}*/
