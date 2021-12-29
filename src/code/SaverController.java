@@ -88,8 +88,6 @@ public class SaverController implements Initializable {
         stage = (Stage)((Stage) ((Node)event.getSource()).getScene().getWindow()).getOwner();
         stage.close();
         stage = (Stage)stage.getOwner();
-        stage.close();
-        stage = (Stage)stage.getOwner();
         loader = new FXMLLoader(getClass().getResource("Start.fxml"));
         root = loader.load();
         scene = new Scene(root);
