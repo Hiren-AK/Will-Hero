@@ -6,10 +6,16 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -45,6 +51,8 @@ public class GameController implements Initializable, Serializable{
     private ObjectInputStream in;                       //the object reader that will read from the file using the file reader
     private int lastSavedGameIndex;
     private ArrayList<GameController> savedGames;
+    private Canvas canvas;
+    GraphicsContext graphics_context;
 
     @FXML
     private Label gameHighScore;
@@ -149,5 +157,48 @@ public class GameController implements Initializable, Serializable{
 
     public void setScore(int _score){
         this.currentScore = _score;
+    }
+
+    public void startGame(Stage _stage)throws IOException{
+        stage = _stage;
+        canvas = new Canvas(720, 480);
+        graphics_context = canvas.getGraphicsContext2D();
+        Image backgroundImage = new Image(this.getClass().getResource("/assets/BackgroundPerfect.png").toString());
+        graphics_context.drawImage(backgroundImage, 0, 0);
+        Button settingsButton = new Button();
+        settingsButton.setTranslateY(10);
+        settingsButton.setTranslateX(10);
+        settingsButton.setMinWidth(50);
+        settingsButton.setMinHeight(50);
+        settingsButton.setId("setting");
+        settingsButton.setOnAction(e -> {
+            try {
+                game.settings(new ActionEvent(), stage);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
+        Group group = new Group(canvas);
+        group.getChildren().add(settingsButton);
+        scene = new Scene(group);
+        scene.getStylesheets().add(getClass().getResource("/assets/StyleSheet.css").toExternalForm());
+        stage.setScene(scene);
+        stage.setOnCloseRequest(e -> {
+            e.consume();
+            exitGame();
+        });
+        stage.show();
+    }
+
+    public void exitGame(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Exit");
+        Stage st = (Stage)alert.getDialogPane().getScene().getWindow();
+        st.getIcons().add(new Image(this.getClass().getResource("/assets/logo.png").toString()));
+        alert.setHeaderText("You are about to exit");
+        alert.setContentText("Are you sure you want to exit?");
+        if(alert.showAndWait().get() == ButtonType.OK) {
+            stage.close();
+        }
     }
 }
