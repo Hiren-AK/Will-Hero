@@ -28,14 +28,14 @@ public class StartController implements Initializable {
     private FXMLLoader loader;
 
     private HighScore score = new HighScore();
-    private GameController game;
+    private Game game;
 
     @FXML
     private Label startPageHighScore;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        game = new GameController();
+        game = new Game();
         game.setScore(420);
         try {
             FileOutputStream file = new FileOutputStream("serial/SerializedCurrentGame.txt");
