@@ -39,5 +39,6 @@
             <Font size="39.0" />
          </font>
       </Label>
+      <Rectangle fx:id="islandRectangle1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="77.0" layoutX="968.0" layoutY="305.0" stroke="BLACK" strokeType="INSIDE" width="252.0" />
    </children>
 </AnchorPane>
