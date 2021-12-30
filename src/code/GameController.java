@@ -31,7 +31,7 @@ public class GameController implements Initializable {
     private HighScore score = new HighScore();
     private Game currentGame;
     private TranslateTransition backgroundAnimation;
-    private int gameScoreCount = 0;
+    private Score gameScoreCount = new Score(0);
 
     @FXML
     private Label gameHighScore;
@@ -95,7 +95,7 @@ public class GameController implements Initializable {
         heroRectangle.setStrokeWidth(0);
         islandRectangle.setStrokeWidth(0);
         islandRectangle1.setStrokeWidth(0);
-        gameScore.setText(" " + gameScoreCount);
+        gameScore.setText(" " + gameScoreCount.getScore());
 //        startAnchorPane.setClip(setting);
 //        startAnchorPane.setClip(highScoreText);
 //        startAnchorPane.setClip(gameHighScore);
@@ -141,12 +141,13 @@ public class GameController implements Initializable {
         highScoreText.setTranslateX(highScoreText.getTranslateX() + 20);
         startAnchorPane.setTranslateX(startAnchorPane.getTranslateX()-20);
         gameScore.setTranslateX(gameScore.getTranslateX()+20);
-        gameScoreCount += 1;
-        if(gameScoreCount > score.getHighScore()){
-            score.setHighScore(gameScoreCount);
+        gameScoreCount.setScore(gameScoreCount.getScore()+1);
+        if(gameScoreCount.getScore() > score.getHighScore()){
+            score.setHighScore(gameScoreCount.getScore());
             serializeHighScore(score.getHighScore());
         }
-        gameScore.setText(" "+gameScoreCount);
+        gameScore.setText(" "+gameScoreCount.getScore());
+        serializeScore(gameScoreCount);
     }
 
     public void serializeHighScore(int currentScore){
@@ -154,6 +155,19 @@ public class GameController implements Initializable {
         score.setHighScore(currentScore);
         try {
             FileOutputStream file = new FileOutputStream("serial/SerializedHighScore.txt");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(score);
+            out.close();
+            file.close();
+        }
+        catch (IOException ex) {
+            System.out.println("IOException is caught");
+        }
+    }
+
+    public void serializeScore(Score score){
+        try {
+            FileOutputStream file = new FileOutputStream("serial/SerializedScore.txt");
             ObjectOutputStream out = new ObjectOutputStream(file);
             out.writeObject(score);
             out.close();

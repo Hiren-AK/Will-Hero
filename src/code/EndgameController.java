@@ -23,9 +23,13 @@ public class EndgameController implements Initializable {
     private FXMLLoader loader;
 
     private HighScore score = new HighScore();
+    private Score currentScore = new Score(0);
 
     @FXML
     private Label endgameHighScore;
+
+    @FXML
+    private Label endgameScore;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -47,6 +51,25 @@ public class EndgameController implements Initializable {
             score.setHighScore(-1);
         }
         endgameHighScore.setText(" " + score.getHighScore());
+
+        try {
+            FileInputStream file = new FileInputStream("serial/SerializedScore.txt");
+            ObjectInputStream in = new ObjectInputStream(file);
+            currentScore = (Score) in.readObject();
+            in.close();
+            file.close();
+        }
+
+        catch (IOException ex) {
+            System.out.println("IOException is caught");
+            currentScore.setScore(0);
+        }
+
+        catch (ClassNotFoundException ex) {
+            System.out.println("ClassNotFoundException is caught");
+            currentScore.setScore(0);
+        }
+        endgameScore.setText(" " + currentScore.getScore());
     }
 
     public void returnHomeFromEndgame(ActionEvent event) throws IOException{
