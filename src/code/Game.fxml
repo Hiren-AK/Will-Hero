@@ -16,7 +16,7 @@
             <Font name="Segoe UI" size="39.0" />
          </font>
       </Label>
-      <ImageView fx:id="background" fitHeight="560.0" fitWidth="6737.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="background" fitHeight="504.0" fitWidth="6754.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Background.png" />
          </image>
@@ -33,12 +33,11 @@
       </ImageView>
       <Label fx:id="gameHighScore" layoutX="192.0" layoutY="24.0" stylesheets="@../assets/StyleSheet.css" text="0" textFill="WHITE" />
       <Rectangle fx:id="islandRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="77.0" layoutX="32.0" layoutY="306.0" stroke="BLACK" strokeType="INSIDE" width="252.0" />
-      <Rectangle fx:id="heroRectangle" arcHeight="5.0" arcWidth="5.0" fill="#74ff1f" height="59.0" layoutX="87.0" layoutY="253.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="57.0" />
+      <Rectangle fx:id="heroRectangle" arcHeight="5.0" arcWidth="5.0" fill="#74ff1f" height="59.0" layoutX="87.0" layoutY="247.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="57.0" />
       <Label fx:id="gameScore" layoutX="339.0" layoutY="130.0" prefHeight="88.0" prefWidth="120.0" stylesheets="@../assets/StyleSheet.css" text="0" textFill="RED">
          <font>
             <Font size="39.0" />
          </font>
       </Label>
-      <Rectangle fx:id="islandRectangle1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="77.0" layoutX="1121.0" layoutY="306.0" stroke="BLACK" strokeType="INSIDE" width="252.0" />
    </children>
 </AnchorPane>
