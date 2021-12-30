@@ -41,4 +41,8 @@ public class Game implements Serializable{
     public void setScore(int _score){
         this.score = _score;
     }
+
+    public void addGameObject(GameObject obj){
+        gameObjects.add(obj);
+    }
 }
