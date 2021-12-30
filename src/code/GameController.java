@@ -1,24 +1,21 @@
 package code;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.PauseTransition;
-import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.paint.Color;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.*;
@@ -34,16 +31,20 @@ public class GameController implements Initializable {
     private HighScore score = new HighScore();
     private Game currentGame;
     private TranslateTransition backgroundAnimation;
-    private Timeline timeline;
 
     @FXML
     private Label gameHighScore;
-
     @FXML
     private ImageView background;
-
     @FXML
     private Button setting;
+    @FXML
+    private Rectangle heroRectangle;
+    @FXML
+    private Rectangle islandRectangle;
+
+    private Image heroImage = new Image(this.getClass().getResource("/assets/Queen.png").toString());
+    private Image island1Image = new Image(this.getClass().getResource("/assets/Island1.png").toString());
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -84,6 +85,10 @@ public class GameController implements Initializable {
         backgroundAnimation.setDuration(Duration.millis(50000));
         backgroundAnimation.setByX(-200);
         backgroundAnimation.play();
+        heroRectangle.setFill(new ImagePattern(heroImage));
+        islandRectangle.setFill((new ImagePattern(island1Image)));
+        heroRectangle.setStrokeWidth(0);
+        islandRectangle.setStrokeWidth(0);
     }
 
     public void settings(ActionEvent event) throws IOException{
