@@ -51,6 +51,10 @@ public class GameController implements Initializable {
     private ImageView highScoreText;
     @FXML
     private Label gameScore;
+    @FXML
+    private ImageView coinScoreImage;
+    @FXML
+    private  Label coinScore;
 
     private Image heroImage = new Image(this.getClass().getResource("/assets/Queen.png").toString());
     private Image island1Image = new Image(this.getClass().getResource("/assets/Island1.png").toString());
@@ -142,6 +146,8 @@ public class GameController implements Initializable {
         startAnchorPane.setTranslateX(startAnchorPane.getTranslateX()-20);
         gameScore.setTranslateX(gameScore.getTranslateX()+20);
         gameScoreCount.setScore(gameScoreCount.getScore()+1);
+        coinScoreImage.setTranslateX(coinScoreImage.getTranslateX() + 20);
+        coinScore.setTranslateX(coinScore.getTranslateX() + 20);
         if(gameScoreCount.getScore() > score.getHighScore()){
             score.setHighScore(gameScoreCount.getScore());
             serializeHighScore(score.getHighScore());
