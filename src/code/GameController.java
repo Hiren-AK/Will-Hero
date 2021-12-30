@@ -5,11 +5,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
@@ -31,6 +34,7 @@ public class GameController implements Initializable {
     private HighScore score = new HighScore();
     private Game currentGame;
     private TranslateTransition backgroundAnimation;
+    private int gameScoreCount = 0;
 
     @FXML
     private Label gameHighScore;
@@ -42,6 +46,12 @@ public class GameController implements Initializable {
     private Rectangle heroRectangle;
     @FXML
     private Rectangle islandRectangle;
+    @FXML
+    private AnchorPane startAnchorPane;
+    @FXML
+    private ImageView highScoreText;
+    @FXML
+    private Label gameScore;
 
     private Image heroImage = new Image(this.getClass().getResource("/assets/Queen.png").toString());
     private Image island1Image = new Image(this.getClass().getResource("/assets/Island1.png").toString());
@@ -78,17 +88,23 @@ public class GameController implements Initializable {
             System.out.println("ClassNotFoundException is caught");
         }
         gameHighScore.setText(" " + score.getHighScore());
-
-        backgroundAnimation = new TranslateTransition();
-        backgroundAnimation.setNode(background);
-        backgroundAnimation.setCycleCount(TranslateTransition.INDEFINITE);
-        backgroundAnimation.setDuration(Duration.millis(50000));
-        backgroundAnimation.setByX(-200);
-        backgroundAnimation.play();
         heroRectangle.setFill(new ImagePattern(heroImage));
         islandRectangle.setFill((new ImagePattern(island1Image)));
         heroRectangle.setStrokeWidth(0);
         islandRectangle.setStrokeWidth(0);
+        gameScore.setText(" " + gameScoreCount);
+//        startAnchorPane.setClip(setting);
+//        startAnchorPane.setClip(highScoreText);
+//        startAnchorPane.setClip(gameHighScore);
+        scene = startAnchorPane.getScene();
+//        if(scene != null){
+//            scene.setOnKeyPressed(keyEvent -> {
+//                if(keyEvent.getCode() == KeyCode.W){
+//                    moveForward();
+//                    System.out.println("hi");
+//                }
+//            });
+//        }
     }
 
     public void settings(ActionEvent event) throws IOException{
@@ -113,5 +129,16 @@ public class GameController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(setting.getScene().getWindow());
         stage.showAndWait();
+    }
+
+    public void moveForward(){
+        heroRectangle.setTranslateX(heroRectangle.getTranslateX() + 20);
+        setting.setTranslateX(setting.getTranslateX() + 20);
+        gameHighScore.setTranslateX(gameHighScore.getTranslateX() + 20);
+        highScoreText.setTranslateX(highScoreText.getTranslateX() + 20);
+        startAnchorPane.setTranslateX(startAnchorPane.getTranslateX()-20);
+        gameScore.setTranslateX(gameScore.getTranslateX()+20);
+        gameScoreCount += 1;
+        gameScore.setText(" "+gameScoreCount);
     }
 }

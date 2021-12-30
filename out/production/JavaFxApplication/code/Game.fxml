@@ -5,6 +5,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="startAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="code.GameController">
@@ -25,11 +26,18 @@
             <Font size="1.0" />
          </font>
       </Button>
-      <ImageView fitHeight="23.0" fitWidth="120.0" layoutX="71.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="highScoreText" fitHeight="23.0" fitWidth="120.0" layoutX="71.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/highScore.png" />
          </image>
       </ImageView>
       <Label fx:id="gameHighScore" layoutX="192.0" layoutY="24.0" stylesheets="@../assets/StyleSheet.css" text="0" textFill="WHITE" />
+      <Rectangle fx:id="islandRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="94.0" layoutX="32.0" layoutY="306.0" stroke="BLACK" strokeType="INSIDE" width="515.0" />
+      <Rectangle fx:id="heroRectangle" arcHeight="5.0" arcWidth="5.0" fill="#74ff1f" height="59.0" layoutX="87.0" layoutY="247.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="57.0" />
+      <Label fx:id="gameScore" layoutX="339.0" layoutY="130.0" prefHeight="88.0" prefWidth="120.0" stylesheets="@../assets/StyleSheet.css" text="0" textFill="RED">
+         <font>
+            <Font size="39.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
