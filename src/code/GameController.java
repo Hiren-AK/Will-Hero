@@ -44,6 +44,8 @@ public class GameController implements Initializable {
     @FXML
     private Rectangle islandRectangle;
     @FXML
+    private Rectangle islandRectangle1;
+    @FXML
     private AnchorPane startAnchorPane;
     @FXML
     private ImageView highScoreText;
@@ -52,6 +54,8 @@ public class GameController implements Initializable {
 
     private Image heroImage = new Image(this.getClass().getResource("/assets/Queen.png").toString());
     private Image island1Image = new Image(this.getClass().getResource("/assets/Island1.png").toString());
+    private Image island2Image = new Image(this.getClass().getResource("/assets/Island3.png").toString());
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -87,8 +91,10 @@ public class GameController implements Initializable {
         gameHighScore.setText(" " + score.getHighScore());
         heroRectangle.setFill(new ImagePattern(heroImage));
         islandRectangle.setFill((new ImagePattern(island1Image)));
+        islandRectangle1.setFill((new ImagePattern(island2Image)));
         heroRectangle.setStrokeWidth(0);
         islandRectangle.setStrokeWidth(0);
+        islandRectangle1.setStrokeWidth(0);
         gameScore.setText(" " + gameScoreCount);
 //        startAnchorPane.setClip(setting);
 //        startAnchorPane.setClip(highScoreText);
@@ -136,6 +142,25 @@ public class GameController implements Initializable {
         startAnchorPane.setTranslateX(startAnchorPane.getTranslateX()-20);
         gameScore.setTranslateX(gameScore.getTranslateX()+20);
         gameScoreCount += 1;
+        if(gameScoreCount > score.getHighScore()){
+            score.setHighScore(gameScoreCount);
+            serializeHighScore(score.getHighScore());
+        }
         gameScore.setText(" "+gameScoreCount);
+    }
+
+    public void serializeHighScore(int currentScore){
+        HighScore score = new HighScore();
+        score.setHighScore(currentScore);
+        try {
+            FileOutputStream file = new FileOutputStream("serial/SerializedHighScore.txt");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(score);
+            out.close();
+            file.close();
+        }
+        catch (IOException ex) {
+            System.out.println("IOException is caught");
+        }
     }
 }

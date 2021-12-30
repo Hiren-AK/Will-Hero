@@ -34,21 +34,6 @@ public class Game implements Serializable{
         lastSavedGameIndex = 0;
     }
 
-    public void serializeHighScore(int currentScore){
-        HighScore score = new HighScore();
-        score.setHighScore(currentScore);
-        try {
-            FileOutputStream file = new FileOutputStream("serial/SerializedHighScore.txt");
-            ObjectOutputStream out = new ObjectOutputStream(file);
-            out.writeObject(score);
-            out.close();
-            file.close();
-        }
-        catch (IOException ex) {
-            System.out.println("IOException is caught");
-        }
-    }
-
     public int getScore(){
         return this.score;
     }
