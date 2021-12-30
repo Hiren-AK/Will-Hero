@@ -42,9 +42,17 @@ public class GameController implements Initializable {
     @FXML
     private Rectangle heroRectangle;
     @FXML
-    private Rectangle islandRectangle;
-    @FXML
     private Rectangle islandRectangle1;
+    @FXML
+    private Rectangle islandRectangle2;
+    @FXML
+    private Rectangle islandRectangle3;
+    @FXML
+    private Rectangle islandRectangle4;
+    @FXML
+    private Rectangle islandRectangle5;
+    @FXML
+    private Rectangle islandRectangle6;
     @FXML
     private AnchorPane startAnchorPane;
     @FXML
@@ -59,6 +67,10 @@ public class GameController implements Initializable {
     private Image heroImage = new Image(this.getClass().getResource("/assets/Queen.png").toString());
     private Image island1Image = new Image(this.getClass().getResource("/assets/Island1.png").toString());
     private Image island2Image = new Image(this.getClass().getResource("/assets/Island3.png").toString());
+    private Image island3Image = new Image(this.getClass().getResource("/assets/Island4.png").toString());
+    private Image island4Image = new Image(this.getClass().getResource("/assets/Island2.png").toString());
+    private Image island5Image = new Image(this.getClass().getResource("/assets/Island6.png").toString());
+    private Image island6Image = new Image(this.getClass().getResource("/assets/Island5.png").toString());
 
 
     @Override
@@ -94,11 +106,19 @@ public class GameController implements Initializable {
         }
         gameHighScore.setText(" " + score.getHighScore());
         heroRectangle.setFill(new ImagePattern(heroImage));
-        islandRectangle.setFill((new ImagePattern(island1Image)));
-        islandRectangle1.setFill((new ImagePattern(island2Image)));
         heroRectangle.setStrokeWidth(0);
-        islandRectangle.setStrokeWidth(0);
+        islandRectangle1.setFill((new ImagePattern(island1Image)));
+        islandRectangle2.setFill((new ImagePattern(island2Image)));
+        islandRectangle3.setFill((new ImagePattern(island3Image)));
+        islandRectangle4.setFill((new ImagePattern(island4Image)));
+        islandRectangle5.setFill((new ImagePattern(island5Image)));
+        islandRectangle6.setFill((new ImagePattern(island6Image)));
         islandRectangle1.setStrokeWidth(0);
+        islandRectangle2.setStrokeWidth(0);
+        islandRectangle3.setStrokeWidth(0);
+        islandRectangle4.setStrokeWidth(0);
+        islandRectangle5.setStrokeWidth(0);
+        islandRectangle6.setStrokeWidth(0);
         gameScore.setText(" " + gameScoreCount.getScore());
 //        startAnchorPane.setClip(setting);
 //        startAnchorPane.setClip(highScoreText);
