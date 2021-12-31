@@ -26,12 +26,27 @@ public class Game implements Serializable{
     private AnchorPane pane;
     private FXMLLoader loader;
 
+    public Island island1;
+    public Island island2;
+    public Island island3;
+    public Island island4;
+    public Island island5;
+    public Island island6;
+
     public Game(){
         game = this;
         score = 0;
         gameObjects = new ArrayList<>();
         savedGames = new ArrayList<>();
         lastSavedGameIndex = 0;
+
+        //Islands
+        island1 = new Island("/assets/Island1.png");
+        island2 = new Island("/assets/Island3.png");
+        island3 = new Island("/assets/Island4.png");
+        island4 = new Island("/assets/Island2.png");
+        island5 = new Island("/assets/Island6.png");
+        island6 = new Island("/assets/Island5.png");
     }
 
     public int getScore(){

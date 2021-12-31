@@ -1,28 +1,23 @@
 package code;
 
-public class Island extends GameObject{
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
+
+public class Island{
     private double width;
     private double height;
-    private double levitation;
+    private Rectangle islandRectangle;
+    private Image islandImage;
 
-    public Island(double _width, double _height, double _levitation, double _x, double _y){
-        super("island", _x, _y);
-        width = _width;
-        height = _height;
-        levitation = _levitation;
+    public Island(String name){
+        islandImage = new Image(this.getClass().getResource(name).toString());
+        islandRectangle = new Rectangle();
+        islandRectangle.setFill(new ImagePattern(islandImage));
+        islandRectangle.setStrokeWidth(0);
     }
 
-    public boolean onCollide(GameObject collideObject){
-        //
-        return true;
-    }
-
-//    @Override
-//    public int ifCollides(Hero hero){
-//
-//    }
-
-    public void collideObjects(GameObject obj){
-
+    public Rectangle getIslandRectangle(){
+        return islandRectangle;
     }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -11,48 +12,47 @@
 <AnchorPane fx:id="startAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="code.GameController">
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="startPageHighScore" layoutX="426.0" layoutY="288.0" textFill="WHITE">
-         <font>
-            <Font name="Segoe UI" size="39.0" />
-         </font>
-      </Label>
       <ImageView fx:id="background" fitHeight="504.0" fitWidth="6754.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Background.png" />
          </image>
       </ImageView>
-      <Button fx:id="setting" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#settings" prefHeight="59.0" prefWidth="57.0" stylesheets="@../assets/StyleSheet.css">
-         <font>
-            <Font size="1.0" />
-         </font>
-      </Button>
       <ImageView fx:id="highScoreText" fitHeight="23.0" fitWidth="120.0" layoutX="69.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/highScore.png" />
          </image>
       </ImageView>
-      <Label fx:id="gameHighScore" layoutX="191.0" layoutY="23.0" stylesheets="@../assets/StyleSheet.css" text="0" textFill="WHITE" />
-      <Rectangle fx:id="islandRectangle1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="63.0" layoutX="32.0" layoutY="346.0" stroke="BLACK" strokeType="INSIDE" width="227.0" />
-      <Rectangle fx:id="heroRectangle" arcHeight="5.0" arcWidth="5.0" fill="#74ff1f" height="59.0" layoutX="67.0" layoutY="291.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="57.0" />
-      <Label fx:id="gameScore" alignment="CENTER" layoutX="300.0" layoutY="45.0" prefHeight="88.0" prefWidth="120.0" stylesheets="@../assets/StyleSheet.css" text="0" textAlignment="CENTER" textFill="#ff0053">
-         <font>
-            <Font name="Segoe UI Bold" size="69.0" />
-         </font>
-      </Label>
-      <Rectangle fx:id="islandRectangle2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="77.0" layoutX="335.0" layoutY="346.0" stroke="BLACK" strokeType="INSIDE" width="121.0" />
       <ImageView fx:id="coinScoreImage" fitHeight="77.0" fitWidth="46.0" layoutX="615.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Coin.png" />
          </image>
       </ImageView>
+      <Label fx:id="gameHighScore" layoutX="191.0" layoutY="23.0" stylesheets="@../assets/StyleSheet.css" text="0" textFill="WHITE" />
+      <Label fx:id="gameScore" alignment="CENTER" layoutX="300.0" layoutY="45.0" prefHeight="88.0" prefWidth="120.0" stylesheets="@../assets/StyleSheet.css" text="0" textAlignment="CENTER" textFill="#ff0053">
+         <font>
+            <Font name="Segoe UI Bold" size="69.0" />
+         </font>
+      </Label>
       <Label fx:id="coinScore" layoutX="660.0" layoutY="23.0" prefHeight="29.0" prefWidth="46.0" stylesheets="@../assets/StyleSheet.css" text="0" textFill="WHITE">
          <font>
             <Font name="Segoe UI Bold" size="24.0" />
          </font>
       </Label>
-      <Rectangle fx:id="islandRectangle3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="64.0" layoutX="496.0" layoutY="346.0" stroke="BLACK" strokeType="INSIDE" width="227.0" />
-      <Rectangle fx:id="islandRectangle4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="66.0" layoutX="762.0" layoutY="346.0" stroke="BLACK" strokeType="INSIDE" width="177.0" />
-      <Rectangle fx:id="islandRectangle5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="61.0" layoutX="995.0" layoutY="347.0" stroke="BLACK" strokeType="INSIDE" width="286.0" />
-      <Rectangle fx:id="islandRectangle6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="66.0" layoutX="1367.0" layoutY="346.0" stroke="BLACK" strokeType="INSIDE" width="361.0" />
+      <Button fx:id="setting" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#settings" prefHeight="59.0" prefWidth="57.0" stylesheets="@../assets/StyleSheet.css">
+         <font>
+            <Font size="1.0" />
+         </font>
+      </Button>
+      <Rectangle fx:id="heroRectangle" arcHeight="5.0" arcWidth="5.0" fill="#74ff1f" height="59.0" layoutX="67.0" layoutY="291.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="57.0" />
+      <Group layoutX="32.0" layoutY="346.0">
+         <children>
+            <Rectangle fx:id="islandRectangle1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="63.0" stroke="BLACK" strokeType="INSIDE" width="227.0" />
+            <Rectangle fx:id="islandRectangle2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="77.0" layoutX="303.0" stroke="BLACK" strokeType="INSIDE" width="121.0" />
+            <Rectangle fx:id="islandRectangle3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="64.0" layoutX="464.0" stroke="BLACK" strokeType="INSIDE" width="227.0" />
+            <Rectangle fx:id="islandRectangle4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="66.0" layoutX="730.0" stroke="BLACK" strokeType="INSIDE" width="177.0" />
+            <Rectangle fx:id="islandRectangle5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="61.0" layoutX="963.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" width="286.0" />
+            <Rectangle fx:id="islandRectangle6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="66.0" layoutX="1335.0" stroke="BLACK" strokeType="INSIDE" width="361.0" />
+         </children>
+      </Group>
    </children>
 </AnchorPane>

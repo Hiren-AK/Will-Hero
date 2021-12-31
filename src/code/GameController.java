@@ -29,7 +29,7 @@ public class GameController implements Initializable {
     private FXMLLoader loader;
 
     private HighScore score = new HighScore();
-    private Game currentGame;
+    private Game currentGame = new Game();
     private TranslateTransition backgroundAnimation;
     private Score gameScoreCount = new Score(0);
 
@@ -42,6 +42,16 @@ public class GameController implements Initializable {
     @FXML
     private Rectangle heroRectangle;
     @FXML
+    private AnchorPane startAnchorPane;
+    @FXML
+    private ImageView highScoreText;
+    @FXML
+    private Label gameScore;
+    @FXML
+    private ImageView coinScoreImage;
+    @FXML
+    private  Label coinScore;
+    @FXML
     private Rectangle islandRectangle1;
     @FXML
     private Rectangle islandRectangle2;
@@ -53,25 +63,8 @@ public class GameController implements Initializable {
     private Rectangle islandRectangle5;
     @FXML
     private Rectangle islandRectangle6;
-    @FXML
-    private AnchorPane startAnchorPane;
-    @FXML
-    private ImageView highScoreText;
-    @FXML
-    private Label gameScore;
-    @FXML
-    private ImageView coinScoreImage;
-    @FXML
-    private  Label coinScore;
 
     private Image heroImage = new Image(this.getClass().getResource("/assets/Queen.png").toString());
-    private Image island1Image = new Image(this.getClass().getResource("/assets/Island1.png").toString());
-    private Image island2Image = new Image(this.getClass().getResource("/assets/Island3.png").toString());
-    private Image island3Image = new Image(this.getClass().getResource("/assets/Island4.png").toString());
-    private Image island4Image = new Image(this.getClass().getResource("/assets/Island2.png").toString());
-    private Image island5Image = new Image(this.getClass().getResource("/assets/Island6.png").toString());
-    private Image island6Image = new Image(this.getClass().getResource("/assets/Island5.png").toString());
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -105,20 +98,17 @@ public class GameController implements Initializable {
             System.out.println("ClassNotFoundException is caught");
         }
         gameHighScore.setText(" " + score.getHighScore());
+
         heroRectangle.setFill(new ImagePattern(heroImage));
         heroRectangle.setStrokeWidth(0);
-        islandRectangle1.setFill((new ImagePattern(island1Image)));
-        islandRectangle2.setFill((new ImagePattern(island2Image)));
-        islandRectangle3.setFill((new ImagePattern(island3Image)));
-        islandRectangle4.setFill((new ImagePattern(island4Image)));
-        islandRectangle5.setFill((new ImagePattern(island5Image)));
-        islandRectangle6.setFill((new ImagePattern(island6Image)));
-        islandRectangle1.setStrokeWidth(0);
-        islandRectangle2.setStrokeWidth(0);
-        islandRectangle3.setStrokeWidth(0);
-        islandRectangle4.setStrokeWidth(0);
-        islandRectangle5.setStrokeWidth(0);
-        islandRectangle6.setStrokeWidth(0);
+
+        islandRectangle1 = currentGame.island1.getIslandRectangle();
+        islandRectangle2 = currentGame.island2.getIslandRectangle();
+        islandRectangle3 = currentGame.island3.getIslandRectangle();
+        islandRectangle4 = currentGame.island4.getIslandRectangle();
+        islandRectangle5 = currentGame.island5.getIslandRectangle();
+        islandRectangle6 = currentGame.island6.getIslandRectangle();
+
         gameScore.setText(" " + gameScoreCount.getScore());
 //        startAnchorPane.setClip(setting);
 //        startAnchorPane.setClip(highScoreText);
