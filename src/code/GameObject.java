@@ -1,11 +1,14 @@
 package code;
 
+import javafx.scene.shape.Rectangle;
+
 import java.io.Serializable;
 
 public abstract class GameObject implements Serializable {
     private Coordinates coordinates;
     private String objectType;
     private int opacity;
+    private Rectangle rectangle;
 
     public GameObject(String type, double x, double y){
         this.objectType = type;
@@ -33,5 +36,9 @@ public abstract class GameObject implements Serializable {
 
     public String getObjectType(){
         return this.getObjectType();
+    }
+
+    public void setRectangle(Rectangle rectangle) {
+        this.rectangle = rectangle;
     }
 }

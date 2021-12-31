@@ -39,6 +39,14 @@ public class Game implements Serializable{
         gameObjects = new ArrayList<>();
         savedGames = new ArrayList<>();
         lastSavedGameIndex = 0;
+
+        //Islands
+        island1 = new Island("/assets/Island1.png", "islandRectangle1");
+        island2 = new Island("/assets/Island3.png", "islandRectangle3");
+        island3 = new Island("/assets/Island4.png", "islandRectangle2");
+        island4 = new Island("/assets/Island2.png", "islandRectangle2");
+        island5 = new Island("/assets/Island6.png", "islandRectangle6");
+        island6 = new Island("/assets/Island5.png", "islandRectangle5");
     }
 
     public int getScore(){
@@ -51,5 +59,9 @@ public class Game implements Serializable{
 
     public void addGameObject(GameObject obj){
         gameObjects.add(obj);
+    }
+
+    public void populateGameObjects(){
+
     }
 }

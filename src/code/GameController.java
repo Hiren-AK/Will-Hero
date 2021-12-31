@@ -188,4 +188,22 @@ public class GameController implements Initializable {
         gameObject.setFill(new ImagePattern(gameObjectImage));
         gameObject.setStrokeWidth(0);
     }
+
+    public void resumeGame(int resumeScore){
+        heroRectangle.setTranslateX(heroRectangle.getTranslateX() + (resumeScore*20));
+        gameHighScore.setTranslateX(gameHighScore.getTranslateX() + (resumeScore*20));
+        highScoreText.setTranslateX(highScoreText.getTranslateX() + (resumeScore*20));
+        coinScoreImage.setTranslateX(coinScoreImage.getTranslateX() + (resumeScore*20));
+        gameScore.setTranslateX(gameScore.getTranslateX() + (resumeScore*20));
+        setting.setTranslateX(setting.getTranslateX() + (resumeScore*20));
+        coinScore.setTranslateX(coinScore.getTranslateX() + (resumeScore*20));
+        startAnchorPane.setTranslateX(startAnchorPane.getTranslateX() - (resumeScore*20));
+        gameScoreCount.setScore(gameScoreCount.getScore() + resumeScore);
+        if(gameScoreCount.getScore() > score.getHighScore()){
+            score.setHighScore(gameScoreCount.getScore());
+            serializeHighScore(score.getHighScore());
+        }
+        gameScore.setText(" "+gameScoreCount.getScore());
+        serializeScore(gameScoreCount);
+    }
 }
