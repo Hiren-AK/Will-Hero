@@ -64,9 +64,6 @@ public class GameController implements Initializable {
     @FXML
     private Rectangle islandRectangle6;
 
-    private Image heroImage = new Image(this.getClass().getResource("/assets/Queen.png").toString());
-    private Image IslandImage = new Image(this.getClass().getResource("/assets/Island3.png").toString());
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -99,18 +96,13 @@ public class GameController implements Initializable {
             System.out.println("ClassNotFoundException is caught");
         }
         gameHighScore.setText(" " + score.getHighScore());
-
-        heroRectangle.setFill(new ImagePattern(heroImage));
-        heroRectangle.setStrokeWidth(0);
-
-        System.out.println(islandRectangle1);
-        islandRectangle1 = (Rectangle) currentGame.island1.getIslandRectangle();
-        islandRectangle2.setFill(new ImagePattern(IslandImage));
-        islandRectangle2.setStrokeWidth(0);
-        islandRectangle3 = currentGame.island3.getIslandRectangle();
-        islandRectangle4 = currentGame.island4.getIslandRectangle();
-        islandRectangle5 = currentGame.island5.getIslandRectangle();
-        islandRectangle6 = currentGame.island6.getIslandRectangle();
+        rectangleSetter(heroRectangle, "/assets/Queen.png" );
+        rectangleSetter(islandRectangle1, "/assets/Island1.png");
+        rectangleSetter(islandRectangle2, "/assets/Island3.png");
+        rectangleSetter(islandRectangle3, "/assets/Island4.png");
+        rectangleSetter(islandRectangle4, "/assets/Island2.png");
+        rectangleSetter(islandRectangle5, "/assets/Island6.png");
+        rectangleSetter(islandRectangle6, "/assets/Island5.png");
 
         gameScore.setText(" " + gameScoreCount.getScore());
         scene = startAnchorPane.getScene();
@@ -192,5 +184,11 @@ public class GameController implements Initializable {
         catch (IOException ex) {
             System.out.println("IOException is caught");
         }
+    }
+
+    public void rectangleSetter(Rectangle gameObject, String name){
+        Image gameObjectImage = new Image(this.getClass().getResource(name).toString());
+        gameObject.setFill(new ImagePattern(gameObjectImage));
+        gameObject.setStrokeWidth(0);
     }
 }
