@@ -7,8 +7,8 @@ public class Queen extends GameObject{
     private boolean w1 = false;
     private boolean w2 = false;
 
-    public Queen(double x, double y) {
-        super("queen", x, y);
+    public Queen() {
+        super("queen");
     }
 
     @Override

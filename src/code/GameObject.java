@@ -10,9 +10,8 @@ public abstract class GameObject implements Serializable {
     private int opacity;
     private Rectangle rectangle;
 
-    public GameObject(String type, double x, double y){
+    public GameObject(String type){
         this.objectType = type;
-        coordinates = new Coordinates(x, y);
     }
 
     public abstract boolean onCollide(GameObject collideObject);

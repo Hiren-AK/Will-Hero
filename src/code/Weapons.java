@@ -5,8 +5,8 @@ public class Weapons extends GameObject{
     private int level;
     private boolean throwable;
 
-    public Weapons(int _weaponType, boolean _throwable, double _x, double _y){
-        super("weapon", _x, _y);
+    public Weapons(int _weaponType, boolean _throwable){
+        super("weapon");
         level = 0;
         weaponType = _weaponType;
         throwable = _throwable;

@@ -2,8 +2,8 @@ package code;
 
 public class Coin extends GameObject{
     private int value;
-    public Coin(double _x, double _y){
-        super("coin", _x, _y);
+    public Coin(){
+        super("coin");
         value = 1;
     }
 

@@ -7,8 +7,8 @@ public class Chest extends GameObject {
     private Weapons weapon;
     private int chestType;
 
-    public Chest(ArrayList<Coin> _coins_list, Weapons _weapon, int _chestType, double _x, double _y) {
-        super("chest", _x, _y);
+    public Chest(ArrayList<Coin> _coins_list, Weapons _weapon, int _chestType) {
+        super("chest");
         coins_list = _coins_list;
         weapon = _weapon;
         chestType = -_chestType;
