@@ -65,6 +65,7 @@ public class GameController implements Initializable {
     private Rectangle islandRectangle6;
 
     private Image heroImage = new Image(this.getClass().getResource("/assets/Queen.png").toString());
+    private Image IslandImage = new Image(this.getClass().getResource("/assets/Island3.png").toString());
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -102,17 +103,16 @@ public class GameController implements Initializable {
         heroRectangle.setFill(new ImagePattern(heroImage));
         heroRectangle.setStrokeWidth(0);
 
-        islandRectangle1 = currentGame.island1.getIslandRectangle();
-        islandRectangle2 = currentGame.island2.getIslandRectangle();
+        System.out.println(islandRectangle1);
+        islandRectangle1 = (Rectangle) currentGame.island1.getIslandRectangle();
+        islandRectangle2.setFill(new ImagePattern(IslandImage));
+        islandRectangle2.setStrokeWidth(0);
         islandRectangle3 = currentGame.island3.getIslandRectangle();
         islandRectangle4 = currentGame.island4.getIslandRectangle();
         islandRectangle5 = currentGame.island5.getIslandRectangle();
         islandRectangle6 = currentGame.island6.getIslandRectangle();
 
         gameScore.setText(" " + gameScoreCount.getScore());
-//        startAnchorPane.setClip(setting);
-//        startAnchorPane.setClip(highScoreText);
-//        startAnchorPane.setClip(gameHighScore);
         scene = startAnchorPane.getScene();
 //        if(scene != null){
 //            scene.setOnKeyPressed(keyEvent -> {
