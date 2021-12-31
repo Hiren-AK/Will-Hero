@@ -46,11 +46,11 @@
       <Group layoutX="32.0" layoutY="346.0">
          <children>
             <Rectangle fx:id="islandRectangle1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="63.0" stroke="BLACK" strokeType="INSIDE" width="227.0" />
-            <Rectangle fx:id="islandRectangle2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="77.0" layoutX="303.0" stroke="BLACK" strokeType="INSIDE" width="121.0" />
-            <Rectangle fx:id="islandRectangle3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="64.0" layoutX="464.0" stroke="BLACK" strokeType="INSIDE" width="227.0" />
-            <Rectangle fx:id="islandRectangle4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="66.0" layoutX="730.0" stroke="BLACK" strokeType="INSIDE" width="177.0" />
-            <Rectangle fx:id="islandRectangle5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="61.0" layoutX="963.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" width="286.0" />
-            <Rectangle fx:id="islandRectangle6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="66.0" layoutX="1335.0" stroke="BLACK" strokeType="INSIDE" width="361.0" />
+            <Rectangle fx:id="islandRectangle3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="77.0" layoutX="303.0" stroke="BLACK" strokeType="INSIDE" width="121.0" />
+            <Rectangle fx:id="islandRectangle4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="64.0" layoutX="464.0" stroke="BLACK" strokeType="INSIDE" width="227.0" />
+            <Rectangle fx:id="islandRectangle2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="66.0" layoutX="730.0" stroke="BLACK" strokeType="INSIDE" width="177.0" />
+            <Rectangle fx:id="islandRectangle6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="61.0" layoutX="963.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" width="286.0" />
+            <Rectangle fx:id="islandRectangle5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="66.0" layoutX="1335.0" stroke="BLACK" strokeType="INSIDE" width="361.0" />
          </children>
       </Group>
       <Rectangle fx:id="heroRectangle" arcHeight="5.0" arcWidth="5.0" fill="#74ff1f" height="59.0" layoutX="67.0" layoutY="293.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="57.0" />

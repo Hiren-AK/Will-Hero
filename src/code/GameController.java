@@ -30,27 +30,24 @@ public class GameController implements Initializable {
 
     private HighScore score = new HighScore();
     private Game currentGame = new Game();
-    private TranslateTransition backgroundAnimation;
     private Score gameScoreCount = new Score(0);
 
     @FXML
     private Label gameHighScore;
     @FXML
-    private ImageView background;
+    private Label gameScore;
+    @FXML
+    private Label coinScore;
     @FXML
     private Button setting;
-    @FXML
-    private Rectangle heroRectangle;
     @FXML
     private AnchorPane startAnchorPane;
     @FXML
     private ImageView highScoreText;
     @FXML
-    private Label gameScore;
-    @FXML
     private ImageView coinScoreImage;
     @FXML
-    private  Label coinScore;
+    private Rectangle heroRectangle;
     @FXML
     private Rectangle islandRectangle1;
     @FXML
@@ -98,11 +95,11 @@ public class GameController implements Initializable {
         gameHighScore.setText(" " + score.getHighScore());
         rectangleSetter(heroRectangle, "/assets/Queen.png" );
         rectangleSetter(islandRectangle1, "/assets/Island1.png");
-        rectangleSetter(islandRectangle2, "/assets/Island3.png");
-        rectangleSetter(islandRectangle3, "/assets/Island4.png");
-        rectangleSetter(islandRectangle4, "/assets/Island2.png");
-        rectangleSetter(islandRectangle5, "/assets/Island6.png");
-        rectangleSetter(islandRectangle6, "/assets/Island5.png");
+        rectangleSetter(islandRectangle2, "/assets/Island2.png");
+        rectangleSetter(islandRectangle3, "/assets/Island3.png");
+        rectangleSetter(islandRectangle4, "/assets/Island4.png");
+        rectangleSetter(islandRectangle5, "/assets/Island5.png");
+        rectangleSetter(islandRectangle6, "/assets/Island6.png");
 
         gameScore.setText(" " + gameScoreCount.getScore());
         scene = startAnchorPane.getScene();
