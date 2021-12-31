@@ -142,14 +142,14 @@ public class GameController implements Initializable {
 
     public void moveForward(){
         heroRectangle.setTranslateX(heroRectangle.getTranslateX() + 20);
-        setting.setTranslateX(setting.getTranslateX() + 20);
         gameHighScore.setTranslateX(gameHighScore.getTranslateX() + 20);
         highScoreText.setTranslateX(highScoreText.getTranslateX() + 20);
-        startAnchorPane.setTranslateX(startAnchorPane.getTranslateX()-20);
-        gameScore.setTranslateX(gameScore.getTranslateX()+20);
-        gameScoreCount.setScore(gameScoreCount.getScore()+1);
         coinScoreImage.setTranslateX(coinScoreImage.getTranslateX() + 20);
+        gameScore.setTranslateX(gameScore.getTranslateX()+20);
+        setting.setTranslateX(setting.getTranslateX() + 20);
         coinScore.setTranslateX(coinScore.getTranslateX() + 20);
+        startAnchorPane.setTranslateX(startAnchorPane.getTranslateX()-20);
+        gameScoreCount.setScore(gameScoreCount.getScore()+1);
         if(gameScoreCount.getScore() > score.getHighScore()){
             score.setHighScore(gameScoreCount.getScore());
             serializeHighScore(score.getHighScore());
