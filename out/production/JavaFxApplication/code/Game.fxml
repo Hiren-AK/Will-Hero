@@ -12,7 +12,7 @@
 <AnchorPane fx:id="startAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="code.GameController">
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="background" fitHeight="504.0" fitWidth="6754.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="background" fitHeight="504.0" fitWidth="6754.0" onMouseClicked="#moveForward" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Background.png" />
          </image>
@@ -53,6 +53,19 @@
             <Rectangle fx:id="islandRectangle5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="66.0" layoutX="1335.0" stroke="BLACK" strokeType="INSIDE" width="361.0" />
          </children>
       </Group>
-      <Rectangle fx:id="heroRectangle" arcHeight="5.0" arcWidth="5.0" fill="#74ff1f" height="59.0" layoutX="67.0" layoutY="293.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="57.0" />
+      <Group layoutX="42.0" layoutY="356.0" />
+      <Rectangle fx:id="queenRectangle" arcHeight="5.0" arcWidth="5.0" fill="#74ff1f" height="60.0" layoutX="64.0" layoutY="290.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="45.0" />
+      <Rectangle fx:id="islandRectangle7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="63.0" layoutX="1815.0" layoutY="352.0" stroke="BLACK" strokeType="INSIDE" width="227.0" />
+      <Rectangle fx:id="islandRectangle9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="77.0" layoutX="2448.0" layoutY="342.0" stroke="BLACK" strokeType="INSIDE" width="121.0" />
+      <Rectangle fx:id="islandRectangle8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="64.0" layoutX="2135.0" layoutY="349.0" stroke="BLACK" strokeType="INSIDE" width="227.0" />
+      <Rectangle fx:id="islandRectangle10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="66.0" layoutX="2648.0" layoutY="360.0" stroke="BLACK" strokeType="INSIDE" width="361.0" />
+      <Rectangle fx:id="islandRectangle11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="61.0" layoutX="3069.0" layoutY="363.0" stroke="BLACK" strokeType="INSIDE" width="286.0" />
+      <Rectangle fx:id="islandRectangle12" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="66.0" layoutX="3419.0" layoutY="361.0" stroke="BLACK" strokeType="INSIDE" width="177.0" />
+      <Button fx:id="clickToPlay" layoutX="-1.0" layoutY="-10.0" mnemonicParsing="false" onAction="#placeGameObjects" prefHeight="485.0" prefWidth="726.0" stylesheets="@../assets/StyleSheet.css" text="Click to Play" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Bold" size="41.0" />
+         </font>
+      </Button>
+      <Rectangle fx:id="kingRectangle" arcHeight="5.0" arcWidth="5.0" fill="#74ff1f" height="66.0" layoutX="2770.0" layoutY="303.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="30.0" />
    </children>
 </AnchorPane>

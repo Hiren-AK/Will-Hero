@@ -21,6 +21,10 @@
     -fx-background-size: 50px;
 }
 
+#clickToPlay{
+    -fx-background-color: rgba(0,0,0,0.5);
+}
+
 #resumeGameFromSettings{
      -fx-background-image:url('resumeSettings.png');
      -fx-background-repeat: no-repeat;

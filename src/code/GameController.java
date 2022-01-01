@@ -5,9 +5,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -41,13 +44,17 @@ public class GameController implements Initializable {
     @FXML
     private Button setting;
     @FXML
+    private Button clickToPlay;
+    @FXML
     private AnchorPane startAnchorPane;
     @FXML
     private ImageView highScoreText;
     @FXML
     private ImageView coinScoreImage;
     @FXML
-    private Rectangle heroRectangle;
+    private Rectangle queenRectangle;
+    @FXML
+    private Rectangle kingRectangle;
     @FXML
     private Rectangle islandRectangle1;
     @FXML
@@ -60,6 +67,18 @@ public class GameController implements Initializable {
     private Rectangle islandRectangle5;
     @FXML
     private Rectangle islandRectangle6;
+    @FXML
+    private Rectangle islandRectangle7;
+    @FXML
+    private Rectangle islandRectangle8;
+    @FXML
+    private Rectangle islandRectangle9;
+    @FXML
+    private Rectangle islandRectangle10;
+    @FXML
+    private Rectangle islandRectangle11;
+    @FXML
+    private Rectangle islandRectangle12;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -93,13 +112,20 @@ public class GameController implements Initializable {
             System.out.println("ClassNotFoundException is caught");
         }
         gameHighScore.setText(" " + score.getHighScore());
-        rectangleSetter(heroRectangle, "/assets/Queen.png" );
+        rectangleSetter(queenRectangle, "/assets/Queen.png" );
+        rectangleSetter(kingRectangle, "/assets/King.png");
         rectangleSetter(islandRectangle1, "/assets/Island1.png");
         rectangleSetter(islandRectangle2, "/assets/Island2.png");
         rectangleSetter(islandRectangle3, "/assets/Island3.png");
         rectangleSetter(islandRectangle4, "/assets/Island4.png");
         rectangleSetter(islandRectangle5, "/assets/Island5.png");
         rectangleSetter(islandRectangle6, "/assets/Island6.png");
+        rectangleSetter(islandRectangle7, "/assets/Island1.png");
+        rectangleSetter(islandRectangle8, "/assets/Island4.png");
+        rectangleSetter(islandRectangle9, "/assets/Island3.png");
+        rectangleSetter(islandRectangle10, "/assets/Island5.png");
+        rectangleSetter(islandRectangle11, "/assets/Island6.png");
+        rectangleSetter(islandRectangle12, "/assets/Island2.png");
 
         gameScore.setText(" " + gameScoreCount.getScore());
         scene = startAnchorPane.getScene();
@@ -111,6 +137,13 @@ public class GameController implements Initializable {
 //                }
 //            });
 //        }
+    }
+
+    public void placeGameObjects(){
+        resumeGame(50);
+        clickToPlay.setOpacity(0);
+        clickToPlay.setDisable(true);
+        //heroRectangle.setOnMouseClicked(mouseEvent -> moveForward());
     }
 
     public void settings(ActionEvent event) throws IOException{
@@ -138,7 +171,7 @@ public class GameController implements Initializable {
     }
 
     public void moveForward(){
-        heroRectangle.setTranslateX(heroRectangle.getTranslateX() + 20);
+        queenRectangle.setTranslateX(queenRectangle.getTranslateX() + 20);
         gameHighScore.setTranslateX(gameHighScore.getTranslateX() + 20);
         highScoreText.setTranslateX(highScoreText.getTranslateX() + 20);
         coinScoreImage.setTranslateX(coinScoreImage.getTranslateX() + 20);
@@ -153,6 +186,14 @@ public class GameController implements Initializable {
         }
         gameScore.setText(" "+gameScoreCount.getScore());
         serializeScore(gameScoreCount);
+        try {
+            if (gameScoreCount.getScore() >= 150) {
+                quitGame();
+            }
+        }
+        catch(IOException ex){
+            System.out.println("IOException is caught");
+        }
     }
 
     public void serializeHighScore(int currentScore){
@@ -190,7 +231,7 @@ public class GameController implements Initializable {
     }
 
     public void resumeGame(int resumeScore){
-        heroRectangle.setTranslateX(heroRectangle.getTranslateX() + (resumeScore*20));
+        queenRectangle.setTranslateX(queenRectangle.getTranslateX() + (resumeScore*20));
         gameHighScore.setTranslateX(gameHighScore.getTranslateX() + (resumeScore*20));
         highScoreText.setTranslateX(highScoreText.getTranslateX() + (resumeScore*20));
         coinScoreImage.setTranslateX(coinScoreImage.getTranslateX() + (resumeScore*20));
@@ -205,5 +246,16 @@ public class GameController implements Initializable {
         }
         gameScore.setText(" "+gameScoreCount.getScore());
         serializeScore(gameScoreCount);
+    }
+
+    public void quitGame() throws IOException{
+        loader = new FXMLLoader(getClass().getResource("Endgame.fxml"));
+        root = loader.load();
+        //stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) clickToPlay.getScene().getWindow();
+        scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("/assets/StyleSheet.css").toExternalForm());
+        stage.setScene(scene);
+        stage.show();
     }
 }
