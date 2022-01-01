@@ -98,6 +98,21 @@ public class StartController implements Initializable {
             exitGame();
         });
         stage.show();
+        Score slot = new Score(0);
+        serializeSlot(slot);
+    }
+
+    public void serializeSlot(Score score){
+        try {
+            FileOutputStream file = new FileOutputStream("serial/SerializedSlot.txt");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(score);
+            out.close();
+            file.close();
+        }
+        catch (IOException ex) {
+            System.out.println("IOException is caught");
+        }
     }
 
     public void exitGame(){
