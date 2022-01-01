@@ -346,7 +346,8 @@ public class GameController implements Initializable {
                     queenBounds = queenRectangle.getBoundsInParent();
                     Bounds islandBounds = islandList.get(i).getBoundsInParent();
                     if(queenBounds.intersects(islandBounds)){
-                        velocityY -= gravity * 0.5 * myTime * myTime;
+                        System.out.println("colliding");
+                        velocityY = -2;
                         myTime = 0;
                         newY = currentY + velocityY;
                     }
