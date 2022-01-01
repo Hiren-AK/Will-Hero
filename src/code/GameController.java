@@ -320,14 +320,10 @@ public class GameController implements Initializable {
         gameScore.setText(" " + gameScoreCount.getScore());
 
         animationTimer = new AnimationTimer() {
-
             double animTime = 0.0;
-            int dir = 1;
             double velocityY = 0;
-            double damp = 0.7;
             double gravity = 9.8;
             double previousVelocity = 0;
-
 
             @Override
             public void handle(long l) {
@@ -378,7 +374,7 @@ public class GameController implements Initializable {
                             }
                         }
                         if(!onIsland){
-
+                            System.out.println("I m under the woter");
                         }
                     }
                 }
@@ -399,6 +395,58 @@ public class GameController implements Initializable {
                 }
             }
         };
+
+//        AnimationTimer greenOrcTimer = new AnimationTimer() {
+//            double animTime = 0.0;
+//            double velocityY = 0;
+//            double gravity = 9.8;
+//            double previousVelocity = 0;
+//            @Override
+//            public void handle(long l) {
+//                double currentY = queenRectangle.getLayoutY();
+//                double newY = currentY;
+//                if(currentY > 400){
+//                    animTime = 0.13;
+//                }
+//                if(mouseClicked){
+//                    velocityY = 0;
+//                    animTime = 0;
+//                    newY = currentY + velocityY;
+//                    mouseClicked = false;
+//                    queenBounds = queenRectangle.getBoundsInParent();
+//                }
+//                else{
+//                    velocityY += gravity * 0.5 * animTime * animTime;
+//                    newY = currentY + velocityY;
+//                }
+//                for(int i=0; i < islandList.size(); i++){
+//                    queenBounds = queenRectangle.getBoundsInParent();
+//                    Bounds islandBounds = islandList.get(i).getBoundsInParent();
+//                    if(queenBounds.intersects(islandBounds)){
+//                        System.out.println("colliding");
+//                        velocityY = -1;
+//                        animTime = 0;
+//                        newY = currentY + velocityY;
+//                    }
+//                }
+//            }
+//
+//            queenRectangle.relocate(queenRectangle.getLayoutX(), newY);
+//            previousVelocity = velocityY;
+//            animTime+=0.001;
+//                if(gameEnd){
+//                this.stop();
+//            }
+//                try {
+//                if (queenRectangle.getLayoutY() > 400) {
+//                    this.stop();
+//                    quitGame();
+//                }
+//            }
+//                catch(IOException ex){
+//                System.out.println("IOException is caught");
+//            }
+//        };
     }
 
     public void placeGameObjects(){
@@ -430,11 +478,11 @@ public class GameController implements Initializable {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setResizable(false);
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initOwner(setting.getScene().getWindow());
+        stage.initOwner(clickToPlay.getScene().getWindow());
         stage.showAndWait();
     }
 
-    public void reviver() throws IOException{
+    public void reviver(ActionEvent event) throws IOException{
         animationTimer.stop();
         try {
             FileOutputStream file = new FileOutputStream("serial/SerializedGame.txt");
@@ -455,7 +503,7 @@ public class GameController implements Initializable {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setResizable(false);
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initOwner(setting.getScene().getWindow());
+        stage.initOwner((Stage) clickToPlay.getScene().getWindow());
         stage.showAndWait();
     }
 
@@ -601,8 +649,8 @@ public class GameController implements Initializable {
 
     public void quitGame() throws IOException{
         if(revive == true){
-            reviver();
             revive = false;
+            reviver(new ActionEvent());
         }
         gameEnd = true;
         coinScoreCount.setCoinScore(coinCount);
