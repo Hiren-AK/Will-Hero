@@ -389,7 +389,6 @@ public class GameController implements Initializable {
         clickToPlay.setDisable(true);
         queenRectangle.setOnMouseClicked(mouseEvent -> moveForward());
         animationTimer.start();
-        greenOrcTimer.start();
     }
 
     public void settings(ActionEvent event) throws IOException{
@@ -480,6 +479,13 @@ public class GameController implements Initializable {
                 coinList.set(i, dummyCoin);
             }
         }
+
+        for(int i=0; i < orcListG.size(); i++){
+            Bounds orcBounds = orcListG.get(i).getBoundsInParent();
+            if(queenBounds.intersects(orcBounds)){
+                greenOrc(orcListG.get(i));
+            }
+        }
     }
 
     public void serializeHighScore(int currentScore){
@@ -525,6 +531,28 @@ public class GameController implements Initializable {
 
     public static void resumeAnimations(){
         animationTimer.start();
+    }
+
+    public void greenOrc(Rectangle gameObject){
+        boolean collide = false;
+        Bounds gameObjectBounds;
+        gameObjectBounds = gameObject.getBoundsInParent();
+        for (int i = 0; i < islandList.size(); i++) {
+
+            Bounds islandBounds = islandList.get(i).getBoundsInParent();
+            if (gameObjectBounds.intersects(islandBounds)){
+                gameObject.setTranslateX(gameObject.getTranslateX() + 20);
+                collide = true;
+            }
+        }
+        if(collide == false){
+            TranslateTransition translate = new TranslateTransition();
+            translate.setNode(gameObject);
+            translate.setCycleCount(TranslateTransition.INDEFINITE);
+            translate.setDuration(Duration.millis(2500));
+            translate.setByY(200);
+            translate.play();
+        }
     }
 
     public void rectangleSetter(Rectangle gameObject, String name){
