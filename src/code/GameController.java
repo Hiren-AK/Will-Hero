@@ -381,6 +381,38 @@ public class GameController implements Initializable {
                 }
             }
         };
+
+        TranslateTransition translateRed1 = new TranslateTransition();
+        translateRed1.setNode(redOrc1);
+        translateRed1.setCycleCount(TranslateTransition.INDEFINITE);
+        translateRed1.setDuration(Duration.millis(3000));
+        translateRed1.setByY(-100);
+        translateRed1.setAutoReverse(true);
+        translateRed1.play();
+
+        TranslateTransition translateRed2 = new TranslateTransition();
+        translateRed2.setNode(redOrc2);
+        translateRed2.setCycleCount(TranslateTransition.INDEFINITE);
+        translateRed2.setDuration(Duration.millis(3000));
+        translateRed2.setByY(-100);
+        translateRed2.setAutoReverse(true);
+        translateRed2.play();
+
+        TranslateTransition translateRed3 = new TranslateTransition();
+        translateRed3.setNode(redOrc3);
+        translateRed3.setCycleCount(TranslateTransition.INDEFINITE);
+        translateRed3.setDuration(Duration.millis(3000));
+        translateRed3.setByY(-100);
+        translateRed3.setAutoReverse(true);
+        translateRed3.play();
+
+        TranslateTransition translateBoss = new TranslateTransition();
+        translateBoss.setNode(boss);
+        translateBoss.setCycleCount(TranslateTransition.INDEFINITE);
+        translateBoss.setDuration(Duration.millis(3000));
+        translateBoss.setByY(-100);
+        translateBoss.setAutoReverse(true);
+        translateBoss.play();
     }
 
     public void placeGameObjects(){
@@ -460,6 +492,28 @@ public class GameController implements Initializable {
         gameScore.setText(" "+gameScoreCount.getScore());
         coinScore.setText(" "+coinCount);
         serializeScore(gameScoreCount);
+        for(int i = 0; i < orcListR.size(); i++){
+            Bounds orcBounds = orcListR.get(i).getBoundsInParent();
+            if(queenRectangle.getBoundsInParent().intersects(orcBounds)){
+                try {
+                    revive = false;
+                    quitGame();
+                }
+                catch(IOException ex){
+                    System.out.println("IOException is caught");
+                }
+            }
+        }
+        Bounds orcBounds = boss.getBoundsInParent();
+        if(queenRectangle.getBoundsInParent().intersects(orcBounds)){
+            try {
+                revive = false;
+                quitGame();
+            }
+            catch(IOException ex){
+                System.out.println("IOException is caught");
+            }
+        }
         try {
             if (gameScoreCount.getScore() >= 143) {
                 revive = false;
