@@ -374,21 +374,6 @@ public class GameController implements Initializable {
                     }
                 }
 
-//                for(int i = 0; i < orcListR.size(); i++){
-//                    Bounds orcBounds = orcListR.get(i).getBoundsInParent();
-//                    if(queenRectangle.getBoundsInParent().intersects(orcBounds)){
-//                        try {
-//                            if(coinCount >= 100) revive = true;
-//                            else revive = false;
-//                            gameScoreCount.setScore(gameScoreCount.getScore()+10);
-//                            quitGame();
-//                        }
-//                        catch(IOException ex){
-//                            System.out.println("IOException is caught");
-//                        }
-//                    }
-//                }
-
                 Bounds orcBounds = boss.getBoundsInParent();
                 if(queenRectangle.getBoundsInParent().intersects(orcBounds)){
                     try {
@@ -518,7 +503,7 @@ public class GameController implements Initializable {
         gameScore.setTranslateX(gameScore.getTranslateX()+20);
         setting.setTranslateX(setting.getTranslateX() + 20);
         coinScore.setTranslateX(coinScore.getTranslateX() + 20);
-        background.setTranslateX(background.getTranslateX()-10);
+        background.setTranslateX(background.getTranslateX()-5);
         startAnchorPane.setTranslateX(startAnchorPane.getTranslateX()-20);
         gameScoreCount.setScore(gameScoreCount.getScore()+1);
         coinScore.setText(" "+coinCount);
