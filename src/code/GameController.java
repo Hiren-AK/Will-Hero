@@ -247,8 +247,6 @@ public class GameController implements Initializable {
         coinScore.setText(" " + coinScoreCount.getCoinScore());
         rectangleSetter(queenRectangle, "/assets/Queen.png" );
         rectangleSetter(kingRectangle, "/assets/King.png");
-        queenBounds = queenRectangle.getBoundsInParent();
-        kingBounds = kingRectangle.getBoundsInParent();
 
         islandSetter(islandRectangle1, "/assets/Island1.png");
         islandSetter(islandRectangle2, "/assets/Island2.png");
@@ -314,7 +312,6 @@ public class GameController implements Initializable {
         coinSetter(coinx15);
         coinSetter(coinx16);
 
-
         gameScore.setText(" " + gameScoreCount.getScore());
 
         animationTimer = new AnimationTimer() {
@@ -339,11 +336,20 @@ public class GameController implements Initializable {
                     myTime = 0;
                     newY = currentY + velocityY;
                     mouseClicked = false;
+                    queenBounds = queenRectangle.getBoundsInParent();
                 }
                 else{
                     velocityY += gravity * 0.5 * myTime * myTime;
-                    //velocityY = -5;
                     newY = currentY + velocityY;
+                }
+                for(int i=0; i < islandList.size(); i++){
+                    queenBounds = queenRectangle.getBoundsInParent();
+                    Bounds islandBounds = islandList.get(i).getBoundsInParent();
+                    if(queenBounds.intersects(islandBounds)){
+                        velocityY -= gravity * 0.5 * myTime * myTime;
+                        myTime = 0;
+                        newY = currentY + velocityY;
+                    }
                 }
                 queenRectangle.relocate(queenRectangle.getLayoutX(), newY);
                 previousVelocity = velocityY;
@@ -352,7 +358,7 @@ public class GameController implements Initializable {
                     this.stop();
                 }
                 try {
-                    if (queenRectangle.getLayoutY() > 375) {
+                    if (queenRectangle.getLayoutY() > 400) {
                         this.stop();
                         quitGame();
                     }
@@ -399,6 +405,7 @@ public class GameController implements Initializable {
 
     public void moveForward(){
         queenRectangle.setTranslateX(queenRectangle.getTranslateX() + 20);
+        queenBounds = queenRectangle.getBoundsInParent();
         gameHighScore.setTranslateX(gameHighScore.getTranslateX() + 20);
         highScoreText.setTranslateX(highScoreText.getTranslateX() + 20);
         coinScoreImage.setTranslateX(coinScoreImage.getTranslateX() + 20);
@@ -424,13 +431,13 @@ public class GameController implements Initializable {
             System.out.println("IOException is caught");
         }
         mouseClicked = true;
-        int i;
-        for(i=0; i < coinList.size(); i++){
+        for(int i=0; i < coinList.size(); i++){
             Bounds coinBounds = coinList.get(i).getBoundsInParent();
             if(queenBounds.intersects(coinBounds)){
                 coinCount++;
                 coinList.get(i).setOpacity(0);
-                System.out.println("coin collision");
+                Rectangle dummyCoin = new Rectangle();
+                coinList.set(i, dummyCoin);
             }
         }
     }
