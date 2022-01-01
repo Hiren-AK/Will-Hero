@@ -40,6 +40,7 @@ public class GameController implements Initializable {
     private AnimationTimer animationTimer;
     private boolean mouseClicked = false;
     private boolean noIsland = false;
+    private boolean gameEnd = false;
 
     @FXML
     private Label gameHighScore;
@@ -59,10 +60,12 @@ public class GameController implements Initializable {
     private ImageView coinScoreImage;
     @FXML
     private ImageView background;
+
     @FXML
     private Rectangle queenRectangle;
     @FXML
     private Rectangle kingRectangle;
+
     @FXML
     private Rectangle islandRectangle1;
     @FXML
@@ -217,13 +220,21 @@ public class GameController implements Initializable {
                 queenRectangle.relocate(queenRectangle.getLayoutX(), newY);
                 previousVelocity = velocityY;
                 myTime+=0.001;
+                try {
+                    if (queenRectangle.getLayoutY() > 320) {
+                        quitGame();
+                    }
+                }
+                catch(IOException ex){
+                    System.out.println("IOException is caught");
+                }
             }
 
         };
     }
 
     public void placeGameObjects(){
-        resumeGame(50);
+        resumeGame(0);
         clickToPlay.setOpacity(0);
         clickToPlay.setDisable(true);
         queenRectangle.setOnMouseClicked(mouseEvent -> moveForward());
@@ -256,6 +267,7 @@ public class GameController implements Initializable {
 
     public void moveForward(){
         queenRectangle.setTranslateX(queenRectangle.getTranslateX() + 20);
+        System.out.println(queenRectangle.getLayoutY());
         gameHighScore.setTranslateX(gameHighScore.getTranslateX() + 20);
         highScoreText.setTranslateX(highScoreText.getTranslateX() + 20);
         coinScoreImage.setTranslateX(coinScoreImage.getTranslateX() + 20);
@@ -342,9 +354,9 @@ public class GameController implements Initializable {
     }
 
     public void quitGame() throws IOException{
+        gameEnd = true;
         loader = new FXMLLoader(getClass().getResource("Endgame.fxml"));
         root = loader.load();
-        //stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage = (Stage) clickToPlay.getScene().getWindow();
         scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/assets/StyleSheet.css").toExternalForm());
