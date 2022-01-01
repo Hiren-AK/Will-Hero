@@ -75,7 +75,6 @@
       <Rectangle fx:id="greenOrc3" arcHeight="5.0" arcWidth="5.0" fill="#0d6b00" height="59.0" layoutX="1448.0" layoutY="291.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="64.0" />
       <Rectangle fx:id="greenOrc4" arcHeight="5.0" arcWidth="5.0" fill="#0d6b00" height="59.0" layoutX="1965.0" layoutY="296.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="64.0" />
       <Rectangle fx:id="greenOrc5" arcHeight="5.0" arcWidth="5.0" fill="#0d6b00" height="59.0" layoutX="2289.0" layoutY="295.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="64.0" />
-      <Rectangle fx:id="queenRectangle" arcHeight="5.0" arcWidth="5.0" fill="#ff2198" height="60.0" layoutX="64.0" layoutY="290.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="45.0" />
       <Button fx:id="clickToPlay" layoutX="-1.0" layoutY="-4.0" mnemonicParsing="false" onAction="#placeGameObjects" prefHeight="237.0" prefWidth="726.0" stylesheets="@../assets/StyleSheet.css" text="Click to Play" textFill="WHITE">
          <font>
             <Font name="Segoe UI Bold" size="41.0" />
@@ -102,8 +101,9 @@
       <Rectangle fx:id="coinx12" arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="25.0" layoutX="3447.0" layoutY="330.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="25.0" />
       <Rectangle fx:id="coinx13" arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="25.0" layoutX="3476.0" layoutY="330.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="25.0" />
       <Rectangle fx:id="coinx14" arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="25.0" layoutX="3505.0" layoutY="330.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="25.0" />
-      <Rectangle fx:id="coinx15" arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="25.0" layoutX="3535.0" layoutY="330.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="25.0" />
       <Rectangle fx:id="coinx16" arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="25.0" layoutX="3564.0" layoutY="330.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="25.0" />
       <Rectangle fx:id="treasure" arcHeight="5.0" arcWidth="5.0" fill="#ff9500" height="35.0" layoutX="658.0" layoutY="304.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="57.0" />
+      <Rectangle fx:id="coinx15" arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="25.0" layoutX="3535.0" layoutY="330.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="25.0" />
+      <Rectangle fx:id="queenRectangle" arcHeight="5.0" arcWidth="5.0" fill="#ff2198" height="60.0" layoutX="64.0" layoutY="290.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="45.0" />
    </children>
 </AnchorPane>
