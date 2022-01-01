@@ -597,6 +597,7 @@ public class GameController implements Initializable {
             if (gameObjectBounds.intersects(islandBounds)){
                 gameObject.setTranslateX(gameObject.getTranslateX() + 20);
                 collide = true;
+                coinCount -= 1;
             }
         }
         if(collide == false){
