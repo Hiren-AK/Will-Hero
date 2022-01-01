@@ -28,26 +28,13 @@ public class StartController implements Initializable {
     private FXMLLoader loader;
 
     private HighScore score = new HighScore();
-    private Game game;
+    private Score gameScoreCount;
 
     @FXML
     private Label startPageHighScore;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        game = new Game();
-        game.setScore(420);
-        try {
-            FileOutputStream file = new FileOutputStream("serial/SerializedCurrentGame.txt");
-            ObjectOutputStream out = new ObjectOutputStream(file);
-            out.writeObject(game);
-            out.close();
-            file.close();
-        }
-        catch (IOException ex) {
-            System.out.println(ex);
-        }
-
         try {
             FileInputStream file = new FileInputStream("serial/SerializedHighScore.txt");
             ObjectInputStream in = new ObjectInputStream(file);
@@ -79,6 +66,27 @@ public class StartController implements Initializable {
     }
 
     public void playGame(ActionEvent event)throws IOException {
+        gameScoreCount = new Score(0);
+        try {
+            FileOutputStream file = new FileOutputStream("serial/SerializedGame.txt");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(gameScoreCount);
+            out.close();
+            file.close();
+        }
+        catch (IOException ex) {
+            System.out.println(ex);
+        }
+        try {
+            FileOutputStream file = new FileOutputStream("serial/SerializedCurrentGame.txt");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(gameScoreCount);
+            out.close();
+            file.close();
+        }
+        catch (IOException ex) {
+            System.out.println(ex);
+        }
         loader = new FXMLLoader(getClass().getResource("Game.fxml"));
         root = loader.load();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
