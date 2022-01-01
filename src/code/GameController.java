@@ -625,7 +625,7 @@ public class GameController implements Initializable {
     }
 
     public void tnt(Rectangle gameObject){
-        boolean collide = false;
+        boolean tntCollide = false;
         Bounds gameObjectBounds;
         gameObjectBounds = gameObject.getBoundsInParent();
         for (int i = 0; i < islandList.size(); i++) {
@@ -633,10 +633,10 @@ public class GameController implements Initializable {
             Bounds islandBounds = islandList.get(i).getBoundsInParent();
             if (gameObjectBounds.intersects(islandBounds)){
                 gameObject.setTranslateX(gameObject.getTranslateX() + 40);
-                collide = true;
+                tntCollide = true;
             }
         }
-        if(collide == false){
+        if(tntCollide == false){
             TranslateTransition translate = new TranslateTransition();
             translate.setNode(gameObject);
             translate.setDuration(Duration.millis(2500));
