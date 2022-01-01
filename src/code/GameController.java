@@ -379,7 +379,8 @@ public class GameController implements Initializable {
                     if(queenRectangle.getBoundsInParent().intersects(orcBounds)){
                         try {
                             if(coinCount >= 100) revive = true;
-                            gameScoreCount.setScore(gameScoreCount.getScore()+7);
+                            else revive = false;
+                            gameScoreCount.setScore(gameScoreCount.getScore()+10);
                             quitGame();
                         }
                         catch(IOException ex){
@@ -388,10 +389,15 @@ public class GameController implements Initializable {
                     }
                 }
 
-                for(int i=0; i < orcListG.size(); i++){
-                    Bounds orcBoundsG = orcListG.get(i).getBoundsInParent();
-                    if(queenBounds.intersects(orcBoundsG)){
-                        greenOrc(orcListG.get(i));
+                Bounds orcBounds = boss.getBoundsInParent();
+                if(queenRectangle.getBoundsInParent().intersects(orcBounds)){
+                    try {
+                        if(coinCount >= 100) revive = true;
+                        gameScoreCount.setScore(gameScoreCount.getScore()+7);
+                        quitGame();
+                    }
+                    catch(IOException ex){
+                        System.out.println("IOException is caught");
                     }
                 }
 
@@ -517,6 +523,27 @@ public class GameController implements Initializable {
         gameScoreCount.setScore(gameScoreCount.getScore()+1);
         coinScore.setText(" "+coinCount);
         serializeScore(gameScoreCount);
+
+        for(int i=0; i < orcListG.size(); i++){
+            Bounds orcBoundsG = orcListG.get(i).getBoundsInParent();
+            if(queenBounds.intersects(orcBoundsG)){
+                greenOrc(orcListG.get(i));
+            }
+        }
+
+        for(int i = 0; i < orcListR.size(); i++){
+            Bounds orcBounds = orcListR.get(i).getBoundsInParent();
+            if(queenRectangle.getBoundsInParent().intersects(orcBounds)){
+                try {
+                    if(coinCount >= 100) revive = true;
+                    gameScoreCount.setScore(gameScoreCount.getScore()+10);
+                    quitGame();
+                }
+                catch(IOException ex){
+                    System.out.println("IOException is caught");
+                }
+            }
+        }
         for(int i = 0; i < orcListR.size(); i++){
             Bounds orcBounds = orcListR.get(i).getBoundsInParent();
             if(queenRectangle.getBoundsInParent().intersects(orcBounds)){
@@ -530,17 +557,6 @@ public class GameController implements Initializable {
                 }
             }
         }
-        Bounds orcBounds = boss.getBoundsInParent();
-//        if(queenRectangle.getBoundsInParent().intersects(orcBounds)){
-//            try {
-//                if(coinCount >= 100) revive = true;
-//                gameScoreCount.setScore(gameScoreCount.getScore()+5);
-//                quitGame();
-//            }
-//            catch(IOException ex){
-//                System.out.println("IOException is caught");
-//            }
-//        }
         try {
             if (gameScoreCount.getScore() >= 143) {
                 revive = false;
@@ -557,15 +573,6 @@ public class GameController implements Initializable {
             serializeHighScore(score.getHighScore());
         }
         gameScore.setText(" "+gameScoreCount.getScore());
-//        for(int i=0; i < coinList.size(); i++){
-//            Bounds coinBounds = coinList.get(i).getBoundsInParent();
-//            if(queenBounds.intersects(coinBounds)){
-//                coinCount++;
-//                coinList.get(i).setOpacity(0);
-//                Rectangle dummyCoin = new Rectangle();
-//                coinList.set(i, dummyCoin);
-//            }
-//        }
     }
 
     public void serializeHighScore(int currentScore){
@@ -728,7 +735,7 @@ public class GameController implements Initializable {
         gameEnd = true;
         loader = new FXMLLoader(getClass().getResource("Endgame.fxml"));
         root = loader.load();
-        stage = (Stage) clickToPlay.getScene().getWindow();
+        stage = (Stage) startAnchorPane.getScene().getWindow();
         scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/assets/StyleSheet.css").toExternalForm());
         stage.setScene(scene);
