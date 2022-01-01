@@ -7,6 +7,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -26,9 +27,16 @@ import javafx.scene.image.ImageView;
 
 import java.io.*;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class GameController implements Initializable {
+    private ArrayList<Rectangle> islandList = new ArrayList<Rectangle>();
+    private ArrayList<Rectangle> coinList = new ArrayList<Rectangle>();
+    private ArrayList<Rectangle> orcList = new ArrayList<Rectangle>();
+    private ArrayList<Rectangle> treasureList = new ArrayList<Rectangle>();
+
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -42,6 +50,8 @@ public class GameController implements Initializable {
     private boolean mouseClicked = false;
     public static AnimationTimer animationTimer;
     private boolean gameEnd = false;
+
+    Bounds queenBounds, kingBounds;
 
     @FXML
     private Label gameHighScore;
@@ -124,7 +134,6 @@ public class GameController implements Initializable {
     private Rectangle coin17;
     @FXML
     private Rectangle coin18;
-
     @FXML
     private Rectangle coinx1;
     @FXML
@@ -238,32 +247,34 @@ public class GameController implements Initializable {
         coinScore.setText(" " + coinScoreCount.getCoinScore());
         rectangleSetter(queenRectangle, "/assets/Queen.png" );
         rectangleSetter(kingRectangle, "/assets/King.png");
-        rectangleSetter(islandRectangle1, "/assets/Island1.png");
-        rectangleSetter(islandRectangle2, "/assets/Island2.png");
-        rectangleSetter(islandRectangle3, "/assets/Island3.png");
-        rectangleSetter(islandRectangle4, "/assets/Island4.png");
-        rectangleSetter(islandRectangle5, "/assets/Island5.png");
-        rectangleSetter(islandRectangle6, "/assets/Island6.png");
-        rectangleSetter(islandRectangle7, "/assets/Island1.png");
-        rectangleSetter(islandRectangle8, "/assets/Island4.png");
-        rectangleSetter(islandRectangle9, "/assets/Island3.png");
-        rectangleSetter(islandRectangle10, "/assets/Island5.png");
 
-        rectangleSetter(greenOrc1, "/assets/GreenOrc.png");
-        rectangleSetter(greenOrc2, "/assets/GreenOrc.png");
-        rectangleSetter(greenOrc3, "/assets/GreenOrc.png");
-        rectangleSetter(greenOrc4, "/assets/GreenOrc.png");
-        rectangleSetter(greenOrc5, "/assets/GreenOrc.png");
+        islandSetter(islandRectangle1, "/assets/Island1.png");
+        islandSetter(islandRectangle2, "/assets/Island2.png");
+        islandSetter(islandRectangle3, "/assets/Island3.png");
+        islandSetter(islandRectangle4, "/assets/Island4.png");
+        islandSetter(islandRectangle5, "/assets/Island5.png");
+        islandSetter(islandRectangle6, "/assets/Island6.png");
+        islandSetter(islandRectangle7, "/assets/Island1.png");
+        islandSetter(islandRectangle8, "/assets/Island4.png");
+        islandSetter(islandRectangle9, "/assets/Island3.png");
+        islandSetter(islandRectangle10, "/assets/Island5.png");
 
-        rectangleSetter(redOrc1, "/assets/RedOrc.png");
-        rectangleSetter(redOrc2, "/assets/RedOrc.png");
-        rectangleSetter(redOrc3, "/assets/RedOrc.png");
+        orcSetter(greenOrc1, "/assets/GreenOrc.png");
+        orcSetter(greenOrc2, "/assets/GreenOrc.png");
+        orcSetter(greenOrc3, "/assets/GreenOrc.png");
+        orcSetter(greenOrc4, "/assets/GreenOrc.png");
+        orcSetter(greenOrc5, "/assets/GreenOrc.png");
 
-        rectangleSetter(boss, "/assets/BossOrc.png");
+        orcSetter(redOrc1, "/assets/RedOrc.png");
+        orcSetter(redOrc2, "/assets/RedOrc.png");
+        orcSetter(redOrc3, "/assets/RedOrc.png");
 
-        rectangleSetter(treasure1, "/assets/ClosedTreasure.png");
-        rectangleSetter(treasure2, "/assets/ClosedTreasure.png");
-        rectangleSetter(treasure3, "/assets/ClosedTreasure.png");
+        orcSetter(boss, "/assets/BossOrc.png");
+
+        treasureSetter(treasure1, "/assets/ClosedTreasure.png");
+        treasureSetter(treasure2, "/assets/ClosedTreasure.png");
+        treasureSetter(treasure3, "/assets/ClosedTreasure.png");
+
         rectangleSetter(TNT, "/assets/TNT.png");
 
         coinSetter(coin1);
@@ -301,7 +312,6 @@ public class GameController implements Initializable {
         coinSetter(coinx15);
         coinSetter(coinx16);
 
-
         gameScore.setText(" " + gameScoreCount.getScore());
 
         animationTimer = new AnimationTimer() {
@@ -326,11 +336,20 @@ public class GameController implements Initializable {
                     myTime = 0;
                     newY = currentY + velocityY;
                     mouseClicked = false;
+                    queenBounds = queenRectangle.getBoundsInParent();
                 }
                 else{
                     velocityY += gravity * 0.5 * myTime * myTime;
-                    //velocityY = -5;
                     newY = currentY + velocityY;
+                }
+                for(int i=0; i < islandList.size(); i++){
+                    queenBounds = queenRectangle.getBoundsInParent();
+                    Bounds islandBounds = islandList.get(i).getBoundsInParent();
+                    if(queenBounds.intersects(islandBounds)){
+                        velocityY -= gravity * 0.5 * myTime * myTime;
+                        myTime = 0;
+                        newY = currentY + velocityY;
+                    }
                 }
                 queenRectangle.relocate(queenRectangle.getLayoutX(), newY);
                 previousVelocity = velocityY;
@@ -339,7 +358,7 @@ public class GameController implements Initializable {
                     this.stop();
                 }
                 try {
-                    if (queenRectangle.getLayoutY() > 375) {
+                    if (queenRectangle.getLayoutY() > 400) {
                         this.stop();
                         quitGame();
                     }
@@ -386,6 +405,7 @@ public class GameController implements Initializable {
 
     public void moveForward(){
         queenRectangle.setTranslateX(queenRectangle.getTranslateX() + 20);
+        queenBounds = queenRectangle.getBoundsInParent();
         gameHighScore.setTranslateX(gameHighScore.getTranslateX() + 20);
         highScoreText.setTranslateX(highScoreText.getTranslateX() + 20);
         coinScoreImage.setTranslateX(coinScoreImage.getTranslateX() + 20);
@@ -411,6 +431,15 @@ public class GameController implements Initializable {
             System.out.println("IOException is caught");
         }
         mouseClicked = true;
+        for(int i=0; i < coinList.size(); i++){
+            Bounds coinBounds = coinList.get(i).getBoundsInParent();
+            if(queenBounds.intersects(coinBounds)){
+                coinCount++;
+                coinList.get(i).setOpacity(0);
+                Rectangle dummyCoin = new Rectangle();
+                coinList.set(i, dummyCoin);
+            }
+        }
     }
 
     public void serializeHighScore(int currentScore){
@@ -468,6 +497,28 @@ public class GameController implements Initializable {
         Image gameObjectImage = new Image(this.getClass().getResource("/assets/Coin.png").toString());
         gameObject.setFill(new ImagePattern(gameObjectImage));
         gameObject.setStrokeWidth(0);
+        coinList.add(gameObject);
+    }
+
+    public void orcSetter(Rectangle gameObject, String name){
+        Image gameObjectImage = new Image(this.getClass().getResource(name).toString());
+        gameObject.setFill(new ImagePattern(gameObjectImage));
+        gameObject.setStrokeWidth(0);
+        orcList.add(gameObject);
+    }
+
+    public void islandSetter(Rectangle gameObject, String name){
+        Image gameObjectImage = new Image(this.getClass().getResource(name).toString());
+        gameObject.setFill(new ImagePattern(gameObjectImage));
+        gameObject.setStrokeWidth(0);
+        islandList.add(gameObject);
+    }
+
+    public void treasureSetter(Rectangle gameObject, String name){
+        Image gameObjectImage = new Image(this.getClass().getResource(name).toString());
+        gameObject.setFill(new ImagePattern(gameObjectImage));
+        gameObject.setStrokeWidth(0);
+        treasureList.add(gameObject);
     }
 
     public void resumeGame(int resumeScore){
