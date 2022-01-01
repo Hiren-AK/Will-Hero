@@ -44,7 +44,6 @@ public class SaverController implements Initializable {
             saveSlot1.setText("Score: " + game1.getScore());
         }
         catch (IOException ex) {
-            System.out.println("IOException is caught");
         }
         catch (ClassNotFoundException ex) {
             System.out.println("ClassNotFoundException is caught");
@@ -59,7 +58,6 @@ public class SaverController implements Initializable {
             saveSlot2.setText("Score: " + game2.getScore());
         }
         catch (IOException ex) {
-            System.out.println("IOException is caught");
         }
         catch (ClassNotFoundException ex) {
             System.out.println("ClassNotFoundException is caught");
@@ -74,7 +72,6 @@ public class SaverController implements Initializable {
             saveSlot3.setText("Score: " + game3.getScore());
         }
         catch (IOException ex) {
-            System.out.println("IOException is caught");
         }
         catch (ClassNotFoundException ex) {
             System.out.println("ClassNotFoundException is caught");

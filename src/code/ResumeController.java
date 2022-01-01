@@ -45,7 +45,6 @@ public class ResumeController implements Initializable {
         }
 
         catch (IOException ex) {
-            System.out.println("IOException is caught");
         }
 
         catch (ClassNotFoundException ex) {
@@ -62,7 +61,6 @@ public class ResumeController implements Initializable {
         }
 
         catch (IOException ex) {
-            System.out.println("IOException is caught");
         }
 
         catch (ClassNotFoundException ex) {
@@ -79,7 +77,6 @@ public class ResumeController implements Initializable {
         }
 
         catch (IOException ex) {
-            System.out.println("IOException is caught");
         }
 
         catch (ClassNotFoundException ex) {
