@@ -16,6 +16,8 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
+import static code.GameController.resumeAnimations;
+
 public class SettingsController {
     private Stage stage;
     private Scene scene;
@@ -28,6 +30,7 @@ public class SettingsController {
     public void resumeGameFromSettings(ActionEvent event){
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.close();
+        resumeAnimations();
         stage = (Stage)((Stage) ((Node)event.getSource()).getScene().getWindow()).getOwner();
     }
 

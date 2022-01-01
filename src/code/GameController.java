@@ -47,9 +47,8 @@ public class GameController implements Initializable {
     private CoinScore coinScoreCount = new CoinScore(0);
     private int coinCount;
     private Score gameScoreCount = new Score(0);
-    private AnimationTimer animationTimer;
     private boolean mouseClicked = false;
-    private boolean noIsland = false;
+    public static AnimationTimer animationTimer;
     private boolean gameEnd = false;
 
     Bounds queenBounds, kingBounds;
@@ -374,6 +373,7 @@ public class GameController implements Initializable {
     }
 
     public void settings(ActionEvent event) throws IOException{
+        animationTimer.stop();
         try {
             FileOutputStream file = new FileOutputStream("serial/SerializedGame.txt");
             ObjectOutputStream out = new ObjectOutputStream(file);
@@ -474,6 +474,10 @@ public class GameController implements Initializable {
         catch (IOException ex) {
             System.out.println("IOException is caught");
         }
+    }
+
+    public static void resumeAnimations(){
+        animationTimer.start();
     }
 
     public void rectangleSetter(Rectangle gameObject, String name){
