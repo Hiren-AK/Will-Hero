@@ -187,7 +187,7 @@ public class GameController implements Initializable {
         gameScore.setText(" "+gameScoreCount.getScore());
         serializeScore(gameScoreCount);
         try {
-            if (gameScoreCount.getScore() >= 150) {
+            if (gameScoreCount.getScore() >= 135) {
                 quitGame();
             }
         }
