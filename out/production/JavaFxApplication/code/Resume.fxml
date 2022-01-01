@@ -23,7 +23,7 @@
             <Image url="@../assets/chooseGame.png" />
          </image>
       </ImageView>
-      <Button fx:id="load1" alignment="CENTER" contentDisplay="RIGHT" layoutX="552.0" layoutY="182.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="86.0" stylesheets="@../assets/StyleSheet.css" textAlignment="RIGHT" textFill="WHITE">
+      <Button fx:id="load1" alignment="CENTER" contentDisplay="RIGHT" layoutX="552.0" layoutY="182.0" mnemonicParsing="false" onAction="#load1" prefHeight="31.0" prefWidth="86.0" stylesheets="@../assets/StyleSheet.css" textAlignment="RIGHT" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
@@ -33,12 +33,12 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="load2" alignment="CENTER" contentDisplay="RIGHT" layoutX="552.0" layoutY="237.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="86.0" stylesheets="@../assets/StyleSheet.css" textAlignment="RIGHT" textFill="WHITE">
+      <Button fx:id="load2" alignment="CENTER" contentDisplay="RIGHT" layoutX="552.0" layoutY="237.0" mnemonicParsing="false" onAction="#load2" prefHeight="31.0" prefWidth="86.0" stylesheets="@../assets/StyleSheet.css" textAlignment="RIGHT" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="load3" alignment="CENTER" contentDisplay="RIGHT" layoutX="552.0" layoutY="286.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="86.0" stylesheets="@../assets/StyleSheet.css" textAlignment="RIGHT" textFill="WHITE">
+      <Button fx:id="load3" alignment="CENTER" contentDisplay="RIGHT" layoutX="552.0" layoutY="286.0" mnemonicParsing="false" onAction="#load3" prefHeight="31.0" prefWidth="86.0" stylesheets="@../assets/StyleSheet.css" textAlignment="RIGHT" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>

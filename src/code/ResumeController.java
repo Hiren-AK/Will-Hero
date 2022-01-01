@@ -7,12 +7,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -32,6 +34,13 @@ public class ResumeController implements Initializable {
     private Label loadSlot2;
     @FXML
     private Label loadSlot3;
+    @FXML
+    private Button load1;
+    @FXML
+    private Button load2;
+    @FXML
+    private Button load3;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -45,6 +54,7 @@ public class ResumeController implements Initializable {
         }
 
         catch (IOException ex) {
+            load1.setDisable(true);
         }
 
         catch (ClassNotFoundException ex) {
@@ -61,6 +71,7 @@ public class ResumeController implements Initializable {
         }
 
         catch (IOException ex) {
+            load2.setDisable(true);
         }
 
         catch (ClassNotFoundException ex) {
@@ -77,6 +88,7 @@ public class ResumeController implements Initializable {
         }
 
         catch (IOException ex) {
+            load3.setDisable(true);
         }
 
         catch (ClassNotFoundException ex) {
@@ -94,5 +106,117 @@ public class ResumeController implements Initializable {
         stage.show();
     }
 
+    public void load1(ActionEvent event) throws IOException {
+        try {
+            FileOutputStream file = new FileOutputStream("serial/SerializedGame.txt");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(game1);
+            out.close();
+            file.close();
+        }
+        catch (IOException ex) {
+            System.out.println(ex);
+        }
+        try {
+            FileOutputStream file = new FileOutputStream("serial/SerializedCurrentGame.txt");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(game1);
+            out.close();
+            file.close();
+        }
+        catch (IOException ex) {
+            System.out.println(ex);
+        }
+        loader = new FXMLLoader(getClass().getResource("Game.fxml"));
+        root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("/assets/StyleSheet.css").toExternalForm());
+        stage.setScene(scene);
+        stage.setOnCloseRequest(e -> {
+            e.consume();
+            exitGame();
+        });
+        stage.show();
+    }
 
+    public void load2(ActionEvent event) throws IOException {
+        try {
+            FileOutputStream file = new FileOutputStream("serial/SerializedGame.txt");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(game2);
+            out.close();
+            file.close();
+        }
+        catch (IOException ex) {
+            System.out.println(ex);
+        }
+        try {
+            FileOutputStream file = new FileOutputStream("serial/SerializedCurrentGame.txt");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(game2);
+            out.close();
+            file.close();
+        }
+        catch (IOException ex) {
+            System.out.println(ex);
+        }
+        loader = new FXMLLoader(getClass().getResource("Game.fxml"));
+        root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("/assets/StyleSheet.css").toExternalForm());
+        stage.setScene(scene);
+        stage.setOnCloseRequest(e -> {
+            e.consume();
+            exitGame();
+        });
+        stage.show();
+    }
+
+    public void load3(ActionEvent event) throws IOException {
+        try {
+            FileOutputStream file = new FileOutputStream("serial/SerializedGame.txt");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(game3);
+            out.close();
+            file.close();
+        }
+        catch (IOException ex) {
+            System.out.println(ex);
+        }
+        try {
+            FileOutputStream file = new FileOutputStream("serial/SerializedCurrentGame.txt");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(game3);
+            out.close();
+            file.close();
+        }
+        catch (IOException ex) {
+            System.out.println(ex);
+        }
+        loader = new FXMLLoader(getClass().getResource("Game.fxml"));
+        root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("/assets/StyleSheet.css").toExternalForm());
+        stage.setScene(scene);
+        stage.setOnCloseRequest(e -> {
+            e.consume();
+            exitGame();
+        });
+        stage.show();
+    }
+
+    public void exitGame(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Exit");
+        Stage st = (Stage)alert.getDialogPane().getScene().getWindow();
+        st.getIcons().add(new Image(this.getClass().getResource("/assets/logo.png").toString()));
+        alert.setHeaderText("You are about to exit");
+        alert.setContentText("Are you sure you want to exit?");
+        if(alert.showAndWait().get() == ButtonType.OK) {
+            stage.close();
+        }
+    }
 }

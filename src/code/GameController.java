@@ -34,7 +34,7 @@ public class GameController implements Initializable {
     private Parent root;
     private FXMLLoader loader;
 
-    private Game currentGame = new Game();
+    //private Game currentGame = new Game();
     private HighScore score = new HighScore();
     private CoinScore coinScoreCount = new CoinScore(0);
     private int coinCount;
@@ -352,7 +352,7 @@ public class GameController implements Initializable {
     }
 
     public void placeGameObjects(){
-        resumeGame(0);
+        resumeGame(gameScoreCount.getScore());
         clickToPlay.setOpacity(0);
         clickToPlay.setDisable(true);
         queenRectangle.setOnMouseClicked(mouseEvent -> moveForward());
@@ -480,12 +480,6 @@ public class GameController implements Initializable {
         coinScore.setTranslateX(coinScore.getTranslateX() + (resumeScore*20));
         background.setTranslateX(background.getTranslateX() - (resumeScore*25));
         startAnchorPane.setTranslateX(startAnchorPane.getTranslateX() - (resumeScore*20));
-        gameScoreCount.setScore(gameScoreCount.getScore() + resumeScore);
-        if(gameScoreCount.getScore() > score.getHighScore()){
-            score.setHighScore(gameScoreCount.getScore());
-            serializeHighScore(score.getHighScore());
-        }
-        gameScore.setText(" "+gameScoreCount.getScore());
         serializeScore(gameScoreCount);
     }
 
