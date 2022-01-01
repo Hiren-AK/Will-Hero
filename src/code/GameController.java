@@ -373,54 +373,6 @@ public class GameController implements Initializable {
                 }
             }
         };
-
-        greenOrcTimer = new AnimationTimer() {
-            double[] animTimeOG = new double[orcListG.size()];
-            double[] velocityYOG = new double[orcListG.size()];
-            double gravity = 9.8;
-            double[] previousVelocityOG = new double[orcListG.size()];
-            @Override
-            public void handle(long l) {
-                double[] currentYOG = new double[orcListG.size()];
-                for(int k = 0; k < orcListG.size(); k++){
-                    currentYOG[k] = orcListG.get(k).getLayoutY();
-                }
-                double[] newYOG = new double[orcListG.size()];
-                for(int k = 0; k < orcListG.size(); k++){
-                    newYOG[k] = currentYOG[k];
-                }
-                for(int j = 0; j < orcListG.size(); j++){
-                    if(currentYOG[j] > 400){
-                        animTimeOG[j] = 0.13;
-                    }
-                }
-                boolean onAnyIsland = false;
-                for(int k = 0; k < orcListG.size(); k++) {
-                    if (orcListG.get(k).getBoundsInParent().intersects(queenRectangle.getLayoutBounds())) {
-                        orcListG.get(k).relocate(orcListG.get(k).getLayoutX() + 3, orcListG.get(k).getLayoutY());
-                        for (int i = 0; i < islandList.size(); i++) {
-                            Bounds islandBounds = islandList.get(i).getBoundsInParent();
-                            if (orcListG.get(k).getBoundsInParent().intersects(islandBounds)) {
-                                onAnyIsland = true;
-                            }
-                        }
-                        if (!onAnyIsland) {
-                            onAnyIsland = false;
-                            velocityYOG[k] += gravity * 0.5 * animTimeOG[k] * animTimeOG[k];
-                            newYOG[k] = currentYOG[k] + velocityYOG[k];
-                        }
-                    }
-                }
-                for(int d = 0; d < orcListG.size(); d++){
-                    orcListG.get(d).relocate(orcListG.get(d).getLayoutX(), newYOG[d]);
-                    previousVelocityOG[d] = velocityYOG[d];
-                    animTimeOG[d]+=0.001;
-                }
-                if(gameEnd){
-                    this.stop();
-                }
-            }
-        };
     }
 
     public void placeGameObjects(){
