@@ -50,6 +50,7 @@ public class GameController implements Initializable {
     private Score gameScoreCount = new Score(0);
     private boolean mouseClicked = false;
     public static AnimationTimer animationTimer;
+    public static AnimationTimer greenOrcTimer;
     private boolean gameEnd = false;
     private boolean revive = false;
 
@@ -204,16 +205,13 @@ public class GameController implements Initializable {
         try {
             FileInputStream file = new FileInputStream("serial/SerializedHighScore.txt");
             ObjectInputStream in = new ObjectInputStream(file);
-            score = (HighScore)in.readObject();
+            score = (HighScore) in.readObject();
             in.close();
             file.close();
-        }
-        catch (IOException ex) {
+        } catch (IOException ex) {
             System.out.println("IOException is caught");
             score.setHighScore(-1);
-        }
-
-        catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex) {
             System.out.println("ClassNotFoundException is caught");
             score.setHighScore(-1);
         }
@@ -223,37 +221,33 @@ public class GameController implements Initializable {
         try {
             FileInputStream file = new FileInputStream("serial/SerializedGame.txt");
             ObjectInputStream in = new ObjectInputStream(file);
-            gameScoreCount = (Score)in.readObject();
+            gameScoreCount = (Score) in.readObject();
             in.close();
             file.close();
-        }
-        catch (IOException ex) {
+        } catch (IOException ex) {
             System.out.println("IOException is caught");
-        }
-        catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex) {
             System.out.println("ClassNotFoundException is caught");
         }
 
         try {
             FileInputStream file = new FileInputStream("serial/SerializedCoinScore.txt");
             ObjectInputStream in = new ObjectInputStream(file);
-            coinScoreCount = (CoinScore)in.readObject();
+            coinScoreCount = (CoinScore) in.readObject();
             coinCount = coinScoreCount.getCoinScore();
             in.close();
             file.close();
-        }
-        catch (IOException ex) {
+        } catch (IOException ex) {
             System.out.println("IOException is caught");
-        }
-        catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex) {
             System.out.println("ClassNotFoundException is caught");
         }
 
         coinScore.setText(" " + coinScoreCount.getCoinScore());
-        if(coinScoreCount.getCoinScore() >= 100){
+        if (coinScoreCount.getCoinScore() >= 100) {
             revive = true;
         }
-        rectangleSetter(queenRectangle, "/assets/Queen.png" );
+        rectangleSetter(queenRectangle, "/assets/Queen.png");
         rectangleSetter(kingRectangle, "/assets/King.png");
 
         islandSetter(islandRectangle1, "/assets/Island1.png");
@@ -332,58 +326,41 @@ public class GameController implements Initializable {
             public void handle(long l) {
                 double currentY = queenRectangle.getLayoutY();
                 double newY = currentY;
-                if(currentY > 400){
+                if (currentY > 400) {
                     animTime = 0.13;
                 }
-                if(mouseClicked){
+                if (mouseClicked) {
                     velocityY = 0;
                     animTime = 0;
                     newY = currentY + velocityY;
                     mouseClicked = false;
                     queenBounds = queenRectangle.getBoundsInParent();
-                }
-                else{
+                } else {
                     velocityY += gravity * 0.5 * animTime * animTime;
                     newY = currentY + velocityY;
                 }
-                for(int i=0; i < islandList.size(); i++){
+                for (int i = 0; i < islandList.size(); i++) {
                     queenBounds = queenRectangle.getBoundsInParent();
                     Bounds islandBounds = islandList.get(i).getBoundsInParent();
-                    if(queenBounds.intersects(islandBounds)){
+                    if (queenBounds.intersects(islandBounds)) {
                         velocityY = -1;
                         animTime = 0;
                         newY = currentY + velocityY;
                     }
                 }
-                for(int i=0; i < coinList.size(); i++){
+                for (int i = 0; i < coinList.size(); i++) {
                     Bounds coinBounds = coinList.get(i).getBoundsInParent();
-                    if(queenBounds.intersects(coinBounds)){
+                    if (queenBounds.intersects(coinBounds)) {
                         coinCount++;
                         coinList.get(i).setOpacity(0);
                         Rectangle dummyCoin = new Rectangle();
                         coinList.set(i, dummyCoin);
                     }
                 }
-                for(int i=0; i < orcListG.size(); i++){
-                    Bounds orcBounds = orcListG.get(i).getBoundsInParent();
-                    if(queenBounds.intersects(orcBounds)){
-                        orcListG.get(i).setTranslateX(orcListG.get(i).getTranslateX()+2);
-                        boolean onIsland = false;
-                        for(int j=0; j < islandList.size(); j++){
-                            Bounds islandBounds = islandList.get(i).getBoundsInParent();
-                            if(orcBounds.intersects(islandBounds)){
-                                onIsland = true;
-                            }
-                        }
-                        if(!onIsland){
-                            System.out.println("I m under the woter");
-                        }
-                    }
-                }
                 queenRectangle.relocate(queenRectangle.getLayoutX(), newY);
                 previousVelocity = velocityY;
-                animTime+=0.001;
-                if(gameEnd){
+                animTime += 0.001;
+                if (gameEnd) {
                     this.stop();
                 }
                 try {
@@ -391,73 +368,59 @@ public class GameController implements Initializable {
                         this.stop();
                         quitGame();
                     }
-                }
-                catch(IOException ex){
+                } catch (IOException ex) {
                     System.out.println("IOException is caught");
                 }
             }
         };
 
-//        AnimationTimer greenOrcTimer = new AnimationTimer() {
-//            double[] animTimeOG = new double[orcListG.size()];
-//            double[] velocityYOG = new double[orcListG.size()];
-//            double gravity = 9.8;
-//            double[] previousVelocityOG = new double[orcListG.size()];
-//            @Override
-//            public void handle(long l) {
-//                double[] currentYOG = new double[orcListG.size()];
-//                for(int k = 0; k < orcListG.size(); k++){
-//                    currentYOG[k] = orcListG.get(k).getLayoutY();
-//                }
-//                double[] newYOG = new double[orcListG.size()];
-//                for(int k = 0; k < orcListG.size(); k++){
-//                    newYOG[k] = currentYOG[k];
-//                }
-//                for(int j = 0; j < orcListG.size(); j++){
-//                    if(currentYOG[j] > 400){
-//                        animTimeOG[j] = 0.13;
-//                    }
-//                }
-//                boolean onAnyIsland = false;
-//                for(int k = 0; k < orcListG.size(); k++){
-//                    if(orcListG.get(k).getBoundsInParent().intersects(queenRectangle.getLayoutBounds())){
-//                        orcListG.get(k).relocate(orcListG.get(k).getLayoutX()+3, orcListG.get(k).getLayoutY());
-//                        for(int i=0; i < islandList.size(); i++){
-//                            Bounds islandBounds = islandList.get(i).getBoundsInParent();
-//                            if(orcListG.get(k).getBoundsInParent().intersects(islandBounds)){
-//                                onAnyIsland = true;
-//                            }
-//                        }
-//                        if(!onAnyIsland){
-//                            onAnyIsland = false;
-//                            velocityYOG[k] += gravity * 0.5 * animTimeOG[k] * animTimeOG[k];
-//                            newYOG[k] = currentYOG[k] + velocityYOG[k];
-//                        }
-//                    }
-//                }
-//                else{
-//                    velocityY += gravity * 0.5 * animTime * animTime;
-//                    newY = currentY + velocityY;
-//                }
-//                for(int i=0; i < islandList.size(); i++){
-//                    queenBounds = queenRectangle.getBoundsInParent();
-//                    Bounds islandBounds = islandList.get(i).getBoundsInParent();
-//                    if(queenBounds.intersects(islandBounds)){
-//                        System.out.println("colliding");
-//                        velocityY = -1;
-//                        animTime = 0;
-//                        newY = currentY + velocityY;
-//                    }
-//                }
-//            }
-//
-//            queenRectangle.relocate(queenRectangle.getLayoutX(), newY);
-//            previousVelocity = velocityY;
-//            animTime+=0.001;
-//                if(gameEnd){
-//                this.stop();
-//            }
-//        };
+        greenOrcTimer = new AnimationTimer() {
+            double[] animTimeOG = new double[orcListG.size()];
+            double[] velocityYOG = new double[orcListG.size()];
+            double gravity = 9.8;
+            double[] previousVelocityOG = new double[orcListG.size()];
+            @Override
+            public void handle(long l) {
+                double[] currentYOG = new double[orcListG.size()];
+                for(int k = 0; k < orcListG.size(); k++){
+                    currentYOG[k] = orcListG.get(k).getLayoutY();
+                }
+                double[] newYOG = new double[orcListG.size()];
+                for(int k = 0; k < orcListG.size(); k++){
+                    newYOG[k] = currentYOG[k];
+                }
+                for(int j = 0; j < orcListG.size(); j++){
+                    if(currentYOG[j] > 400){
+                        animTimeOG[j] = 0.13;
+                    }
+                }
+                boolean onAnyIsland = false;
+                for(int k = 0; k < orcListG.size(); k++) {
+                    if (orcListG.get(k).getBoundsInParent().intersects(queenRectangle.getLayoutBounds())) {
+                        orcListG.get(k).relocate(orcListG.get(k).getLayoutX() + 3, orcListG.get(k).getLayoutY());
+                        for (int i = 0; i < islandList.size(); i++) {
+                            Bounds islandBounds = islandList.get(i).getBoundsInParent();
+                            if (orcListG.get(k).getBoundsInParent().intersects(islandBounds)) {
+                                onAnyIsland = true;
+                            }
+                        }
+                        if (!onAnyIsland) {
+                            onAnyIsland = false;
+                            velocityYOG[k] += gravity * 0.5 * animTimeOG[k] * animTimeOG[k];
+                            newYOG[k] = currentYOG[k] + velocityYOG[k];
+                        }
+                    }
+                }
+                for(int d = 0; d < orcListG.size(); d++){
+                    orcListG.get(d).relocate(orcListG.get(d).getLayoutX(), newYOG[d]);
+                    previousVelocityOG[d] = velocityYOG[d];
+                    animTimeOG[d]+=0.001;
+                }
+                if(gameEnd){
+                    this.stop();
+                }
+            }
+        };
     }
 
     public void placeGameObjects(){
@@ -466,6 +429,7 @@ public class GameController implements Initializable {
         clickToPlay.setDisable(true);
         queenRectangle.setOnMouseClicked(mouseEvent -> moveForward());
         animationTimer.start();
+        greenOrcTimer.start();
     }
 
     public void settings(ActionEvent event) throws IOException{
