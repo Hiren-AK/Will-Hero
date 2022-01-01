@@ -212,10 +212,13 @@ public class GameController implements Initializable {
             System.out.println("IOException is caught");
             score.setHighScore(-1);
         }
+
         catch (ClassNotFoundException ex) {
             System.out.println("ClassNotFoundException is caught");
             score.setHighScore(-1);
         }
+
+        gameHighScore.setText(" " + score.getHighScore());
 
         try {
             FileInputStream file = new FileInputStream("serial/SerializedGame.txt");
@@ -482,7 +485,7 @@ public class GameController implements Initializable {
         stage.showAndWait();
     }
 
-    public void reviver(ActionEvent event) throws IOException{
+    public void reviver() throws IOException{
         animationTimer.stop();
         try {
             FileOutputStream file = new FileOutputStream("serial/SerializedGame.txt");
@@ -504,7 +507,7 @@ public class GameController implements Initializable {
         stage.setResizable(false);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner((Stage) clickToPlay.getScene().getWindow());
-        stage.showAndWait();
+        stage.show();
     }
 
     public void moveForward(){
@@ -648,13 +651,13 @@ public class GameController implements Initializable {
     }
 
     public void quitGame() throws IOException{
-        if(revive == true){
-            revive = false;
-            reviver(new ActionEvent());
-        }
-        gameEnd = true;
         coinScoreCount.setCoinScore(coinCount);
         serializeCoinScore(coinScoreCount);
+        if(revive == true){
+            revive = false;
+            reviver();
+        }
+        gameEnd = true;
         loader = new FXMLLoader(getClass().getResource("Endgame.fxml"));
         root = loader.load();
         stage = (Stage) clickToPlay.getScene().getWindow();
