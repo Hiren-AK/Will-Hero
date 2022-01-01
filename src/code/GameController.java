@@ -113,6 +113,54 @@ public class GameController implements Initializable {
     private Rectangle coin9;
     @FXML
     private Rectangle coin10;
+    @FXML
+    private Rectangle coin11;
+    @FXML
+    private Rectangle coin12;
+    @FXML
+    private Rectangle coin13;
+    @FXML
+    private Rectangle coin14;
+
+    @FXML
+    private Rectangle coinx1;
+    @FXML
+    private Rectangle coinx2;
+    @FXML
+    private Rectangle coinx3;
+    @FXML
+    private Rectangle coinx4;
+    @FXML
+    private Rectangle coinx5;
+    @FXML
+    private Rectangle coinx6;
+    @FXML
+    private Rectangle coinx7;
+    @FXML
+    private Rectangle coinx8;
+    @FXML
+    private Rectangle coinx9;
+    @FXML
+    private Rectangle coinx10;
+    @FXML
+    private Rectangle coinx11;
+    @FXML
+    private Rectangle coinx12;
+    @FXML
+    private Rectangle coinx13;
+    @FXML
+    private Rectangle coinx14;
+    @FXML
+    private Rectangle coinx15;
+    @FXML
+    private Rectangle coinx16;
+
+    @FXML
+    private  Rectangle redOrc1;
+    @FXML
+    private  Rectangle redOrc2;
+    @FXML
+    private  Rectangle redOrc3;
 
     @FXML
     private  Rectangle greenOrc1;
@@ -124,6 +172,9 @@ public class GameController implements Initializable {
     private  Rectangle greenOrc4;
     @FXML
     private  Rectangle greenOrc5;
+
+    @FXML
+    private Rectangle treasure;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -194,6 +245,12 @@ public class GameController implements Initializable {
         rectangleSetter(greenOrc4, "/assets/GreenOrc.png");
         rectangleSetter(greenOrc5, "/assets/GreenOrc.png");
 
+        rectangleSetter(redOrc1, "/assets/RedOrc.png");
+        rectangleSetter(redOrc2, "/assets/RedOrc.png");
+        rectangleSetter(redOrc3, "/assets/RedOrc.png");
+
+        rectangleSetter(treasure, "/assets/ClosedTreasure.png");
+
         coinSetter(coin1);
         coinSetter(coin2);
         coinSetter(coin3);
@@ -204,6 +261,28 @@ public class GameController implements Initializable {
         coinSetter(coin8);
         coinSetter(coin9);
         coinSetter(coin10);
+        coinSetter(coin11);
+        coinSetter(coin12);
+        coinSetter(coin13);
+        coinSetter(coin14);
+
+        coinSetter(coinx1);
+        coinSetter(coinx2);
+        coinSetter(coinx3);
+        coinSetter(coinx4);
+        coinSetter(coinx5);
+        coinSetter(coinx6);
+        coinSetter(coinx7);
+        coinSetter(coinx8);
+        coinSetter(coinx9);
+        coinSetter(coinx10);
+        coinSetter(coinx11);
+        coinSetter(coinx12);
+        coinSetter(coinx13);
+        coinSetter(coinx14);
+        coinSetter(coinx15);
+        coinSetter(coinx16);
+
 
         gameScore.setText(" " + gameScoreCount.getScore());
 
@@ -302,7 +381,6 @@ public class GameController implements Initializable {
             score.setHighScore(gameScoreCount.getScore());
             serializeHighScore(score.getHighScore());
         }
-        coinCount++;
         gameScore.setText(" "+gameScoreCount.getScore());
         coinScore.setText(" "+coinCount);
         serializeScore(gameScoreCount);
