@@ -398,57 +398,66 @@ public class GameController implements Initializable {
             }
         };
 
-        AnimationTimer greenOrcTimer = new AnimationTimer() {
-            double[] animTimeOG = new double[orcListG.size()];
-            double[] velocityYOG = new double[orcListG.size()];
-            double gravity = 9.8;
-            double[] previousVelocityOG = new double[orcListG.size()];
-            @Override
-            public void handle(long l) {
-                double[] currentYOG = new double[orcListG.size()];
-                for(int k = 0; k < orcListG.size(); k++){
-                    currentYOG[k] = orcListG.get(k).getLayoutY();
-                }
-                double[] newYOG = new double[orcListG.size()];
-                for(int k = 0; k < orcListG.size(); k++){
-                    newYOG[k] = currentYOG[k];
-                }
-                for(int j = 0; j < orcListG.size(); j++){
-                    if(currentYOG[j] > 400){
-                        animTimeOG[j] = 0.13;
-                    }
-                }
-
-                if(mouseClicked){
-                    velocityY = 0;
-                    animTime = 0;
-                    newY = currentY + velocityY;
-                    mouseClicked = false;
-                    queenBounds = queenRectangle.getBoundsInParent();
-                }
-                else{
-                    velocityY += gravity * 0.5 * animTime * animTime;
-                    newY = currentY + velocityY;
-                }
-                for(int i=0; i < islandList.size(); i++){
-                    queenBounds = queenRectangle.getBoundsInParent();
-                    Bounds islandBounds = islandList.get(i).getBoundsInParent();
-                    if(queenBounds.intersects(islandBounds)){
-                        System.out.println("colliding");
-                        velocityY = -1;
-                        animTime = 0;
-                        newY = currentY + velocityY;
-                    }
-                }
-            }
-
-            queenRectangle.relocate(queenRectangle.getLayoutX(), newY);
-            previousVelocity = velocityY;
-            animTime+=0.001;
-                if(gameEnd){
-                this.stop();
-            }
-        };
+//        AnimationTimer greenOrcTimer = new AnimationTimer() {
+//            double[] animTimeOG = new double[orcListG.size()];
+//            double[] velocityYOG = new double[orcListG.size()];
+//            double gravity = 9.8;
+//            double[] previousVelocityOG = new double[orcListG.size()];
+//            @Override
+//            public void handle(long l) {
+//                double[] currentYOG = new double[orcListG.size()];
+//                for(int k = 0; k < orcListG.size(); k++){
+//                    currentYOG[k] = orcListG.get(k).getLayoutY();
+//                }
+//                double[] newYOG = new double[orcListG.size()];
+//                for(int k = 0; k < orcListG.size(); k++){
+//                    newYOG[k] = currentYOG[k];
+//                }
+//                for(int j = 0; j < orcListG.size(); j++){
+//                    if(currentYOG[j] > 400){
+//                        animTimeOG[j] = 0.13;
+//                    }
+//                }
+//                boolean onAnyIsland = false;
+//                for(int k = 0; k < orcListG.size(); k++){
+//                    if(orcListG.get(k).getBoundsInParent().intersects(queenRectangle.getLayoutBounds())){
+//                        orcListG.get(k).relocate(orcListG.get(k).getLayoutX()+3, orcListG.get(k).getLayoutY());
+//                        for(int i=0; i < islandList.size(); i++){
+//                            Bounds islandBounds = islandList.get(i).getBoundsInParent();
+//                            if(orcListG.get(k).getBoundsInParent().intersects(islandBounds)){
+//                                onAnyIsland = true;
+//                            }
+//                        }
+//                        if(!onAnyIsland){
+//                            onAnyIsland = false;
+//                            velocityYOG[k] += gravity * 0.5 * animTimeOG[k] * animTimeOG[k];
+//                            newYOG[k] = currentYOG[k] + velocityYOG[k];
+//                        }
+//                    }
+//                }
+//                else{
+//                    velocityY += gravity * 0.5 * animTime * animTime;
+//                    newY = currentY + velocityY;
+//                }
+//                for(int i=0; i < islandList.size(); i++){
+//                    queenBounds = queenRectangle.getBoundsInParent();
+//                    Bounds islandBounds = islandList.get(i).getBoundsInParent();
+//                    if(queenBounds.intersects(islandBounds)){
+//                        System.out.println("colliding");
+//                        velocityY = -1;
+//                        animTime = 0;
+//                        newY = currentY + velocityY;
+//                    }
+//                }
+//            }
+//
+//            queenRectangle.relocate(queenRectangle.getLayoutX(), newY);
+//            previousVelocity = velocityY;
+//            animTime+=0.001;
+//                if(gameEnd){
+//                this.stop();
+//            }
+//        };
     }
 
     public void placeGameObjects(){
