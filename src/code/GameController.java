@@ -34,7 +34,9 @@ import java.util.ResourceBundle;
 public class GameController implements Initializable {
     private ArrayList<Rectangle> islandList = new ArrayList<Rectangle>();
     private ArrayList<Rectangle> coinList = new ArrayList<Rectangle>();
-    private ArrayList<Rectangle> orcList = new ArrayList<Rectangle>();
+    private ArrayList<Rectangle> orcListG = new ArrayList<Rectangle>();
+    private ArrayList<Rectangle> orcListR = new ArrayList<Rectangle>();
+    private ArrayList<Rectangle> orcListB = new ArrayList<Rectangle>();
     private ArrayList<Rectangle> treasureList = new ArrayList<Rectangle>();
 
     private Stage stage;
@@ -259,17 +261,17 @@ public class GameController implements Initializable {
         islandSetter(islandRectangle9, "/assets/Island3.png");
         islandSetter(islandRectangle10, "/assets/Island5.png");
 
-        orcSetter(greenOrc1, "/assets/GreenOrc.png");
-        orcSetter(greenOrc2, "/assets/GreenOrc.png");
-        orcSetter(greenOrc3, "/assets/GreenOrc.png");
-        orcSetter(greenOrc4, "/assets/GreenOrc.png");
-        orcSetter(greenOrc5, "/assets/GreenOrc.png");
+        orcSetter(greenOrc1, "/assets/GreenOrc.png", 0);
+        orcSetter(greenOrc2, "/assets/GreenOrc.png", 0);
+        orcSetter(greenOrc3, "/assets/GreenOrc.png", 0);
+        orcSetter(greenOrc4, "/assets/GreenOrc.png", 0);
+        orcSetter(greenOrc5, "/assets/GreenOrc.png", 0);
 
-        orcSetter(redOrc1, "/assets/RedOrc.png");
-        orcSetter(redOrc2, "/assets/RedOrc.png");
-        orcSetter(redOrc3, "/assets/RedOrc.png");
+        orcSetter(redOrc1, "/assets/RedOrc.png", 1);
+        orcSetter(redOrc2, "/assets/RedOrc.png", 1);
+        orcSetter(redOrc3, "/assets/RedOrc.png", 1);
 
-        orcSetter(boss, "/assets/BossOrc.png");
+        orcSetter(boss, "/assets/BossOrc.png", 2);
 
         treasureSetter(treasure1, "/assets/ClosedTreasure.png");
         treasureSetter(treasure2, "/assets/ClosedTreasure.png");
@@ -316,7 +318,7 @@ public class GameController implements Initializable {
 
         animationTimer = new AnimationTimer() {
 
-            double myTime = 0.0;
+            double animTime = 0.0;
             int dir = 1;
             double velocityY = 0;
             double damp = 0.7;
@@ -329,17 +331,17 @@ public class GameController implements Initializable {
                 double currentY = queenRectangle.getLayoutY();
                 double newY = currentY;
                 if(currentY > 400){
-                    myTime = 0.13;
+                    animTime = 0.13;
                 }
                 if(mouseClicked){
                     velocityY = 0;
-                    myTime = 0;
+                    animTime = 0;
                     newY = currentY + velocityY;
                     mouseClicked = false;
                     queenBounds = queenRectangle.getBoundsInParent();
                 }
                 else{
-                    velocityY += gravity * 0.5 * myTime * myTime;
+                    velocityY += gravity * 0.5 * animTime * animTime;
                     newY = currentY + velocityY;
                 }
                 for(int i=0; i < islandList.size(); i++){
@@ -347,14 +349,39 @@ public class GameController implements Initializable {
                     Bounds islandBounds = islandList.get(i).getBoundsInParent();
                     if(queenBounds.intersects(islandBounds)){
                         System.out.println("colliding");
-                        velocityY = -2;
-                        myTime = 0;
+                        velocityY = -1;
+                        animTime = 0;
                         newY = currentY + velocityY;
+                    }
+                }
+                for(int i=0; i < coinList.size(); i++){
+                    Bounds coinBounds = coinList.get(i).getBoundsInParent();
+                    if(queenBounds.intersects(coinBounds)){
+                        coinCount++;
+                        coinList.get(i).setOpacity(0);
+                        Rectangle dummyCoin = new Rectangle();
+                        coinList.set(i, dummyCoin);
+                    }
+                }
+                for(int i=0; i < orcListG.size(); i++){
+                    Bounds orcBounds = orcListG.get(i).getBoundsInParent();
+                    if(queenBounds.intersects(orcBounds)){
+                        orcListG.get(i).setTranslateX(orcListG.get(i).getTranslateX()+2);
+                        boolean onIsland = false;
+                        for(int j=0; j < islandList.size(); j++){
+                            Bounds islandBounds = islandList.get(i).getBoundsInParent();
+                            if(orcBounds.intersects(islandBounds)){
+                                onIsland = true;
+                            }
+                        }
+                        if(!onIsland){
+
+                        }
                     }
                 }
                 queenRectangle.relocate(queenRectangle.getLayoutX(), newY);
                 previousVelocity = velocityY;
-                myTime+=0.001;
+                animTime+=0.001;
                 if(gameEnd){
                     this.stop();
                 }
@@ -501,11 +528,19 @@ public class GameController implements Initializable {
         coinList.add(gameObject);
     }
 
-    public void orcSetter(Rectangle gameObject, String name){
+    public void orcSetter(Rectangle gameObject, String name, int id){
         Image gameObjectImage = new Image(this.getClass().getResource(name).toString());
         gameObject.setFill(new ImagePattern(gameObjectImage));
         gameObject.setStrokeWidth(0);
-        orcList.add(gameObject);
+        if(id == 0){
+            orcListG.add(gameObject);
+        }
+        else if(id == 1){
+            orcListR.add(gameObject);
+        }
+        else{
+            orcListB.add(gameObject);
+        }
     }
 
     public void islandSetter(Rectangle gameObject, String name){

@@ -80,7 +80,6 @@ public class EndgameController implements Initializable {
             file.close();
             if(currentScore.getScore() >= 143){
                 File file1 = new File("serial/SerializedGame1.txt");
-                file1.delete();
             }
         }
 
