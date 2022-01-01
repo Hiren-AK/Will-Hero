@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -70,6 +71,72 @@ public class EndgameController implements Initializable {
             currentScore.setScore(0);
         }
         endgameScore.setText(" " + currentScore.getScore());
+
+        try {
+            FileInputStream file = new FileInputStream("serial/SerializedGame1.txt");
+            ObjectInputStream in = new ObjectInputStream(file);
+            currentScore = (Score) in.readObject();
+            in.close();
+            file.close();
+            if(currentScore.getScore() >= 143){
+                File file1 = new File("serial/SerializedGame1.txt");
+                file1.delete();
+            }
+        }
+
+        catch (IOException ex) {
+            System.out.println("IOException is caught");
+            currentScore.setScore(0);
+        }
+
+        catch (ClassNotFoundException ex) {
+            System.out.println("ClassNotFoundException is caught");
+            currentScore.setScore(0);
+        }
+
+        try {
+            FileInputStream file = new FileInputStream("serial/SerializedGame2.txt");
+            ObjectInputStream in = new ObjectInputStream(file);
+            currentScore = (Score) in.readObject();
+            in.close();
+            file.close();
+            if(currentScore.getScore() >= 143){
+                File file1 = new File("serial/SerializedGame2.txt");
+                file1.delete();
+            }
+        }
+
+        catch (IOException ex) {
+            System.out.println("IOException is caught");
+            currentScore.setScore(0);
+        }
+
+        catch (ClassNotFoundException ex) {
+            System.out.println("ClassNotFoundException is caught");
+            currentScore.setScore(0);
+        }
+
+        try {
+            FileInputStream file = new FileInputStream("serial/SerializedGame3.txt");
+            ObjectInputStream in = new ObjectInputStream(file);
+            currentScore = (Score) in.readObject();
+            in.close();
+            file.close();
+            if(currentScore.getScore() >= 143){
+                File file1 = new File("serial/SerializedGame3.txt");
+                file1.delete();
+            }
+        }
+
+        catch (IOException ex) {
+            System.out.println("IOException is caught");
+            currentScore.setScore(0);
+        }
+
+        catch (ClassNotFoundException ex) {
+            System.out.println("ClassNotFoundException is caught");
+            currentScore.setScore(0);
+        }
     }
 
     public void returnHomeFromEndgame(ActionEvent event) throws IOException{
