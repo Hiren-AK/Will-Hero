@@ -24,6 +24,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 
 import java.io.*;
 import java.net.URL;
@@ -375,9 +376,6 @@ public class GameController implements Initializable {
                                 onIsland = true;
                             }
                         }
-                        if(!onIsland){
-                            System.out.println("I m under the woter");
-                        }
                     }
                 }
                 queenRectangle.relocate(queenRectangle.getLayoutX(), newY);
@@ -614,6 +612,13 @@ public class GameController implements Initializable {
         gameObject.setFill(new ImagePattern(gameObjectImage));
         gameObject.setStrokeWidth(0);
         coinList.add(gameObject);
+        TranslateTransition translate = new TranslateTransition();
+        translate.setNode(gameObject);
+        translate.setCycleCount(TranslateTransition.INDEFINITE);
+        translate.setDuration(Duration.millis(2500));
+        translate.setByY(-5);
+        translate.setAutoReverse(true);
+        translate.play();
     }
 
     public void orcSetter(Rectangle gameObject, String name, int id){
@@ -636,6 +641,13 @@ public class GameController implements Initializable {
         gameObject.setFill(new ImagePattern(gameObjectImage));
         gameObject.setStrokeWidth(0);
         islandList.add(gameObject);
+        TranslateTransition translate = new TranslateTransition();
+        translate.setNode(gameObject);
+        translate.setCycleCount(TranslateTransition.INDEFINITE);
+        translate.setDuration(Duration.millis(2500));
+        translate.setByY(-3);
+        translate.setAutoReverse(true);
+        translate.play();
     }
 
     public void treasureSetter(Rectangle gameObject, String name){
@@ -643,6 +655,13 @@ public class GameController implements Initializable {
         gameObject.setFill(new ImagePattern(gameObjectImage));
         gameObject.setStrokeWidth(0);
         treasureList.add(gameObject);
+        TranslateTransition translate = new TranslateTransition();
+        translate.setNode(gameObject);
+        translate.setCycleCount(TranslateTransition.INDEFINITE);
+        translate.setDuration(Duration.millis(2500));
+        translate.setByY(-4);
+        translate.setAutoReverse(true);
+        translate.play();
     }
 
     public void resumeGame(int resumeScore){
