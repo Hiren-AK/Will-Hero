@@ -52,6 +52,8 @@ public class GameController implements Initializable {
     @FXML
     private ImageView coinScoreImage;
     @FXML
+    private ImageView background;
+    @FXML
     private Rectangle queenRectangle;
     @FXML
     private Rectangle kingRectangle;
@@ -79,6 +81,38 @@ public class GameController implements Initializable {
     private Rectangle islandRectangle11;
     @FXML
     private Rectangle islandRectangle12;
+
+    @FXML
+    private Rectangle coin1;
+    @FXML
+    private Rectangle coin2;
+    @FXML
+    private Rectangle coin3;
+    @FXML
+    private Rectangle coin4;
+    @FXML
+    private Rectangle coin5;
+    @FXML
+    private Rectangle coin6;
+    @FXML
+    private Rectangle coin7;
+    @FXML
+    private Rectangle coin8;
+    @FXML
+    private Rectangle coin9;
+    @FXML
+    private Rectangle coin10;
+
+    @FXML
+    private  Rectangle greenOrc1;
+    @FXML
+    private  Rectangle greenOrc2;
+    @FXML
+    private  Rectangle greenOrc3;
+    @FXML
+    private  Rectangle greenOrc4;
+    @FXML
+    private  Rectangle greenOrc5;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -126,6 +160,23 @@ public class GameController implements Initializable {
         rectangleSetter(islandRectangle10, "/assets/Island5.png");
         rectangleSetter(islandRectangle11, "/assets/Island6.png");
         rectangleSetter(islandRectangle12, "/assets/Island2.png");
+
+        rectangleSetter(greenOrc1, "/assets/GreenOrc.png");
+        rectangleSetter(greenOrc2, "/assets/GreenOrc.png");
+        rectangleSetter(greenOrc3, "/assets/GreenOrc.png");
+        rectangleSetter(greenOrc4, "/assets/GreenOrc.png");
+        rectangleSetter(greenOrc5, "/assets/GreenOrc.png");
+
+        coinSetter(coin1);
+        coinSetter(coin2);
+        coinSetter(coin3);
+        coinSetter(coin4);
+        coinSetter(coin5);
+        coinSetter(coin6);
+        coinSetter(coin7);
+        coinSetter(coin8);
+        coinSetter(coin9);
+        coinSetter(coin10);
 
         gameScore.setText(" " + gameScoreCount.getScore());
         scene = startAnchorPane.getScene();
@@ -178,6 +229,7 @@ public class GameController implements Initializable {
         gameScore.setTranslateX(gameScore.getTranslateX()+20);
         setting.setTranslateX(setting.getTranslateX() + 20);
         coinScore.setTranslateX(coinScore.getTranslateX() + 20);
+        background.setTranslateX(background.getTranslateX()-10);
         startAnchorPane.setTranslateX(startAnchorPane.getTranslateX()-20);
         gameScoreCount.setScore(gameScoreCount.getScore()+1);
         if(gameScoreCount.getScore() > score.getHighScore()){
@@ -187,7 +239,7 @@ public class GameController implements Initializable {
         gameScore.setText(" "+gameScoreCount.getScore());
         serializeScore(gameScoreCount);
         try {
-            if (gameScoreCount.getScore() >= 135) {
+            if (gameScoreCount.getScore() >= 141) {
                 quitGame();
             }
         }
@@ -230,6 +282,12 @@ public class GameController implements Initializable {
         gameObject.setStrokeWidth(0);
     }
 
+    public void coinSetter(Rectangle gameObject){
+        Image gameObjectImage = new Image(this.getClass().getResource("/assets/Coin.png").toString());
+        gameObject.setFill(new ImagePattern(gameObjectImage));
+        gameObject.setStrokeWidth(0);
+    }
+
     public void resumeGame(int resumeScore){
         queenRectangle.setTranslateX(queenRectangle.getTranslateX() + (resumeScore*20));
         gameHighScore.setTranslateX(gameHighScore.getTranslateX() + (resumeScore*20));
@@ -238,6 +296,7 @@ public class GameController implements Initializable {
         gameScore.setTranslateX(gameScore.getTranslateX() + (resumeScore*20));
         setting.setTranslateX(setting.getTranslateX() + (resumeScore*20));
         coinScore.setTranslateX(coinScore.getTranslateX() + (resumeScore*20));
+        background.setTranslateX(background.getTranslateX() - (resumeScore*25));
         startAnchorPane.setTranslateX(startAnchorPane.getTranslateX() - (resumeScore*20));
         gameScoreCount.setScore(gameScoreCount.getScore() + resumeScore);
         if(gameScoreCount.getScore() > score.getHighScore()){
