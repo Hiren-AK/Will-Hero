@@ -221,7 +221,8 @@ public class GameController implements Initializable {
                 previousVelocity = velocityY;
                 myTime+=0.001;
                 try {
-                    if (queenRectangle.getLayoutY() > 320) {
+                    if (queenRectangle.getLayoutY() > 375) {
+                        this.stop();
                         quitGame();
                     }
                 }
@@ -267,7 +268,6 @@ public class GameController implements Initializable {
 
     public void moveForward(){
         queenRectangle.setTranslateX(queenRectangle.getTranslateX() + 20);
-        System.out.println(queenRectangle.getLayoutY());
         gameHighScore.setTranslateX(gameHighScore.getTranslateX() + 20);
         highScoreText.setTranslateX(highScoreText.getTranslateX() + 20);
         coinScoreImage.setTranslateX(coinScoreImage.getTranslateX() + 20);
