@@ -144,9 +144,9 @@ public class GameController implements Initializable {
         }
 
         try {
-            FileInputStream file = new FileInputStream("serial/SerializedCurrentGame.txt");
+            FileInputStream file = new FileInputStream("serial/SerializedGame.txt");
             ObjectInputStream in = new ObjectInputStream(file);
-            currentGame = (Game)in.readObject();
+            gameScoreCount = (Score)in.readObject();
             in.close();
             file.close();
         }
@@ -251,7 +251,6 @@ public class GameController implements Initializable {
                     System.out.println("IOException is caught");
                 }
             }
-
         };
     }
 
@@ -265,9 +264,9 @@ public class GameController implements Initializable {
 
     public void settings(ActionEvent event) throws IOException{
         try {
-            FileOutputStream file = new FileOutputStream("serial/SerializedCurrentGame.txt");
+            FileOutputStream file = new FileOutputStream("serial/SerializedGame.txt");
             ObjectOutputStream out = new ObjectOutputStream(file);
-            out.writeObject(currentGame);
+            out.writeObject(gameScoreCount);
             out.close();
             file.close();
         }

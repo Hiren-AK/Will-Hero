@@ -12,9 +12,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -23,9 +21,10 @@ public class SaverController implements Initializable {
     private Scene scene;
     private Parent root;
     private FXMLLoader loader;
-    private Game game1;
-    private Game game2;
-    private Game game3;
+    private Score game1;
+    private Score game2;
+    private Score game3;
+    private Score currentGameScore;
 
     @FXML
     private Label saveSlot1;
@@ -39,7 +38,7 @@ public class SaverController implements Initializable {
         try {
             FileInputStream file = new FileInputStream("serial/SerializedGame1.txt");
             ObjectInputStream in = new ObjectInputStream(file);
-            game1 = (Game)in.readObject();
+            game1 = (Score) in.readObject();
             in.close();
             file.close();
             saveSlot1.setText("Score: " + game1.getScore());
@@ -54,7 +53,7 @@ public class SaverController implements Initializable {
         try {
             FileInputStream file = new FileInputStream("serial/SerializedGame2.txt");
             ObjectInputStream in = new ObjectInputStream(file);
-            game2 = (Game) in.readObject();
+            game2 = (Score) in.readObject();
             in.close();
             file.close();
             saveSlot2.setText("Score: " + game2.getScore());
@@ -69,7 +68,7 @@ public class SaverController implements Initializable {
         try {
             FileInputStream file = new FileInputStream("serial/SerializedGame3.txt");
             ObjectInputStream in = new ObjectInputStream(file);
-            game3 = (Game)in.readObject();
+            game3 = (Score) in.readObject();
             in.close();
             file.close();
             saveSlot3.setText("Score: " + game3.getScore());
@@ -100,5 +99,106 @@ public class SaverController implements Initializable {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.close();
         stage = (Stage)((Stage) ((Node)event.getSource()).getScene().getWindow()).getOwner();
+    }
+
+    public void saveInSlot1(ActionEvent event){
+        try {
+            FileInputStream file = new FileInputStream("serial/SerializedGame.txt");
+            ObjectInputStream in = new ObjectInputStream(file);
+            currentGameScore = (Score)in.readObject();
+            in.close();
+            file.close();
+        }
+        catch (IOException ex) {
+            System.out.println("IOException is caught");
+        }
+        catch (ClassNotFoundException ex) {
+            System.out.println("ClassNotFoundException is caught");
+        }
+
+        try {
+            FileOutputStream file = new FileOutputStream("serial/SerializedGame1.txt");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(currentGameScore);
+            out.close();
+            file.close();
+        }
+        catch (IOException ex) {
+            System.out.println(ex);
+        }
+        try {
+            returnHome(event);
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void saveInSlot2(ActionEvent event){
+        try {
+            FileInputStream file = new FileInputStream("serial/SerializedGame.txt");
+            ObjectInputStream in = new ObjectInputStream(file);
+            currentGameScore = (Score)in.readObject();
+            in.close();
+            file.close();
+        }
+        catch (IOException ex) {
+            System.out.println("IOException is caught");
+        }
+        catch (ClassNotFoundException ex) {
+            System.out.println("ClassNotFoundException is caught");
+        }
+
+        try {
+            FileOutputStream file = new FileOutputStream("serial/SerializedGame2.txt");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(currentGameScore);
+            out.close();
+            file.close();
+        }
+        catch (IOException ex) {
+            System.out.println(ex);
+        }
+
+        try {
+            returnHome(event);
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void saveInSlot3(ActionEvent event){
+        try {
+            FileInputStream file = new FileInputStream("serial/SerializedGame.txt");
+            ObjectInputStream in = new ObjectInputStream(file);
+            currentGameScore = (Score)in.readObject();
+            in.close();
+            file.close();
+        }
+        catch (IOException ex) {
+            System.out.println("IOException is caught");
+        }
+        catch (ClassNotFoundException ex) {
+            System.out.println("ClassNotFoundException is caught");
+        }
+
+        try {
+            FileOutputStream file = new FileOutputStream("serial/SerializedGame3.txt");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(currentGameScore);
+            out.close();
+            file.close();
+        }
+        catch (IOException ex) {
+            System.out.println(ex);
+        }
+
+        try {
+            returnHome(event);
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
     }
 }
