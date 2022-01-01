@@ -1,7 +1,9 @@
 package code;
 
+import javafx.animation.AnimationTimer;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
@@ -34,6 +37,9 @@ public class GameController implements Initializable {
     private HighScore score = new HighScore();
     private Game currentGame = new Game();
     private Score gameScoreCount = new Score(0);
+    private AnimationTimer animationTimer;
+    private boolean mouseClicked = false;
+    private boolean noIsland = false;
 
     @FXML
     private Label gameHighScore;
@@ -179,22 +185,49 @@ public class GameController implements Initializable {
         coinSetter(coin10);
 
         gameScore.setText(" " + gameScoreCount.getScore());
-        scene = startAnchorPane.getScene();
-//        if(scene != null){
-//            scene.setOnKeyPressed(keyEvent -> {
-//                if(keyEvent.getCode() == KeyCode.W){
-//                    moveForward();
-//                    System.out.println("hi");
-//                }
-//            });
-//        }
+
+        animationTimer = new AnimationTimer() {
+
+            double myTime = 0.0;
+            int dir = 1;
+            double velocityY = 0;
+            double damp = 0.7;
+            double gravity = 9.8;
+            double previousVelocity = 0;
+
+
+            @Override
+            public void handle(long l) {
+                double currentY = queenRectangle.getLayoutY();
+                double newY = currentY;
+                if(currentY > 400){
+                    myTime = 0.13;
+                }
+                if(mouseClicked){
+                    velocityY = 0;
+                    myTime = 0;
+                    newY = currentY + velocityY;
+                    mouseClicked = false;
+                }
+                else{
+                    velocityY += gravity * 0.5 * myTime * myTime;
+                    //velocityY = -5;
+                    newY = currentY + velocityY;
+                }
+                queenRectangle.relocate(queenRectangle.getLayoutX(), newY);
+                previousVelocity = velocityY;
+                myTime+=0.001;
+            }
+
+        };
     }
 
     public void placeGameObjects(){
         resumeGame(50);
         clickToPlay.setOpacity(0);
         clickToPlay.setDisable(true);
-        //heroRectangle.setOnMouseClicked(mouseEvent -> moveForward());
+        queenRectangle.setOnMouseClicked(mouseEvent -> moveForward());
+        animationTimer.start();
     }
 
     public void settings(ActionEvent event) throws IOException{
@@ -246,6 +279,7 @@ public class GameController implements Initializable {
         catch(IOException ex){
             System.out.println("IOException is caught");
         }
+        mouseClicked = true;
     }
 
     public void serializeHighScore(int currentScore){
