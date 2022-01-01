@@ -51,7 +51,6 @@ public class GameController implements Initializable {
     private Score gameScoreCount = new Score(0);
     private boolean mouseClicked = false;
     public static AnimationTimer animationTimer;
-    public static AnimationTimer greenOrcTimer;
     private boolean gameEnd = false;
     private boolean revive = false;
 
@@ -281,9 +280,9 @@ public class GameController implements Initializable {
 
         orcSetter(boss, "/assets/BossOrc.png", 2);
 
-        treasureSetter(treasure1, "/assets/ClosedTreasure.png");
-        treasureSetter(treasure2, "/assets/ClosedTreasure.png");
-        treasureSetter(treasure3, "/assets/ClosedTreasure.png");
+        treasureSetter(treasure1);
+        treasureSetter(treasure2);
+        treasureSetter(treasure3);
 
         rectangleSetter(TNT, "/assets/TNT.png");
 
@@ -365,6 +364,37 @@ public class GameController implements Initializable {
                         coinList.set(i, dummyCoin);
                     }
                 }
+
+                for(int i = 0; i < treasureList.size(); i++){
+                    Bounds treasureBounds = treasureList.get(i).getBoundsInParent();
+                    if(queenRectangle.getBoundsInParent().intersects(treasureBounds)){
+                        treasureOpener(treasureList.get(i));
+                        Rectangle dummyTreasure = new Rectangle();
+                        treasureList.set(i, dummyTreasure);
+                    }
+                }
+
+                for(int i = 0; i < orcListR.size(); i++){
+                    Bounds orcBounds = orcListR.get(i).getBoundsInParent();
+                    if(queenRectangle.getBoundsInParent().intersects(orcBounds)){
+                        try {
+                            if(coinCount >= 100) revive = true;
+                            gameScoreCount.setScore(gameScoreCount.getScore()+7);
+                            quitGame();
+                        }
+                        catch(IOException ex){
+                            System.out.println("IOException is caught");
+                        }
+                    }
+                }
+
+                for(int i=0; i < orcListG.size(); i++){
+                    Bounds orcBoundsG = orcListG.get(i).getBoundsInParent();
+                    if(queenBounds.intersects(orcBoundsG)){
+                        greenOrc(orcListG.get(i));
+                    }
+                }
+
                 queenRectangle.relocate(queenRectangle.getLayoutX(), newY);
                 previousVelocity = velocityY;
                 animTime += 0.001;
@@ -485,18 +515,14 @@ public class GameController implements Initializable {
         background.setTranslateX(background.getTranslateX()-10);
         startAnchorPane.setTranslateX(startAnchorPane.getTranslateX()-20);
         gameScoreCount.setScore(gameScoreCount.getScore()+1);
-        if(gameScoreCount.getScore() > score.getHighScore()){
-            score.setHighScore(gameScoreCount.getScore());
-            serializeHighScore(score.getHighScore());
-        }
-        gameScore.setText(" "+gameScoreCount.getScore());
         coinScore.setText(" "+coinCount);
         serializeScore(gameScoreCount);
         for(int i = 0; i < orcListR.size(); i++){
             Bounds orcBounds = orcListR.get(i).getBoundsInParent();
             if(queenRectangle.getBoundsInParent().intersects(orcBounds)){
                 try {
-                    revive = false;
+                    if(coinCount >= 100) revive = true;
+                    gameScoreCount.setScore(gameScoreCount.getScore()+3);
                     quitGame();
                 }
                 catch(IOException ex){
@@ -505,15 +531,16 @@ public class GameController implements Initializable {
             }
         }
         Bounds orcBounds = boss.getBoundsInParent();
-        if(queenRectangle.getBoundsInParent().intersects(orcBounds)){
-            try {
-                revive = false;
-                quitGame();
-            }
-            catch(IOException ex){
-                System.out.println("IOException is caught");
-            }
-        }
+//        if(queenRectangle.getBoundsInParent().intersects(orcBounds)){
+//            try {
+//                if(coinCount >= 100) revive = true;
+//                gameScoreCount.setScore(gameScoreCount.getScore()+5);
+//                quitGame();
+//            }
+//            catch(IOException ex){
+//                System.out.println("IOException is caught");
+//            }
+//        }
         try {
             if (gameScoreCount.getScore() >= 143) {
                 revive = false;
@@ -524,22 +551,21 @@ public class GameController implements Initializable {
             System.out.println("IOException is caught");
         }
         mouseClicked = true;
-        for(int i=0; i < coinList.size(); i++){
-            Bounds coinBounds = coinList.get(i).getBoundsInParent();
-            if(queenBounds.intersects(coinBounds)){
-                coinCount++;
-                coinList.get(i).setOpacity(0);
-                Rectangle dummyCoin = new Rectangle();
-                coinList.set(i, dummyCoin);
-            }
-        }
 
-        for(int i=0; i < orcListG.size(); i++){
-            Bounds orcBoundsG = orcListG.get(i).getBoundsInParent();
-            if(queenBounds.intersects(orcBoundsG)){
-                greenOrc(orcListG.get(i));
-            }
+        if(gameScoreCount.getScore() > score.getHighScore()){
+            score.setHighScore(gameScoreCount.getScore());
+            serializeHighScore(score.getHighScore());
         }
+        gameScore.setText(" "+gameScoreCount.getScore());
+//        for(int i=0; i < coinList.size(); i++){
+//            Bounds coinBounds = coinList.get(i).getBoundsInParent();
+//            if(queenBounds.intersects(coinBounds)){
+//                coinCount++;
+//                coinList.get(i).setOpacity(0);
+//                Rectangle dummyCoin = new Rectangle();
+//                coinList.set(i, dummyCoin);
+//            }
+//        }
     }
 
     public void serializeHighScore(int currentScore){
@@ -657,8 +683,8 @@ public class GameController implements Initializable {
         translate.play();
     }
 
-    public void treasureSetter(Rectangle gameObject, String name){
-        Image gameObjectImage = new Image(this.getClass().getResource(name).toString());
+    public void treasureSetter(Rectangle gameObject){
+        Image gameObjectImage = new Image(this.getClass().getResource("/assets/ClosedTreasure.png").toString());
         gameObject.setFill(new ImagePattern(gameObjectImage));
         gameObject.setStrokeWidth(0);
         treasureList.add(gameObject);
@@ -669,6 +695,13 @@ public class GameController implements Initializable {
         translate.setByY(-4);
         translate.setAutoReverse(true);
         translate.play();
+    }
+
+    public void treasureOpener(Rectangle gameObject){
+        coinCount += 10;
+        Image gameObjectImage = new Image(this.getClass().getResource("/assets/OpenTreasure.png").toString());
+        gameObject.setFill(new ImagePattern(gameObjectImage));
+        gameObject.setStrokeWidth(0);
     }
 
     public void resumeGame(int resumeScore){
