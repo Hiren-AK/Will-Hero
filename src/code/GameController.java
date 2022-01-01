@@ -24,6 +24,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 
 import java.io.*;
 import java.net.URL;
@@ -208,10 +209,13 @@ public class GameController implements Initializable {
             score = (HighScore) in.readObject();
             in.close();
             file.close();
-        } catch (IOException ex) {
+        }
+        catch (IOException ex) {
             System.out.println("IOException is caught");
             score.setHighScore(-1);
-        } catch (ClassNotFoundException ex) {
+        }
+
+        catch (ClassNotFoundException ex) {
             System.out.println("ClassNotFoundException is caught");
             score.setHighScore(-1);
         }
@@ -221,12 +225,14 @@ public class GameController implements Initializable {
         try {
             FileInputStream file = new FileInputStream("serial/SerializedGame.txt");
             ObjectInputStream in = new ObjectInputStream(file);
-            gameScoreCount = (Score) in.readObject();
+            gameScoreCount = (Score)in.readObject();
             in.close();
             file.close();
-        } catch (IOException ex) {
+        }
+        catch (IOException ex) {
             System.out.println("IOException is caught");
-        } catch (ClassNotFoundException ex) {
+        }
+        catch (ClassNotFoundException ex) {
             System.out.println("ClassNotFoundException is caught");
         }
 
@@ -237,9 +243,11 @@ public class GameController implements Initializable {
             coinCount = coinScoreCount.getCoinScore();
             in.close();
             file.close();
-        } catch (IOException ex) {
+        }
+        catch (IOException ex) {
             System.out.println("IOException is caught");
-        } catch (ClassNotFoundException ex) {
+        }
+        catch (ClassNotFoundException ex) {
             System.out.println("ClassNotFoundException is caught");
         }
 
@@ -530,6 +538,13 @@ public class GameController implements Initializable {
         gameObject.setFill(new ImagePattern(gameObjectImage));
         gameObject.setStrokeWidth(0);
         coinList.add(gameObject);
+        TranslateTransition translate = new TranslateTransition();
+        translate.setNode(gameObject);
+        translate.setCycleCount(TranslateTransition.INDEFINITE);
+        translate.setDuration(Duration.millis(2500));
+        translate.setByY(-5);
+        translate.setAutoReverse(true);
+        translate.play();
     }
 
     public void orcSetter(Rectangle gameObject, String name, int id){
@@ -552,6 +567,13 @@ public class GameController implements Initializable {
         gameObject.setFill(new ImagePattern(gameObjectImage));
         gameObject.setStrokeWidth(0);
         islandList.add(gameObject);
+        TranslateTransition translate = new TranslateTransition();
+        translate.setNode(gameObject);
+        translate.setCycleCount(TranslateTransition.INDEFINITE);
+        translate.setDuration(Duration.millis(2500));
+        translate.setByY(-3);
+        translate.setAutoReverse(true);
+        translate.play();
     }
 
     public void treasureSetter(Rectangle gameObject, String name){
@@ -559,6 +581,13 @@ public class GameController implements Initializable {
         gameObject.setFill(new ImagePattern(gameObjectImage));
         gameObject.setStrokeWidth(0);
         treasureList.add(gameObject);
+        TranslateTransition translate = new TranslateTransition();
+        translate.setNode(gameObject);
+        translate.setCycleCount(TranslateTransition.INDEFINITE);
+        translate.setDuration(Duration.millis(2500));
+        translate.setByY(-4);
+        translate.setAutoReverse(true);
+        translate.play();
     }
 
     public void resumeGame(int resumeScore){
