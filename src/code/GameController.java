@@ -385,7 +385,7 @@ public class GameController implements Initializable {
         TranslateTransition translateRed1 = new TranslateTransition();
         translateRed1.setNode(redOrc1);
         translateRed1.setCycleCount(TranslateTransition.INDEFINITE);
-        translateRed1.setDuration(Duration.millis(3000));
+        translateRed1.setDuration(Duration.millis(3500));
         translateRed1.setByY(-100);
         translateRed1.setAutoReverse(true);
         translateRed1.play();
@@ -393,7 +393,7 @@ public class GameController implements Initializable {
         TranslateTransition translateRed2 = new TranslateTransition();
         translateRed2.setNode(redOrc2);
         translateRed2.setCycleCount(TranslateTransition.INDEFINITE);
-        translateRed2.setDuration(Duration.millis(3000));
+        translateRed2.setDuration(Duration.millis(3500));
         translateRed2.setByY(-100);
         translateRed2.setAutoReverse(true);
         translateRed2.play();
@@ -401,7 +401,7 @@ public class GameController implements Initializable {
         TranslateTransition translateRed3 = new TranslateTransition();
         translateRed3.setNode(redOrc3);
         translateRed3.setCycleCount(TranslateTransition.INDEFINITE);
-        translateRed3.setDuration(Duration.millis(3000));
+        translateRed3.setDuration(Duration.millis(3500));
         translateRed3.setByY(-100);
         translateRed3.setAutoReverse(true);
         translateRed3.play();
@@ -535,8 +535,8 @@ public class GameController implements Initializable {
         }
 
         for(int i=0; i < orcListG.size(); i++){
-            Bounds orcBounds = orcListG.get(i).getBoundsInParent();
-            if(queenBounds.intersects(orcBounds)){
+            Bounds orcBoundsG = orcListG.get(i).getBoundsInParent();
+            if(queenBounds.intersects(orcBoundsG)){
                 greenOrc(orcListG.get(i));
             }
         }
@@ -602,7 +602,6 @@ public class GameController implements Initializable {
         if(collide == false){
             TranslateTransition translate = new TranslateTransition();
             translate.setNode(gameObject);
-            translate.setCycleCount(TranslateTransition.INDEFINITE);
             translate.setDuration(Duration.millis(2500));
             translate.setByY(200);
             translate.play();
