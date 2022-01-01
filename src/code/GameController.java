@@ -531,6 +531,10 @@ public class GameController implements Initializable {
             }
         }
 
+        if(queenBounds.intersects(TNT.getBoundsInParent())){
+            tnt(TNT);
+        }
+
         for(int i = 0; i < orcListR.size(); i++){
             Bounds orcBounds = orcListR.get(i).getBoundsInParent();
             if(queenRectangle.getBoundsInParent().intersects(orcBounds)){
@@ -624,6 +628,27 @@ public class GameController implements Initializable {
                 if(coinCount > 0){
                     coinCount -= 1;
                 }
+            }
+        }
+        if(collide == false){
+            TranslateTransition translate = new TranslateTransition();
+            translate.setNode(gameObject);
+            translate.setDuration(Duration.millis(2500));
+            translate.setByY(200);
+            translate.play();
+        }
+    }
+
+    public void tnt(Rectangle gameObject){
+        boolean collide = false;
+        Bounds gameObjectBounds;
+        gameObjectBounds = gameObject.getBoundsInParent();
+        for (int i = 0; i < islandList.size(); i++) {
+
+            Bounds islandBounds = islandList.get(i).getBoundsInParent();
+            if (gameObjectBounds.intersects(islandBounds)){
+                gameObject.setTranslateX(gameObject.getTranslateX() + 40);
+                collide = true;
             }
         }
         if(collide == false){
