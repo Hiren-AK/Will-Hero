@@ -34,8 +34,10 @@ public class GameController implements Initializable {
     private Parent root;
     private FXMLLoader loader;
 
-    private HighScore score = new HighScore();
     private Game currentGame = new Game();
+    private HighScore score = new HighScore();
+    private CoinScore coinScoreCount = new CoinScore(0);
+    private int coinCount;
     private Score gameScoreCount = new Score(0);
     private AnimationTimer animationTimer;
     private boolean mouseClicked = false;
@@ -154,7 +156,23 @@ public class GameController implements Initializable {
         catch (ClassNotFoundException ex) {
             System.out.println("ClassNotFoundException is caught");
         }
-        gameHighScore.setText(" " + score.getHighScore());
+
+        try {
+            FileInputStream file = new FileInputStream("serial/SerializedCoinScore.txt");
+            ObjectInputStream in = new ObjectInputStream(file);
+            coinScoreCount = (CoinScore)in.readObject();
+            coinCount = coinScoreCount.getCoinScore();
+            in.close();
+            file.close();
+        }
+        catch (IOException ex) {
+            System.out.println("IOException is caught");
+        }
+        catch (ClassNotFoundException ex) {
+            System.out.println("ClassNotFoundException is caught");
+        }
+
+        coinScore.setText(" " + coinScoreCount.getCoinScore());
         rectangleSetter(queenRectangle, "/assets/Queen.png" );
         rectangleSetter(kingRectangle, "/assets/King.png");
         rectangleSetter(islandRectangle1, "/assets/Island1.png");
@@ -284,7 +302,9 @@ public class GameController implements Initializable {
             score.setHighScore(gameScoreCount.getScore());
             serializeHighScore(score.getHighScore());
         }
+        coinCount++;
         gameScore.setText(" "+gameScoreCount.getScore());
+        coinScore.setText(" "+coinCount);
         serializeScore(gameScoreCount);
         try {
             if (gameScoreCount.getScore() >= 141) {
@@ -315,6 +335,19 @@ public class GameController implements Initializable {
     public void serializeScore(Score score){
         try {
             FileOutputStream file = new FileOutputStream("serial/SerializedScore.txt");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(score);
+            out.close();
+            file.close();
+        }
+        catch (IOException ex) {
+            System.out.println("IOException is caught");
+        }
+    }
+
+    public void serializeCoinScore(CoinScore score){
+        try {
+            FileOutputStream file = new FileOutputStream("serial/SerializedCoinScore.txt");
             ObjectOutputStream out = new ObjectOutputStream(file);
             out.writeObject(score);
             out.close();
@@ -358,6 +391,8 @@ public class GameController implements Initializable {
 
     public void quitGame() throws IOException{
         gameEnd = true;
+        coinScoreCount.setCoinScore(coinCount);
+        serializeCoinScore(coinScoreCount);
         loader = new FXMLLoader(getClass().getResource("Endgame.fxml"));
         root = loader.load();
         stage = (Stage) clickToPlay.getScene().getWindow();
