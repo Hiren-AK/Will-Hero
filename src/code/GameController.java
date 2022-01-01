@@ -88,10 +88,6 @@ public class GameController implements Initializable {
     private Rectangle islandRectangle9;
     @FXML
     private Rectangle islandRectangle10;
-    @FXML
-    private Rectangle islandRectangle11;
-    @FXML
-    private Rectangle islandRectangle12;
 
     @FXML
     private Rectangle coin1;
@@ -121,6 +117,14 @@ public class GameController implements Initializable {
     private Rectangle coin13;
     @FXML
     private Rectangle coin14;
+    @FXML
+    private Rectangle coin15;
+    @FXML
+    private Rectangle coin16;
+    @FXML
+    private Rectangle coin17;
+    @FXML
+    private Rectangle coin18;
 
     @FXML
     private Rectangle coinx1;
@@ -174,7 +178,16 @@ public class GameController implements Initializable {
     private  Rectangle greenOrc5;
 
     @FXML
-    private Rectangle treasure;
+    private Rectangle boss;
+
+    @FXML
+    private Rectangle treasure1;
+    @FXML
+    private Rectangle treasure2;
+    @FXML
+    private Rectangle treasure3;
+    @FXML
+    private Rectangle TNT;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -236,8 +249,6 @@ public class GameController implements Initializable {
         rectangleSetter(islandRectangle8, "/assets/Island4.png");
         rectangleSetter(islandRectangle9, "/assets/Island3.png");
         rectangleSetter(islandRectangle10, "/assets/Island5.png");
-        rectangleSetter(islandRectangle11, "/assets/Island6.png");
-        rectangleSetter(islandRectangle12, "/assets/Island2.png");
 
         rectangleSetter(greenOrc1, "/assets/GreenOrc.png");
         rectangleSetter(greenOrc2, "/assets/GreenOrc.png");
@@ -249,7 +260,12 @@ public class GameController implements Initializable {
         rectangleSetter(redOrc2, "/assets/RedOrc.png");
         rectangleSetter(redOrc3, "/assets/RedOrc.png");
 
-        rectangleSetter(treasure, "/assets/ClosedTreasure.png");
+        rectangleSetter(boss, "/assets/BossOrc.png");
+
+        rectangleSetter(treasure1, "/assets/ClosedTreasure.png");
+        rectangleSetter(treasure2, "/assets/ClosedTreasure.png");
+        rectangleSetter(treasure3, "/assets/ClosedTreasure.png");
+        rectangleSetter(TNT, "/assets/TNT.png");
 
         coinSetter(coin1);
         coinSetter(coin2);
@@ -265,7 +281,10 @@ public class GameController implements Initializable {
         coinSetter(coin12);
         coinSetter(coin13);
         coinSetter(coin14);
-
+        coinSetter(coin15);
+        coinSetter(coin16);
+        coinSetter(coin17);
+        coinSetter(coin18);
         coinSetter(coinx1);
         coinSetter(coinx2);
         coinSetter(coinx3);
@@ -384,7 +403,7 @@ public class GameController implements Initializable {
         coinScore.setText(" "+coinCount);
         serializeScore(gameScoreCount);
         try {
-            if (gameScoreCount.getScore() >= 141) {
+            if (gameScoreCount.getScore() >= 143) {
                 quitGame();
             }
         }
