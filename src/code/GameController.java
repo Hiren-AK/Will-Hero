@@ -44,7 +44,6 @@ public class GameController implements Initializable {
     private Parent root;
     private FXMLLoader loader;
 
-    //private Game currentGame = new Game();
     private HighScore score = new HighScore();
     private CoinScore coinScoreCount = new CoinScore(0);
     private int coinCount;
@@ -52,6 +51,7 @@ public class GameController implements Initializable {
     private boolean mouseClicked = false;
     public static AnimationTimer animationTimer;
     private boolean gameEnd = false;
+    private boolean revive = false;
 
     Bounds queenBounds, kingBounds;
 
@@ -247,6 +247,9 @@ public class GameController implements Initializable {
         }
 
         coinScore.setText(" " + coinScoreCount.getCoinScore());
+        if(coinScoreCount.getCoinScore() >= 100){
+            revive = true;
+        }
         rectangleSetter(queenRectangle, "/assets/Queen.png" );
         rectangleSetter(kingRectangle, "/assets/King.png");
 
@@ -431,6 +434,31 @@ public class GameController implements Initializable {
         stage.showAndWait();
     }
 
+    public void reviver() throws IOException{
+        animationTimer.stop();
+        try {
+            FileOutputStream file = new FileOutputStream("serial/SerializedGame.txt");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(gameScoreCount);
+            out.close();
+            file.close();
+        }
+        catch (IOException ex) {
+            System.out.println(ex);
+        }
+        loader = new FXMLLoader(getClass().getResource("Revive.fxml"));
+        root = loader.load();
+        stage = new Stage();
+        scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("/assets/StyleSheet.css").toExternalForm());
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setResizable(false);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initOwner(setting.getScene().getWindow());
+        stage.showAndWait();
+    }
+
     public void moveForward(){
         queenRectangle.setTranslateX(queenRectangle.getTranslateX() + 20);
         queenBounds = queenRectangle.getBoundsInParent();
@@ -452,6 +480,7 @@ public class GameController implements Initializable {
         serializeScore(gameScoreCount);
         try {
             if (gameScoreCount.getScore() >= 143) {
+                revive = false;
                 quitGame();
             }
         }
@@ -571,6 +600,10 @@ public class GameController implements Initializable {
     }
 
     public void quitGame() throws IOException{
+        if(revive == true){
+            reviver();
+            revive = false;
+        }
         gameEnd = true;
         coinScoreCount.setCoinScore(coinCount);
         serializeCoinScore(coinScoreCount);
