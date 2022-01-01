@@ -18,17 +18,17 @@
             <Rectangle2D />
          </viewport>
       </ImageView>
-      <Button fx:id="save1" alignment="CENTER" contentDisplay="RIGHT" layoutX="377.0" layoutY="142.0" mnemonicParsing="false" onAction="#returnHome" prefHeight="31.0" prefWidth="86.0" stylesheets="@../assets/StyleSheet.css" textAlignment="RIGHT" textFill="WHITE">
+      <Button fx:id="save1" alignment="CENTER" contentDisplay="RIGHT" layoutX="377.0" layoutY="142.0" mnemonicParsing="false" onAction="#saveInSlot1" prefHeight="31.0" prefWidth="86.0" stylesheets="@../assets/StyleSheet.css" textAlignment="RIGHT" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="save2" alignment="CENTER" contentDisplay="RIGHT" layoutX="377.0" layoutY="186.0" mnemonicParsing="false" onAction="#returnHome" prefHeight="31.0" prefWidth="86.0" stylesheets="@../assets/StyleSheet.css" textAlignment="RIGHT" textFill="WHITE">
+      <Button fx:id="save2" alignment="CENTER" contentDisplay="RIGHT" layoutX="377.0" layoutY="186.0" mnemonicParsing="false" onAction="#saveInSlot2" prefHeight="31.0" prefWidth="86.0" stylesheets="@../assets/StyleSheet.css" textAlignment="RIGHT" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="save3" alignment="CENTER" contentDisplay="RIGHT" layoutX="377.0" layoutY="231.0" mnemonicParsing="false" onAction="#returnHome" prefHeight="31.0" prefWidth="86.0" stylesheets="@../assets/StyleSheet.css" textAlignment="RIGHT" textFill="WHITE">
+      <Button fx:id="save3" alignment="CENTER" contentDisplay="RIGHT" layoutX="377.0" layoutY="231.0" mnemonicParsing="false" onAction="#saveInSlot3" prefHeight="31.0" prefWidth="86.0" stylesheets="@../assets/StyleSheet.css" textAlignment="RIGHT" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
