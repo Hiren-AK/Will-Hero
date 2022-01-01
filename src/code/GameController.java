@@ -220,6 +220,9 @@ public class GameController implements Initializable {
                 queenRectangle.relocate(queenRectangle.getLayoutX(), newY);
                 previousVelocity = velocityY;
                 myTime+=0.001;
+                if(gameEnd){
+                    this.stop();
+                }
                 try {
                     if (queenRectangle.getLayoutY() > 375) {
                         this.stop();
