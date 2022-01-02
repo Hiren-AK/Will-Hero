@@ -8,10 +8,11 @@ import javafx.util.Duration;
 
 import java.util.ArrayList;
 
-public class Treasure {
+public class Treasure extends GameObjects{
     private Rectangle gameObject;
 
     public Treasure(Rectangle _gameObject, ArrayList<Rectangle> treasureList){
+        super(_gameObject);
         Image gameObjectImage = new Image(this.getClass().getResource("/assets/ClosedTreasure.png").toString());
         _gameObject.setFill(new ImagePattern(gameObjectImage));
         _gameObject.setStrokeWidth(0);

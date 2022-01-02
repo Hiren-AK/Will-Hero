@@ -12,6 +12,7 @@ public class Island extends GameObjects{
     private Rectangle gameObject;
 
     public Island(Rectangle _gameObject, String name, ArrayList<Rectangle> islandList){
+        super(_gameObject);
         Image gameObjectImage = new Image(this.getClass().getResource(name).toString());
         _gameObject.setFill(new ImagePattern(gameObjectImage));
         _gameObject.setStrokeWidth(0);
