@@ -130,10 +130,12 @@ public class SaverController implements Initializable {
                 alert.setContentText("Are you sure you want to save this game over the previously saved game?");
                 if(alert.showAndWait().get() == ButtonType.OK) {
                     out.writeObject(currentGameScore);
-                }
-                else{
-                    event.consume();
-//                    alert.close();
+                    try {
+                        returnHome(event);
+                    }
+                    catch(Exception e){
+                        System.out.println(e);
+                    }
                 }
             }
             out.close();
@@ -141,12 +143,6 @@ public class SaverController implements Initializable {
         }
         catch (IOException ex) {
             System.out.println(ex);
-        }
-        try {
-            returnHome(event);
-        }
-        catch(Exception e){
-            System.out.println(e);
         }
     }
 
@@ -181,10 +177,13 @@ public class SaverController implements Initializable {
                 alert.setContentText("Are you sure you want to save this game over the previously saved game?");
                 if(alert.showAndWait().get() == ButtonType.OK) {
                     out.writeObject(currentGameScore);
-                }
-                else{
-                    event.consume();
-//                    alert.close();
+                    try {
+                        returnHome(event);
+                    }
+                    catch(Exception e){
+                        System.out.println(e);
+                    }
+
                 }
             }
             out.close();
@@ -192,13 +191,6 @@ public class SaverController implements Initializable {
         }
         catch (IOException ex) {
             System.out.println(ex);
-        }
-
-        try {
-            returnHome(event);
-        }
-        catch(Exception e){
-            System.out.println(e);
         }
     }
 
@@ -233,10 +225,12 @@ public class SaverController implements Initializable {
                 alert.setContentText("Are you sure you want to save this game over the previously saved game?");
                 if(alert.showAndWait().get() == ButtonType.OK) {
                     out.writeObject(currentGameScore);
-                }
-                else{
-                    event.consume();
-//                    alert.close();
+                    try {
+                        returnHome(event);
+                    }
+                    catch(Exception e){
+                        System.out.println(e);
+                    }
                 }
             }
             out.close();
@@ -244,13 +238,6 @@ public class SaverController implements Initializable {
         }
         catch (IOException ex) {
             System.out.println(ex);
-        }
-
-        try {
-            returnHome(event);
-        }
-        catch(Exception e){
-            System.out.println(e);
         }
     }
 }
