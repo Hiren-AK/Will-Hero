@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -116,7 +117,25 @@ public class SaverController implements Initializable {
         try {
             FileOutputStream file = new FileOutputStream("serial/SerializedGame1.txt");
             ObjectOutputStream out = new ObjectOutputStream(file);
-            out.writeObject(currentGameScore);
+            if(game1 == null){
+                out.writeObject(currentGameScore);
+            }
+            else{
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Overwrite");
+                alert.initOwner(saveSlot1.getScene().getWindow());
+                Stage st = (Stage)alert.getDialogPane().getScene().getWindow();
+                st.getIcons().add(new Image(this.getClass().getResource("/assets/logo.png").toString()));
+                alert.setHeaderText("You are about to overwrite the data stored");
+                alert.setContentText("Are you sure you want to save this game over the previously saved game?");
+                if(alert.showAndWait().get() == ButtonType.OK) {
+                    out.writeObject(currentGameScore);
+                }
+                else{
+                    event.consume();
+//                    alert.close();
+                }
+            }
             out.close();
             file.close();
         }
@@ -149,7 +168,25 @@ public class SaverController implements Initializable {
         try {
             FileOutputStream file = new FileOutputStream("serial/SerializedGame2.txt");
             ObjectOutputStream out = new ObjectOutputStream(file);
-            out.writeObject(currentGameScore);
+            if(game2 == null){
+                out.writeObject(currentGameScore);
+            }
+            else{
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Overwrite");
+                alert.initOwner(saveSlot1.getScene().getWindow());
+                Stage st = (Stage)alert.getDialogPane().getScene().getWindow();
+                st.getIcons().add(new Image(this.getClass().getResource("/assets/logo.png").toString()));
+                alert.setHeaderText("You are about to overwrite the data stored");
+                alert.setContentText("Are you sure you want to save this game over the previously saved game?");
+                if(alert.showAndWait().get() == ButtonType.OK) {
+                    out.writeObject(currentGameScore);
+                }
+                else{
+                    event.consume();
+//                    alert.close();
+                }
+            }
             out.close();
             file.close();
         }
@@ -183,7 +220,25 @@ public class SaverController implements Initializable {
         try {
             FileOutputStream file = new FileOutputStream("serial/SerializedGame3.txt");
             ObjectOutputStream out = new ObjectOutputStream(file);
-            out.writeObject(currentGameScore);
+            if(game3 == null){
+                out.writeObject(currentGameScore);
+            }
+            else{
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Overwrite");
+                alert.initOwner(saveSlot1.getScene().getWindow());
+                Stage st = (Stage)alert.getDialogPane().getScene().getWindow();
+                st.getIcons().add(new Image(this.getClass().getResource("/assets/logo.png").toString()));
+                alert.setHeaderText("You are about to overwrite the data stored");
+                alert.setContentText("Are you sure you want to save this game over the previously saved game?");
+                if(alert.showAndWait().get() == ButtonType.OK) {
+                    out.writeObject(currentGameScore);
+                }
+                else{
+                    event.consume();
+//                    alert.close();
+                }
+            }
             out.close();
             file.close();
         }
