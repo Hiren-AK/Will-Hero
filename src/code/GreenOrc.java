@@ -6,10 +6,11 @@ import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 
-public class GreenOrc {
+public class GreenOrc extends Orc{
     private Rectangle gameObject;
 
     public GreenOrc(Rectangle _gameObject, ArrayList<Rectangle> greenOrcList){
+        super(_gameObject);
         Image gameObjectImage = new Image(this.getClass().getResource("/assets/GreenOrc.png").toString());
         _gameObject.setFill(new ImagePattern(gameObjectImage));
         _gameObject.setStrokeWidth(0);

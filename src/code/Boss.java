@@ -6,10 +6,11 @@ import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 
-public class Boss {
+public class Boss extends GameObjects{
     private Rectangle gameObject;
 
     public Boss(Rectangle _gameObject, ArrayList<Rectangle> bossOrcList){
+        super(_gameObject);
         Image gameObjectImage = new Image(this.getClass().getResource("/assets/BossOrc.png").toString());
         _gameObject.setFill(new ImagePattern(gameObjectImage));
         _gameObject.setStrokeWidth(0);

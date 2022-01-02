@@ -8,10 +8,11 @@ import javafx.util.Duration;
 
 import java.util.ArrayList;
 
-public class Coin {
+public class Coin extends GameObjects{
     private Rectangle gameObject;
 
     public Coin(Rectangle _gameObject, ArrayList<Rectangle> coinList){
+        super(_gameObject);
         Image gameObjectImage = new Image(this.getClass().getResource("/assets/Coin.png").toString());
         _gameObject.setFill(new ImagePattern(gameObjectImage));
         _gameObject.setStrokeWidth(0);
