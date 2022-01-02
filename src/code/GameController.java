@@ -58,7 +58,7 @@ public class GameController implements Initializable {
     private boolean gameEnd = false;
     private boolean revive = false;
 
-    Bounds queenBounds, kingBounds;
+    Bounds queenBounds;
 
     @FXML
     private Label gameHighScore;
@@ -260,74 +260,74 @@ public class GameController implements Initializable {
         if (coinScoreCount.getCoinScore() >= 100) {
             revive = true;
         }
-        rectangleSetter(queenRectangle, "/assets/Queen.png");
-        rectangleSetter(kingRectangle, "/assets/King.png");
+        Queen queen = new Queen(queenRectangle);
+        King king = new King(kingRectangle);
 
-        islandSetter(islandRectangle1, "/assets/Island1.png");
-        islandSetter(islandRectangle2, "/assets/Island2.png");
-        islandSetter(islandRectangle3, "/assets/Island3.png");
-        islandSetter(islandRectangle4, "/assets/Island4.png");
-        islandSetter(islandRectangle5, "/assets/Island5.png");
-        islandSetter(islandRectangle6, "/assets/Island6.png");
-        islandSetter(islandRectangle7, "/assets/Island1.png");
-        islandSetter(islandRectangle8, "/assets/Island4.png");
-        islandSetter(islandRectangle9, "/assets/Island3.png");
-        islandSetter(islandRectangle10, "/assets/Island5.png");
+        Island island1 = new Island(islandRectangle1,"/assets/Island1.png", islandList);
+        Island island2 = new Island(islandRectangle2, "/assets/Island2.png", islandList);
+        Island island3 = new Island(islandRectangle3, "/assets/Island3.png", islandList);
+        Island island4 = new Island(islandRectangle4, "/assets/Island4.png", islandList);
+        Island island5 = new Island(islandRectangle5, "/assets/Island5.png", islandList);
+        Island island6 = new Island(islandRectangle6, "/assets/Island6.png", islandList);
+        Island island7 = new Island(islandRectangle7, "/assets/Island1.png", islandList);
+        Island island8 = new Island(islandRectangle8, "/assets/Island4.png", islandList);
+        Island island9 = new Island(islandRectangle9, "/assets/Island3.png", islandList);
+        Island island10 = new Island(islandRectangle10, "/assets/Island5.png", islandList);
 
-        orcSetter(greenOrc1, "/assets/GreenOrc.png", 0);
-        orcSetter(greenOrc2, "/assets/GreenOrc.png", 0);
-        orcSetter(greenOrc3, "/assets/GreenOrc.png", 0);
-        orcSetter(greenOrc4, "/assets/GreenOrc.png", 0);
-        orcSetter(greenOrc5, "/assets/GreenOrc.png", 0);
+        GreenOrc GreenOrc1 = new GreenOrc(greenOrc1, orcListG);
+        GreenOrc GreenOrc2 = new GreenOrc(greenOrc2, orcListG);
+        GreenOrc GreenOrc3 = new GreenOrc(greenOrc3, orcListG);
+        GreenOrc GreenOrc4 = new GreenOrc(greenOrc4, orcListG);
+        GreenOrc GreenOrc5 = new GreenOrc(greenOrc5, orcListG);
 
-        orcSetter(redOrc1, "/assets/RedOrc.png", 1);
-        orcSetter(redOrc2, "/assets/RedOrc.png", 1);
-        orcSetter(redOrc3, "/assets/RedOrc.png", 1);
+        RedOrc RedOrc1 = new RedOrc(redOrc1, orcListR);
+        RedOrc RedOrc2 = new RedOrc(redOrc2, orcListR);
+        RedOrc RedOrc3 = new RedOrc(redOrc3, orcListR);
 
-        orcSetter(boss, "/assets/BossOrc.png", 2);
+        Boss BossOrc = new Boss(boss, orcListB);
 
-        treasureSetter(treasure1);
-        treasureSetter(treasure2);
-        treasureSetter(treasure3);
+        Treasure Treasure1 = new Treasure(treasure1, treasureList);
+        Treasure Treasure2 = new Treasure(treasure2, treasureList);
+        Treasure Treasure3 = new Treasure(treasure3, treasureList);
 
-        rectangleSetter(TNT, "/assets/TNT.png");
+        bombTNT TNT1 = new bombTNT(TNT);
         rectangleSetter(blastTNT, "/assets/blastTNT.png");
         blastTNT.setOpacity(0);
 
-        coinSetter(coin1);
-        coinSetter(coin2);
-        coinSetter(coin3);
-        coinSetter(coin4);
-        coinSetter(coin5);
-        coinSetter(coin6);
-        coinSetter(coin7);
-        coinSetter(coin8);
-        coinSetter(coin9);
-        coinSetter(coin10);
-        coinSetter(coin11);
-        coinSetter(coin12);
-        coinSetter(coin13);
-        coinSetter(coin14);
-        coinSetter(coin15);
-        coinSetter(coin16);
-        coinSetter(coin17);
-        coinSetter(coin18);
-        coinSetter(coinx1);
-        coinSetter(coinx2);
-        coinSetter(coinx3);
-        coinSetter(coinx4);
-        coinSetter(coinx5);
-        coinSetter(coinx6);
-        coinSetter(coinx7);
-        coinSetter(coinx8);
-        coinSetter(coinx9);
-        coinSetter(coinx10);
-        coinSetter(coinx11);
-        coinSetter(coinx12);
-        coinSetter(coinx13);
-        coinSetter(coinx14);
-        coinSetter(coinx15);
-        coinSetter(coinx16);
+        Coin Coin1 = new Coin(coin1, coinList);
+        Coin Coin2 = new Coin(coin2, coinList);
+        Coin Coin3 = new Coin(coin3, coinList);
+        Coin Coin4 = new Coin(coin4, coinList);
+        Coin Coin5 = new Coin(coin5, coinList);
+        Coin Coin6 = new Coin(coin6, coinList);
+        Coin Coin7 = new Coin(coin7, coinList);
+        Coin Coin8 = new Coin(coin8, coinList);
+        Coin Coin9 = new Coin(coin9, coinList);
+        Coin Coin10 = new Coin(coin10, coinList);
+        Coin Coin11 = new Coin(coin11, coinList);
+        Coin Coin12 = new Coin(coin12, coinList);
+        Coin Coin13 = new Coin(coin13, coinList);
+        Coin Coin14 = new Coin(coin14, coinList);
+        Coin Coin15 = new Coin(coin15, coinList);
+        Coin Coin16 = new Coin(coin16, coinList);
+        Coin Coin17 = new Coin(coin17, coinList);
+        Coin Coin18 = new Coin(coin18, coinList);
+        Coin Coinx1 = new Coin(coinx1, coinList);
+        Coin Coinx2 = new Coin(coinx2, coinList);
+        Coin Coinx3 = new Coin(coinx3, coinList);
+        Coin Coinx4 = new Coin(coinx4, coinList);
+        Coin Coinx5 = new Coin(coinx5, coinList);
+        Coin Coinx6 = new Coin(coinx6, coinList);
+        Coin Coinx7 = new Coin(coinx7, coinList);
+        Coin Coinx8 = new Coin(coinx8, coinList);
+        Coin Coinx9 = new Coin(coinx9, coinList);
+        Coin Coinx10 = new Coin(coinx10, coinList);
+        Coin Coinx11 = new Coin(coinx11, coinList);
+        Coin Coinx12 = new Coin(coinx12, coinList);
+        Coin Coinx13 = new Coin(coinx13, coinList);
+        Coin Coinx14 = new Coin(coinx14, coinList);
+        Coin Coinx15 = new Coin(coinx15, coinList);
+        Coin Coinx161 = new Coin(coinx16, coinList);
 
         gameScore.setText(" " + gameScoreCount.getScore());
 
@@ -350,14 +350,14 @@ public class GameController implements Initializable {
                     newY = currentY + velocityY;
                     mouseClicked = false;
                     queenBounds = queenRectangle.getBoundsInParent();
-                    queenBounds = new BoundingBox(queenBounds.getMinX(), queenBounds.getMinY(), queenBounds.getMinZ(), queenBounds.getWidth()-30, queenBounds.getHeight()-5, queenBounds.getDepth());
+                    queenBounds = new BoundingBox(queenBounds.getMinX(), queenBounds.getMinY(), queenBounds.getMinZ(), queenBounds.getWidth()-30, queenBounds.getHeight()-7, queenBounds.getDepth());
                 } else {
                     velocityY += gravity * 0.5 * animTime * animTime;
                     newY = currentY + velocityY;
                 }
                 for (int i = 0; i < islandList.size(); i++) {
                     queenBounds = queenRectangle.getBoundsInParent();
-                    queenBounds = new BoundingBox(queenBounds.getMinX(), queenBounds.getMinY(), queenBounds.getMinZ(), queenBounds.getWidth()-30, queenBounds.getHeight()-5, queenBounds.getDepth());
+                    queenBounds = new BoundingBox(queenBounds.getMinX(), queenBounds.getMinY(), queenBounds.getMinZ(), queenBounds.getWidth()-30, queenBounds.getHeight()-7, queenBounds.getDepth());
 
                     Bounds islandBounds = islandList.get(i).getBoundsInParent();
                     if (queenBounds.intersects(islandBounds)) {
@@ -576,7 +576,7 @@ public class GameController implements Initializable {
     public void moveForward(){
         queenRectangle.setTranslateX(queenRectangle.getTranslateX() + 20);
         queenBounds = queenRectangle.getBoundsInParent();
-        queenBounds = new BoundingBox(queenBounds.getMinX(), queenBounds.getMinY(), queenBounds.getMinZ(), queenBounds.getWidth()-40, queenBounds.getHeight()-5, queenBounds.getDepth());
+        queenBounds = new BoundingBox(queenBounds.getMinX(), queenBounds.getMinY(), queenBounds.getMinZ(), queenBounds.getWidth()-40, queenBounds.getHeight()-7, queenBounds.getDepth());
         gameHighScore.setTranslateX(gameHighScore.getTranslateX() + 20);
        highScoreText.setTranslateX(highScoreText.getTranslateX() + 20);
         coinScoreImage.setTranslateX(coinScoreImage.getTranslateX() + 20);
@@ -694,63 +694,6 @@ public class GameController implements Initializable {
         Image gameObjectImage = new Image(this.getClass().getResource(name).toString());
         gameObject.setFill(new ImagePattern(gameObjectImage));
         gameObject.setStrokeWidth(0);
-    }
-
-    public void coinSetter(Rectangle gameObject){
-        Image gameObjectImage = new Image(this.getClass().getResource("/assets/Coin.png").toString());
-        gameObject.setFill(new ImagePattern(gameObjectImage));
-        gameObject.setStrokeWidth(0);
-        coinList.add(gameObject);
-        TranslateTransition translate = new TranslateTransition();
-        translate.setNode(gameObject);
-        translate.setCycleCount(TranslateTransition.INDEFINITE);
-        translate.setDuration(Duration.millis(2500));
-        translate.setByY(-5);
-        translate.setAutoReverse(true);
-        translate.play();
-    }
-
-    public void orcSetter(Rectangle gameObject, String name, int id){
-        Image gameObjectImage = new Image(this.getClass().getResource(name).toString());
-        gameObject.setFill(new ImagePattern(gameObjectImage));
-        gameObject.setStrokeWidth(0);
-        if(id == 0){
-            orcListG.add(gameObject);
-        }
-        else if(id == 1){
-            orcListR.add(gameObject);
-        }
-        else{
-            orcListB.add(gameObject);
-        }
-    }
-
-    public void islandSetter(Rectangle gameObject, String name){
-        Image gameObjectImage = new Image(this.getClass().getResource(name).toString());
-        gameObject.setFill(new ImagePattern(gameObjectImage));
-        gameObject.setStrokeWidth(0);
-        islandList.add(gameObject);
-        TranslateTransition translate = new TranslateTransition();
-        translate.setNode(gameObject);
-        translate.setCycleCount(TranslateTransition.INDEFINITE);
-        translate.setDuration(Duration.millis(2500));
-        translate.setByY(-3);
-        translate.setAutoReverse(true);
-        translate.play();
-    }
-
-    public void treasureSetter(Rectangle gameObject){
-        Image gameObjectImage = new Image(this.getClass().getResource("/assets/ClosedTreasure.png").toString());
-        gameObject.setFill(new ImagePattern(gameObjectImage));
-        gameObject.setStrokeWidth(0);
-        treasureList.add(gameObject);
-        TranslateTransition translate = new TranslateTransition();
-        translate.setNode(gameObject);
-        translate.setCycleCount(TranslateTransition.INDEFINITE);
-        translate.setDuration(Duration.millis(2500));
-        translate.setByY(-4);
-        translate.setAutoReverse(true);
-        translate.play();
     }
 
     public void treasureOpener(Rectangle gameObject){
