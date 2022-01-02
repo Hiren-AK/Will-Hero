@@ -454,7 +454,7 @@ public class GameController implements Initializable {
                         newY = currentYtnt + velocityYtnt;
                     }
                 }
-                if(tntTime >= 0.18){
+                if(tntTime >= 0.19){
                     blastTNT.setOpacity(100);
                     TNT.setOpacity(0);
                 }
