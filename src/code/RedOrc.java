@@ -6,7 +6,7 @@ import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 
-public class RedOrc extends GameObjects{
+public class RedOrc extends Orc{
     private Rectangle gameObject;
 
     public RedOrc(Rectangle _gameObject, ArrayList<Rectangle> redOrcList){

@@ -6,7 +6,7 @@ import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 
-public class Boss extends GameObjects{
+public class Boss extends Orc{
     private Rectangle gameObject;
 
     public Boss(Rectangle _gameObject, ArrayList<Rectangle> bossOrcList){
