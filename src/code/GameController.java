@@ -327,7 +327,7 @@ public class GameController implements Initializable {
         Coin Coinx13 = new Coin(coinx13, coinList);
         Coin Coinx14 = new Coin(coinx14, coinList);
         Coin Coinx15 = new Coin(coinx15, coinList);
-        Coin Coinx161 = new Coin(coinx16, coinList);
+        Coin Coinx16 = new Coin(coinx16, coinList);
 
         gameScore.setText(" " + gameScoreCount.getScore());
 
