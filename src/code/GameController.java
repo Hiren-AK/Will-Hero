@@ -454,6 +454,10 @@ public class GameController implements Initializable {
                         newY = currentYtnt + velocityYtnt;
                     }
                 }
+                if(tntTime >= 0.18){
+                    blastTNT.setOpacity(100);
+                    TNT.setOpacity(0);
+                }
                 if(tntTime >= 0.2){
                     tntBlast();
                 }
@@ -497,8 +501,6 @@ public class GameController implements Initializable {
     }
 
     public void tntBlast(){
-        TNT.setOpacity(0);
-        blastTNT.setOpacity(100);
         tntTimer.stop();
         Bounds tntBlastBounds = blastTNT.getBoundsInParent();
         tntBlastBounds = new BoundingBox(tntBlastBounds.getMinX()-10, tntBlastBounds.getMinY()-20, tntBlastBounds.getMinZ(), tntBlastBounds.getWidth()+20, tntBlastBounds.getHeight()+20, tntBlastBounds.getDepth());
