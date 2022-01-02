@@ -119,6 +119,12 @@ public class SaverController implements Initializable {
             ObjectOutputStream out = new ObjectOutputStream(file);
             if(game1 == null){
                 out.writeObject(currentGameScore);
+                try {
+                    returnHome(event);
+                }
+                catch(Exception e){
+                    System.out.println(e);
+                }
             }
             else{
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -166,6 +172,12 @@ public class SaverController implements Initializable {
             ObjectOutputStream out = new ObjectOutputStream(file);
             if(game2 == null){
                 out.writeObject(currentGameScore);
+                try {
+                    returnHome(event);
+                }
+                catch(Exception e){
+                    System.out.println(e);
+                }
             }
             else{
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -214,6 +226,12 @@ public class SaverController implements Initializable {
             ObjectOutputStream out = new ObjectOutputStream(file);
             if(game3 == null){
                 out.writeObject(currentGameScore);
+                try {
+                    returnHome(event);
+                }
+                catch(Exception e){
+                    System.out.println(e);
+                }
             }
             else{
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
