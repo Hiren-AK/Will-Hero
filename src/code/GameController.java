@@ -7,6 +7,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.BoundingBox;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -342,12 +343,15 @@ public class GameController implements Initializable {
                     newY = currentY + velocityY;
                     mouseClicked = false;
                     queenBounds = queenRectangle.getBoundsInParent();
+                    queenBounds = new BoundingBox(queenBounds.getMinX(), queenBounds.getMinY(), queenBounds.getMinZ(), queenBounds.getWidth()-30, queenBounds.getHeight()-5, queenBounds.getDepth());
                 } else {
                     velocityY += gravity * 0.5 * animTime * animTime;
                     newY = currentY + velocityY;
                 }
                 for (int i = 0; i < islandList.size(); i++) {
                     queenBounds = queenRectangle.getBoundsInParent();
+                    queenBounds = new BoundingBox(queenBounds.getMinX(), queenBounds.getMinY(), queenBounds.getMinZ(), queenBounds.getWidth()-30, queenBounds.getHeight()-5, queenBounds.getDepth());
+
                     Bounds islandBounds = islandList.get(i).getBoundsInParent();
                     if (queenBounds.intersects(islandBounds)) {
                         velocityY = -1;
@@ -374,7 +378,25 @@ public class GameController implements Initializable {
                     }
                 }
 
+                for(int i = 0; i < orcListR.size(); i++){
+                    Bounds orcBounds = orcListR.get(i).getBoundsInParent();
+                    orcBounds = new BoundingBox(orcBounds.getMinX()+30, orcBounds.getMinY(), orcBounds.getMinZ(), orcBounds.getWidth()-50, orcBounds.getHeight()-5, orcBounds.getDepth());
+                    if(queenRectangle.getBoundsInParent().intersects(orcBounds)){
+                        try {
+                            if(coinCount >= 100){
+                                revive = true;
+                            }
+                            gameScoreCount.setScore(gameScoreCount.getScore()+10);
+                            quitGame();
+                        }
+                        catch(IOException ex){
+                            System.out.println("IOException is caught");
+                        }
+                    }
+                }
+
                 Bounds orcBounds = boss.getBoundsInParent();
+                orcBounds = new BoundingBox(orcBounds.getMinX()+30, orcBounds.getMinY(), orcBounds.getMinZ(), orcBounds.getWidth()-60, orcBounds.getHeight()-5, orcBounds.getDepth());
                 if(queenRectangle.getBoundsInParent().intersects(orcBounds)){
                     try {
                         if(coinCount >= 100) revive = true;
@@ -497,6 +519,7 @@ public class GameController implements Initializable {
     public void moveForward(){
         queenRectangle.setTranslateX(queenRectangle.getTranslateX() + 20);
         queenBounds = queenRectangle.getBoundsInParent();
+        queenBounds = new BoundingBox(queenBounds.getMinX(), queenBounds.getMinY(), queenBounds.getMinZ(), queenBounds.getWidth()-40, queenBounds.getHeight()-5, queenBounds.getDepth());
         gameHighScore.setTranslateX(gameHighScore.getTranslateX() + 20);
         highScoreText.setTranslateX(highScoreText.getTranslateX() + 20);
         coinScoreImage.setTranslateX(coinScoreImage.getTranslateX() + 20);
@@ -510,8 +533,9 @@ public class GameController implements Initializable {
         serializeScore(gameScoreCount);
 
         for(int i=0; i < orcListG.size(); i++){
-            Bounds orcBoundsG = orcListG.get(i).getBoundsInParent();
-            if(queenBounds.intersects(orcBoundsG)){
+            Bounds orcBounds = orcListG.get(i).getBoundsInParent();
+            orcBounds = new BoundingBox(orcBounds.getMinX(), orcBounds.getMinY(), orcBounds.getMinZ(), orcBounds.getWidth(), orcBounds.getHeight()-5, orcBounds.getDepth());
+            if(queenBounds.intersects(orcBounds)){
                 greenOrc(orcListG.get(i));
             }
         }
@@ -520,21 +544,6 @@ public class GameController implements Initializable {
             tnt(TNT);
         }
 
-        for(int i = 0; i < orcListR.size(); i++){
-            Bounds orcBounds = orcListR.get(i).getBoundsInParent();
-            if(queenRectangle.getBoundsInParent().intersects(orcBounds)){
-                try {
-                    if(coinCount >= 100){
-                        revive = true;
-                    }
-                    gameScoreCount.setScore(gameScoreCount.getScore()+10);
-                    quitGame();
-                }
-                catch(IOException ex){
-                    System.out.println("IOException is caught");
-                }
-            }
-        }
         coinScoreCount.setCoinScore(coinCount);
         serializeCoinScore(coinScoreCount);
         try {

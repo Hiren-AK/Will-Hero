@@ -138,6 +138,8 @@ public class ResumeController implements Initializable {
             exitGame();
         });
         stage.show();
+        Score slot = new Score(1);
+        serializeSlot(slot);
     }
 
     public void load2(ActionEvent event) throws IOException {
@@ -172,6 +174,8 @@ public class ResumeController implements Initializable {
             exitGame();
         });
         stage.show();
+        Score slot = new Score(2);
+        serializeSlot(slot);
     }
 
     public void load3(ActionEvent event) throws IOException {
@@ -206,6 +210,21 @@ public class ResumeController implements Initializable {
             exitGame();
         });
         stage.show();
+        Score slot = new Score(3);
+        serializeSlot(slot);
+    }
+
+    public void serializeSlot(Score score){
+        try {
+            FileOutputStream file = new FileOutputStream("serial/SerializedSlot.txt");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(score);
+            out.close();
+            file.close();
+        }
+        catch (IOException ex) {
+            System.out.println("IOException is caught");
+        }
     }
 
     public void exitGame(){
