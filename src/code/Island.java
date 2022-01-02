@@ -8,7 +8,7 @@ import javafx.util.Duration;
 
 import java.util.ArrayList;
 
-public class Island {
+public class Island extends GameObjects{
     private Rectangle gameObject;
 
     public Island(Rectangle _gameObject, String name, ArrayList<Rectangle> islandList){
