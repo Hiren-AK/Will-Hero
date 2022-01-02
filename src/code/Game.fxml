@@ -108,5 +108,6 @@
             <Font name="Segoe UI Bold" size="41.0" />
          </font>
       </Button>
+      <Rectangle fx:id="blastTNT" arcHeight="5.0" arcWidth="5.0" fill="RED" height="51.0" layoutX="1023.0" layoutY="305.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="71.0" />
    </children>
 </AnchorPane>

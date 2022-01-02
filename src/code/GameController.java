@@ -200,6 +200,8 @@ public class GameController implements Initializable {
     private Rectangle treasure3;
     @FXML
     private Rectangle TNT;
+    @FXML
+    private Rectangle blastTNT;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -286,6 +288,8 @@ public class GameController implements Initializable {
         treasureSetter(treasure3);
 
         rectangleSetter(TNT, "/assets/TNT.png");
+        rectangleSetter(blastTNT, "/assets/blastTNT.png");
+        blastTNT.setOpacity(0);
 
         coinSetter(coin1);
         coinSetter(coin2);
@@ -521,7 +525,7 @@ public class GameController implements Initializable {
         queenBounds = queenRectangle.getBoundsInParent();
         queenBounds = new BoundingBox(queenBounds.getMinX(), queenBounds.getMinY(), queenBounds.getMinZ(), queenBounds.getWidth()-40, queenBounds.getHeight()-5, queenBounds.getDepth());
         gameHighScore.setTranslateX(gameHighScore.getTranslateX() + 20);
-        highScoreText.setTranslateX(highScoreText.getTranslateX() + 20);
+       highScoreText.setTranslateX(highScoreText.getTranslateX() + 20);
         coinScoreImage.setTranslateX(coinScoreImage.getTranslateX() + 20);
         gameScore.setTranslateX(gameScore.getTranslateX()+20);
         setting.setTranslateX(setting.getTranslateX() + 20);
@@ -541,7 +545,8 @@ public class GameController implements Initializable {
         }
 
         if(queenBounds.intersects(TNT.getBoundsInParent())){
-            tnt(TNT);
+            TNT.setOpacity(0);
+            blastTNT.setOpacity(100);
         }
 
         coinScoreCount.setCoinScore(coinCount);
@@ -625,27 +630,6 @@ public class GameController implements Initializable {
             }
         }
         if(collide == false){
-            TranslateTransition translate = new TranslateTransition();
-            translate.setNode(gameObject);
-            translate.setDuration(Duration.millis(2500));
-            translate.setByY(200);
-            translate.play();
-        }
-    }
-
-    public void tnt(Rectangle gameObject){
-        boolean tntCollide = false;
-        Bounds gameObjectBounds;
-        gameObjectBounds = gameObject.getBoundsInParent();
-        for (int i = 0; i < islandList.size(); i++) {
-
-            Bounds islandBounds = islandList.get(i).getBoundsInParent();
-            if (gameObjectBounds.intersects(islandBounds)){
-                gameObject.setTranslateX(gameObject.getTranslateX() + 40);
-                tntCollide = true;
-            }
-        }
-        if(tntCollide == false){
             TranslateTransition translate = new TranslateTransition();
             translate.setNode(gameObject);
             translate.setDuration(Duration.millis(2500));
