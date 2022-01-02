@@ -27,11 +27,13 @@ import javafx.stage.StageStyle;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
+import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
+import java.util.Timer;
 
 public class GameController implements Initializable {
     private ArrayList<Rectangle> islandList = new ArrayList<Rectangle>();
@@ -52,6 +54,7 @@ public class GameController implements Initializable {
     private Score gameScoreCount = new Score(0);
     private boolean mouseClicked = false;
     public static AnimationTimer animationTimer;
+    public static AnimationTimer tntTimer;
     private boolean gameEnd = false;
     private boolean revive = false;
 
@@ -429,6 +432,37 @@ public class GameController implements Initializable {
             }
         };
 
+        tntTimer = new AnimationTimer() {
+            double tntTime = 0.0;
+            double velocityYtnt = 0;
+            double gravitytnt = 9.8;
+            double previousVelocitytnt = 0;
+
+            @Override
+            public void handle(long l) {
+                double currentYtnt = TNT.getLayoutY();
+                double newY = currentYtnt;
+                velocityYtnt += gravitytnt * 0.5 * tntTime * tntTime;
+                newY = currentYtnt + velocityYtnt;
+                for (int i = 0; i < islandList.size(); i++) {
+                    Bounds tntBounds = TNT.getBoundsInParent();
+                    tntBounds = new BoundingBox(tntBounds.getMinX(), tntBounds.getMinY(), tntBounds.getMinZ(), tntBounds.getWidth()-30, tntBounds.getHeight()-5, tntBounds.getDepth());
+
+                    Bounds islandBounds = islandList.get(i).getBoundsInParent();
+                    if (tntBounds.intersects(islandBounds)) {
+                        velocityYtnt = -1;
+                        newY = currentYtnt + velocityYtnt;
+                    }
+                }
+                if(tntTime >= 0.2){
+                    tntBlast();
+                }
+                tntTime += 0.001;
+                TNT.relocate(TNT.getLayoutX(), newY);
+                previousVelocitytnt = velocityYtnt;
+            }
+        };
+
         TranslateTransition translateRed1 = new TranslateTransition();
         translateRed1.setNode(redOrc1);
         translateRed1.setCycleCount(TranslateTransition.INDEFINITE);
@@ -460,6 +494,25 @@ public class GameController implements Initializable {
         translateBoss.setByY(-120);
         translateBoss.setAutoReverse(true);
         translateBoss.play();
+    }
+
+    public void tntBlast(){
+        TNT.setOpacity(0);
+        Bounds tntBlastBounds = blastTNT.getBoundsInParent();
+        tntBlastBounds = new BoundingBox(tntBlastBounds.getMinX(), tntBlastBounds.getMinY(), tntBlastBounds.getMinZ(), tntBlastBounds.getWidth()-30, tntBlastBounds.getHeight()-5, tntBlastBounds.getDepth());
+
+        if(tntBlastBounds.intersects(queenRectangle.getBoundsInParent())){
+            revive = true;
+            try{
+                quitGame();
+            }
+            catch(Exception e){
+                //
+            }
+        }
+        System.out.println("BOOM!!!");
+        tntTimer.stop();
+        blastTNT.setOpacity(100);
     }
 
     public void placeGameObjects(){
@@ -545,8 +598,7 @@ public class GameController implements Initializable {
         }
 
         if(queenBounds.intersects(TNT.getBoundsInParent())){
-            TNT.setOpacity(0);
-            blastTNT.setOpacity(100);
+            tntTimer.start();
         }
 
         coinScoreCount.setCoinScore(coinCount);
