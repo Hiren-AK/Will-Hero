@@ -47,9 +47,9 @@
       <Rectangle fx:id="islandRectangle2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="66.0" layoutX="800.0" layoutY="387.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="177.0" />
       <Rectangle fx:id="islandRectangle5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="66.0" layoutX="1381.0" layoutY="378.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="361.0" />
       <Rectangle fx:id="islandRectangle6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="61.0" layoutX="1019.0" layoutY="350.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="286.0" />
-      <Rectangle fx:id="islandRectangle3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="77.0" layoutX="334.0" layoutY="356.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="121.0" />
+      <Rectangle fx:id="islandRectangle3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="77.0" layoutX="334.0" layoutY="351.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="121.0" />
       <Rectangle fx:id="islandRectangle1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="63.0" layoutX="41.0" layoutY="358.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="227.0" />
-      <Rectangle fx:id="islandRectangle4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="64.0" layoutX="491.0" layoutY="343.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="227.0" />
+      <Rectangle fx:id="islandRectangle4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="64.0" layoutX="491.0" layoutY="353.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="227.0" />
       <Rectangle fx:id="islandRectangle7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="63.0" layoutX="1824.0" layoutY="352.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="227.0" />
       <Rectangle fx:id="coinx1" arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="25.0" layoutX="1549.0" layoutY="336.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="25.0" />
       <Rectangle fx:id="coinx2" arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="25.0" layoutX="1577.0" layoutY="336.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="25.0" />
@@ -66,7 +66,7 @@
       <Rectangle fx:id="coin5" arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="25.0" layoutX="367.0" layoutY="320.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="25.0" />
       <Rectangle fx:id="coin6" arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="25.0" layoutX="400.0" layoutY="320.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="25.0" />
       <Rectangle fx:id="coin7" arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="25.0" layoutX="433.0" layoutY="320.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="25.0" />
-      <Rectangle fx:id="greenOrc1" arcHeight="5.0" arcWidth="5.0" fill="#0d6b00" height="59.0" layoutX="493.0" layoutY="290.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="64.0" />
+      <Rectangle fx:id="greenOrc1" arcHeight="5.0" arcWidth="5.0" fill="#0d6b00" height="59.0" layoutX="493.0" layoutY="299.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="64.0" />
       <Rectangle fx:id="coin8" arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="25.0" layoutX="561.0" layoutY="312.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="25.0" />
       <Rectangle fx:id="coin9" arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="25.0" layoutX="591.0" layoutY="312.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="25.0" />
       <Rectangle fx:id="coin10" arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="25.0" layoutX="619.0" layoutY="312.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="25.0" />
@@ -92,7 +92,7 @@
       <Rectangle fx:id="coinx13" arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="25.0" layoutX="2805.0" layoutY="328.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="25.0" />
       <Rectangle fx:id="coinx14" arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="25.0" layoutX="2834.0" layoutY="328.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="25.0" />
       <Rectangle fx:id="coinx16" arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="25.0" layoutX="2893.0" layoutY="328.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="25.0" />
-      <Rectangle fx:id="treasure1" arcHeight="5.0" arcWidth="5.0" fill="#ff9500" height="35.0" layoutX="651.0" layoutY="304.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="57.0" />
+      <Rectangle fx:id="treasure1" arcHeight="5.0" arcWidth="5.0" fill="#ff9500" height="35.0" layoutX="651.0" layoutY="313.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="57.0" />
       <Rectangle fx:id="coinx15" arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="25.0" layoutX="2864.0" layoutY="328.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="25.0" />
       <Rectangle fx:id="TNT" arcHeight="5.0" arcWidth="5.0" fill="RED" height="35.0" layoutX="1037.0" layoutY="316.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="42.0" />
       <Rectangle fx:id="coin15" arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="25.0" layoutX="1105.0" layoutY="315.0" onMouseClicked="#moveForward" stroke="BLACK" strokeType="INSIDE" width="25.0" />

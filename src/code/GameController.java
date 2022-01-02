@@ -498,8 +498,10 @@ public class GameController implements Initializable {
 
     public void tntBlast(){
         TNT.setOpacity(0);
+        blastTNT.setOpacity(100);
+        tntTimer.stop();
         Bounds tntBlastBounds = blastTNT.getBoundsInParent();
-        tntBlastBounds = new BoundingBox(tntBlastBounds.getMinX(), tntBlastBounds.getMinY(), tntBlastBounds.getMinZ(), tntBlastBounds.getWidth()-30, tntBlastBounds.getHeight()-5, tntBlastBounds.getDepth());
+        tntBlastBounds = new BoundingBox(tntBlastBounds.getMinX()-10, tntBlastBounds.getMinY()-20, tntBlastBounds.getMinZ(), tntBlastBounds.getWidth()+20, tntBlastBounds.getHeight()+20, tntBlastBounds.getDepth());
 
         if(tntBlastBounds.intersects(queenRectangle.getBoundsInParent())){
             revive = true;
@@ -510,9 +512,6 @@ public class GameController implements Initializable {
                 //
             }
         }
-        System.out.println("BOOM!!!");
-        tntTimer.stop();
-        blastTNT.setOpacity(100);
     }
 
     public void placeGameObjects(){
