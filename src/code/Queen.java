@@ -14,4 +14,10 @@ public class Queen extends GameObjects{
         _gameObject.setStrokeWidth(0);
         gameObject = _gameObject;
     }
+
+    public void Weaponize(){
+        Image gameObjectImage = new Image(this.getClass().getResource("/assets/QueenWeaponized.png").toString());
+        gameObject.setFill(new ImagePattern(gameObjectImage));
+        gameObject.setStrokeWidth(0);
+    }
 }

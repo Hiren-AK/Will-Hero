@@ -49,6 +49,7 @@ public class GameController implements Initializable {
     public static AnimationTimer tntTimer;
     private boolean gameEnd = false;
     private boolean revive = false;
+    private boolean weaponized = false;
 
     Bounds queenBounds;
 
@@ -197,6 +198,8 @@ public class GameController implements Initializable {
     private Rectangle TNT;
     @FXML
     private Rectangle blastTNT;
+    @FXML
+    private Rectangle weaponRect;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -370,8 +373,15 @@ public class GameController implements Initializable {
 
                 for(int i = 0; i < treasureList.size(); i++){
                     Bounds treasureBounds = treasureList.get(i).getBoundsInParent();
-                    if(queenRectangle.getBoundsInParent().intersects(treasureBounds)){
-                        treasureOpener(treasureList.get(i));
+                    if(queenRectangle.getBoundsInParent().intersects(treasureBounds) && i != 1){
+                        treasureOpenerCoins(treasureList.get(i));
+                        Rectangle dummyTreasure = new Rectangle();
+                        treasureList.set(i, dummyTreasure);
+                    }
+                    else if(queenRectangle.getBoundsInParent().intersects(treasureBounds)){
+                        treasureOpenerWeapon(treasureList.get(i));
+                        Queen q = (Queen) queen;
+                        q.Weaponize();
                         Rectangle dummyTreasure = new Rectangle();
                         treasureList.set(i, dummyTreasure);
                     }
@@ -380,7 +390,7 @@ public class GameController implements Initializable {
                 for(int i = 0; i < orcListR.size(); i++){
                     Bounds orcBounds = orcListR.get(i).getBoundsInParent();
                     orcBounds = new BoundingBox(orcBounds.getMinX()+30, orcBounds.getMinY(), orcBounds.getMinZ(), orcBounds.getWidth()-50, orcBounds.getHeight()-5, orcBounds.getDepth());
-                    if(queenRectangle.getBoundsInParent().intersects(orcBounds)){
+                    if(queenRectangle.getBoundsInParent().intersects(orcBounds) && !weaponized){
                         try {
                             if(coinCount >= 100){
                                 revive = true;
@@ -391,6 +401,9 @@ public class GameController implements Initializable {
                         catch(IOException ex){
                             System.out.println("IOException is caught");
                         }
+                    }
+                    else if(queenRectangle.getBoundsInParent().intersects(orcBounds)){
+                        orcListR.get(i).setOpacity(0);
                     }
                 }
 
@@ -689,8 +702,15 @@ public class GameController implements Initializable {
         gameObject.setStrokeWidth(0);
     }
 
-    public void treasureOpener(Rectangle gameObject){
+    public void treasureOpenerCoins(Rectangle gameObject){
         coinCount += 10;
+        Image gameObjectImage = new Image(this.getClass().getResource("/assets/OpenTreasure.png").toString());
+        gameObject.setFill(new ImagePattern(gameObjectImage));
+        gameObject.setStrokeWidth(0);
+    }
+
+    public void treasureOpenerWeapon(Rectangle gameObject){
+        weaponized = true;
         Image gameObjectImage = new Image(this.getClass().getResource("/assets/OpenTreasure.png").toString());
         gameObject.setFill(new ImagePattern(gameObjectImage));
         gameObject.setStrokeWidth(0);
